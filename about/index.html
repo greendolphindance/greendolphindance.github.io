@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="greendolphindance">
+
+
+
+    <meta name="description" content="Back to the rough ground!">
+
+
+
+<title>About Me | Green Dolphin Dance</title>
+
+
+
+    <link rel="icon" href="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/e66871c0-be6e-4fc7-8fa6-ceae6932cbaf">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+    <script src="/js/jquery.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function changeGiscusTheme() {
+        const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme === 'dark' ? 'noborder_dark' : 'noborder_light'
+            }
+        });
+    }
+
+    // 等待Giscus加载，然后尝试更改主题
+    setTimeout(changeGiscusTheme, 1200); // 等待1200毫秒
+
+    // 如果你有一个主题切换按钮或链接，你可以在这里添加事件监听器
+    // 例如：
+    // document.getElementById('your-theme-switch-button-id').addEventListener('click', changeGiscusTheme);
+});
+</script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Green Dolphin Dance</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/guestbook">Guestbook</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/links">Links</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Green Dolphin Dance</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/Categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/guestbook">Guestbook</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/links">Links</a>
+                
+            </div>
+        </div>
+    </nav>
+
+
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+
+            <div class="main">
+                <div class="container">
+    <article class="post-wrap page">
+        
+        <h2 class="post-title">About Me</h2>
+        
+        <section class="post-content">
+            <p>女大学生，长期坚持的爱好基本上只有听音乐和折腾电子设备。喜欢摇滚乐和爵士乐，很偶尔听古典。虽然没有什么电脑知识，但很爱折腾，喜欢下载各种新奇的小工具偷偷把玩。最近在进行一些迷信活动。</p>
+<p>站名“Green Dolphin Dance”来源于爵士标准曲<em>On Green Doplhin Street</em>和<em>Dolphin Dance</em>。</p>
+<p>联系我：<a href="mailto:&#x63;&#x68;&#x65;&#110;&#x63;&#104;&#117;&#109;&#x69;&#97;&#x6f;&#x40;&#111;&#x75;&#116;&#108;&#x6f;&#111;&#107;&#46;&#99;&#x6f;&#x6d;">&#x63;&#x68;&#x65;&#110;&#x63;&#104;&#117;&#109;&#x69;&#97;&#x6f;&#x40;&#111;&#x75;&#116;&#108;&#x6f;&#111;&#107;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p><del><a target="_blank" rel="noopener" href="https://tinyletter.com/greendolphindance">点此订阅本博客</a>。你将<em>不会</em>收到确认邮件。如果本博客已经更新，你却没有收到邮件推送，请查看垃圾邮件。或者</del>使用RSS订阅：<a href="https://greendolphindance.github.io/atom.xml">https://greendolphindance.github.io/atom.xml</a>。</p>
+<p>邮件订阅出问题了，<del>修复中</del>已放弃修复。 请使用RSS订阅。具体方法是下载一个RSS阅读器（我用的是<a target="_blank" rel="noopener" href="https://netnewswire.com/">NetNewsWire</a>），添加一个Feed，再把上述链接输入进去。如果不想下载多余的APP，或者比较喜欢邮件推送的形式，可以使用<a target="_blank" rel="noopener" href="https://app.briefcake.com/">Briefcake</a>。</p>
+<p>以下是一个歌单。感谢<a target="_blank" rel="noopener" href="https://music.163.com/#/artist?id=35945528">竹子</a>和<a target="_blank" rel="noopener" href="https://music.163.com/#/artist?id=34327004">Mon</a>贡献他们的作品！</p>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">   
+
+<style>
+body {
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+/* Light mode styles (default) */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark mode styles */
+body.dark-theme {
+    background-color: #292a2d;
+    color: #ffffff;
+}
+
+/* APlayer styles for light mode */
+body .aplayer-body,
+body .aplayer-info,
+body .aplayer-notice,
+body .aplayer-list {
+    background-color: #ffffff;
+}
+
+/* APlayer styles for dark mode */
+body.dark-theme .aplayer-body,
+body.dark-theme .aplayer-info,
+body.dark-theme .aplayer-notice,
+body.dark-theme .aplayer-list {
+    background-color: #292a2d;
+
+}
+
+body.dark-theme .aplayer .aplayer-list .aplayer-list-light {
+    background-color: #505254 !important; 
+}
+
+body.dark-theme .aplayer .aplayer-list ol li:hover {
+    background: #414345; /* 或者你想要的其他颜色 */
+}
+
+body.dark-theme .aplayer .aplayer-list ol li {
+    border-top: 1px solid #414345; /* 或者你想要的其他颜色 */
+}
+
+body.dark-theme .aplayer-lrc::before,
+body.dark-theme .aplayer-lrc::after {
+    background: linear-gradient(to bottom, #292a2d, #292a2d); /* 使用和背景相同的颜色 */
+}
+
+body.dark-theme .aplayer-list-cur {
+    background-color: #aaaaaa !important;
+}
+
+body.dark-theme .aplayer .aplayer-icon-volume-down:hover path,
+body.dark-theme .aplayer .aplayer-icon-order:hover path,
+body.dark-theme .aplayer .aplayer-icon-loop:hover path,
+body.dark-theme .aplayer .aplayer-icon-menu:hover path {
+    fill: #eeeeee !important;
+}
+
+.aplayer-info {
+    border-bottom: none !important;
+}
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>   
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>   
+
+
+    <div id="aplayer-FQAcBuXe" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="8793002560" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="2000px" data-preload="auto" data-theme="#555"
+    ></div>
+
+
+        </section>
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© greendolphindance | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    | <span id="busuanzi_value_site_uv"></span>
+    </div>
+    
+<div id="totop" style="position:fixed;bottom:50px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/imgs/totop.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+</footer>
+
+    </div>
+    
+</body>
+
+</html>
