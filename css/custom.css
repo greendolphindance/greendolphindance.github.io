@@ -140,7 +140,7 @@ body {
   width: 100vw; /* 设置页面宽度为视口宽度的百分比 */
   overflow-x: hidden; /* 隐藏水平滚动条，防止页面宽度变化 */
 }
-@media (max-width: 1024px) {
+@media (max-width: 800px) {
   .search {
     display: none !important;
   }
