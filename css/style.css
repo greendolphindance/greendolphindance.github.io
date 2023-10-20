@@ -1666,102 +1666,64 @@ header label {
     font-size: 1.5em;
   }
 }
-.post-content figure.highlight {
-  margin: 2em 0;
-  background: #f7f7f7;
-  color: #4d4d4c;
-  font-size: 12px;
-  overflow: scroll;
-  overflow-y: hidden;
-  overflow-x: auto;
+.highlight {
+  color: #657b83;
+  background: #fdf6e3;
 }
-.post-content figure.highlight .gutter {
-  color: $hight-gutter;
+.highlight .code .comment,
+.highlight .code .quote {
+  color: #93a1a1;
 }
-.post-content figure.highlight pre {
-  background: #f7f7f7;
-  margin: 0;
+.highlight .code .keyword,
+.highlight .code .selector-tag,
+.highlight .code .addition {
+  color: #859900;
 }
-.post-content code {
-  padding: 2px 4px;
-  background: #f7f7f7;
-  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-  font-size: 12px;
+.highlight .code .number,
+.highlight .code .string,
+.highlight .code .meta .meta-string,
+.highlight .code .literal,
+.highlight .code .doctag,
+.highlight .code .regexp {
+  color: #2aa198;
 }
-.post-content pre {
-  padding: 10px;
-  overflow: auto;
-  background: #f7f7f7;
-  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+.highlight .code .title,
+.highlight .code .section,
+.highlight .code .name,
+.highlight .code .selector-id,
+.highlight .code .selector-class {
+  color: #268bd2;
 }
-.post-content pre code {
-  padding: 0;
+.highlight .code .attribute,
+.highlight .code .attr,
+.highlight .code .variable,
+.highlight .code .template-variable,
+.highlight .code .class .title,
+.highlight .code .type {
+  color: #b58900;
 }
-.post-content pre .deletion {
-  background: #fdd;
+.highlight .code .symbol,
+.highlight .code .bullet,
+.highlight .code .subst,
+.highlight .code .meta,
+.highlight .code .meta .keyword,
+.highlight .code .selector-attr,
+.highlight .code .selector-pseudo,
+.highlight .code .link {
+  color: #cb4b16;
 }
-.post-content pre .addition {
-  background: #dfd;
+.highlight .code .built_in,
+.highlight .code .deletion {
+  color: #dc322f;
 }
-.post-content pre .meta {
-  color: #8959a8;
+.highlight .code .formula {
+  background: #eee8d5;
 }
-.post-content pre .comment {
-  color: #8e908c;
+.highlight .code .emphasis {
+  font-style: italic;
 }
-.post-content pre .variable,
-.post-content pre .attribute,
-.post-content pre .tag,
-.post-content pre .regexp,
-.post-content pre .ruby .constant,
-.post-content pre .xml .tag .title,
-.post-content pre .xml .pi,
-.post-content pre .xml .doctype,
-.post-content pre .html .doctype,
-.post-content pre .css .id,
-.post-content pre .css .class,
-.post-content pre .css .pseudo {
-  color: #c82829;
-}
-.post-content pre .number,
-.post-content pre .preprocessor,
-.post-content pre .built_in,
-.post-content pre .literal,
-.post-content pre .params,
-.post-content pre .constant,
-.post-content pre .command {
-  color: #f5871f;
-}
-.post-content pre .ruby .class .title,
-.post-content pre .css .rules .attribute,
-.post-content pre .string,
-.post-content pre .value,
-.post-content pre .inheritance,
-.post-content pre .header,
-.post-content pre .ruby .symbol,
-.post-content pre .xml .cdata,
-.post-content pre .special,
-.post-content pre .number,
-.post-content pre .formula {
-  color: #718c00;
-}
-.post-content pre .title,
-.post-content pre .css .hexcolor {
-  color: #3e999f;
-}
-.post-content pre .function,
-.post-content pre .python .decorator,
-.post-content pre .python .title,
-.post-content pre .ruby .function .title,
-.post-content pre .ruby .title .keyword,
-.post-content pre .perl .sub,
-.post-content pre .javascript .title,
-.post-content pre .coffeescript .title {
-  color: #4271ae;
-}
-.post-content pre .keyword,
-.post-content pre .javascript .function {
-  color: #8959a8;
+.highlight .code .strong {
+  font-weight: bold;
 }
 body.dark-theme .post-title {
   color: #a9a9b2;
