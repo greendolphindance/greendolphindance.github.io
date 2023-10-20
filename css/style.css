@@ -1607,9 +1607,62 @@ word-break
     display: none;
   }
 }
-@media screen and (max-width: 1279px) {
-  .post-toc {
-    display: none;
+@media (max-width: 299px) {
+  .wrapper header .navbar-header,
+  .wrapper header .navbar-header a,
+  .menu-toggle {
+    font-size: 12px !important;
+  }
+  .wrapper footer .copyright,
+  .wrapper footer .copyright * {
+    font-size: 10px !important;
+  }
+  .wrapper .nickname {
+    font-size: 20px !important;
+  }
+  .wrapper .description {
+    font-size: 12px !important;
+  }
+}
+@media (max-width: 299px) {
+  body:not(.wrapper) .navbar-header,
+  body:not(.wrapper) .navbar-header * {
+    font-size: 12px !important;
+  }
+  body:not(.wrapper) footer .copyright，,
+  body:not(.wrapper) footer .copyright * {
+    font-size: 10px !important;
+  }
+}
+@media (max-width: 299px) {
+  .menu.active .menu-item {
+    font-size: 12px !important;
+  }
+}
+@media (max-width: 299px) {
+  .post-wrap {
+    padding-top: 2rem;
+    width: 80%; /* 调整内容宽度 */
+    overflow: hidden; /* 防止内容溢出容器 */
+  }
+}
+@media (max-width: 299px) {
+  .archive-item-link {
+    display: block; /* 确保链接作为块级元素显示 */
+    overflow: hidden; /* 隐藏溢出的文本 */
+    white-space: nowrap; /* 防止文本换行 */
+    text-overflow: ellipsis; /* 将溢出的文本显示为省略号 */
+    width: 100%; /* 确保链接元素占据全部可用宽度 */
+  }
+}
+@media (max-width: 299px) {
+  li {
+    width: 100% !important;
+  }
+}
+@media (max-width: 299px) {
+  .post-wrap .post-title {
+    font-size: 1.5em;
   }
 }
 .post-content figure.highlight {
@@ -1728,6 +1781,131 @@ body.dark-theme #footer {
   .back-top-large {
     display: block;
   }
+}
+@media screen and (max-width: 1279px) {
+  .post-toc {
+    display: none;
+  }
+}
+.js-toc {
+  position: fixed;
+  top: 95px; /* 距离顶部的距离，可以根据需要调整 */
+  right: 2em; /* 距离右侧的距离，可以根据需要调整 */
+  width: 15rem; /* 目录的宽度，可以根据需要调整 */
+  font-size: 0.75rem;
+  overflow-y: visible; /* 如果目录很长，这将添加滚动条 */
+  max-height: 500px; /* 最大高度，可以根据需要调整 */
+  background-color: transparent; /* 背景颜色，可以根据需要调整 */
+  z-index: 1000; /* 确保目录显示在其他元素之上 */
+}
+.js-toc .tocbot-list {
+  max-height: 450px;
+  max-width: 250px;
+  overflow: auto;
+  position: relative;
+  padding-right: 0.875rem;
+}
+.js-toc .tocbot-list::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.js-toc .tocbot-list::-webkit-scrollbar-thumb {
+  width: 6px;
+  background-color: #eee;
+  border-radius: 2px;
+}
+.js-toc .tocbot-list ul {
+  list-style: none;
+  position: inherit;
+  overflow: hidden;
+}
+.js-toc .tocbot-list ul li {
+  margin-left: 0.25rem;
+}
+.js-toc .toc-link::before {
+  background-color: #fff;
+}
+.js-toc .is-active-link::before {
+  background-color: #2d96bd;
+}
+.js-toc .tocbot-list-menu {
+  margin: 1rem 0.75rem;
+  font-size: 0.75rem;
+}
+.js-toc .tocbot-list-menu a {
+  display: block;
+  margin: 0.375rem 0;
+  color: #999;
+  cursor: pointer;
+}
+.js-toc .tocbot-list-menu a:hover {
+  color: #808080;
+}
+.toc {
+  overflow-y: auto;
+}
+.toc>.toc-list {
+  overflow: hidden;
+  position: relative;
+}
+.toc>.toc-list li {
+  list-style: none;
+}
+.toc-list {
+  margin: 0;
+  padding-left: 10px;
+}
+a.toc-link {
+  color: currentColor;
+  height: 100%;
+}
+.is-collapsible {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+.is-collapsed {
+  max-height: 0;
+}
+.is-position-fixed {
+  position: fixed !important;
+  top: 0;
+}
+.is-active-link {
+  font-weight: 700;
+}
+.toc-link::before {
+  background-color: #eee;
+  content: ' ';
+  display: inline-block;
+  height: inherit;
+  left: 0;
+  margin-top: -1px;
+  position: absolute;
+  width: 2px;
+}
+.is-active-link::before {
+  background-color: #54bc4b;
+}
+@media screen and (max-width: 1280px) {
+  .js-toc {
+    display: none;
+  }
+}
+.back-top-large {
+  display: none;
+}
+@media (min-width: 1281px) {
+  .back-top-small {
+    display: none;
+  }
+  .back-top-large {
+    display: block;
+  }
+}
+body {
+  width: 100vw; /* 设置页面宽度为视口宽度的百分比 */
+  overflow-x: hidden; /* 隐藏水平滚动条，防止页面宽度变化 */
 }
 .search-input {
   font-size: 0.875rem;

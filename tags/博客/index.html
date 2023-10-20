@@ -519,6 +519,18 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="modal-overlay"></div>
 </div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.css" />
+<script src="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+tocbot.init({
+tocSelector: '.js-toc',
+contentSelector: '.post-content',
+headingSelector: 'h1, h2, h3, h4',
+});
+});
+</script>
+
 </body>
 
 </html>

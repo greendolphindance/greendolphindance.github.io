@@ -145,9 +145,63 @@
     display: none;
   }
 }
-/* post toc Style */
-@media screen and (max-width: 1279px) {
-  .post-toc {
-    display: none;
+/* 在封面页减小标题栏、nickname、description、copyright的字体大小 */
+@media (max-width: 299px) {
+  .wrapper header .navbar-header,
+  .wrapper header .navbar-header a,
+  .menu-toggle {
+    font-size: 12px !important;
+  }
+  .wrapper footer .copyright,
+  .wrapper footer .copyright * {
+    font-size: 10px !important;
+  }
+  .wrapper .nickname {
+    font-size: 20px !important;
+  }
+  .wrapper .description {
+    font-size: 12px !important;
+  }
+}
+/* 在其他页面减小标题栏、copyright的字体大小 */
+@media (max-width: 299px) {
+  body:not(.wrapper) .navbar-header,
+  body:not(.wrapper) .navbar-header * {
+    font-size: 12px !important;
+  }
+  body:not(.wrapper) footer .copyright，,
+  body:not(.wrapper) footer .copyright * {
+    font-size: 10px !important;
+  }
+}
+@media (max-width: 299px) {
+  .menu.active .menu-item {
+    font-size: 12px !important;
+  }
+}
+@media (max-width: 299px) {
+  .post-wrap {
+    padding-top: 2rem;
+    width: 80%; /* 调整内容宽度 */
+    overflow: hidden; /* 防止内容溢出容器 */
+  }
+}
+@media (max-width: 299px) {
+  .archive-item-link {
+    display: block; /* 确保链接作为块级元素显示 */
+    overflow: hidden; /* 隐藏溢出的文本 */
+    white-space: nowrap; /* 防止文本换行 */
+    text-overflow: ellipsis; /* 将溢出的文本显示为省略号 */
+    width: 100%; /* 确保链接元素占据全部可用宽度 */
+  }
+}
+@media (max-width: 299px) {
+  li {
+    width: 100% !important;
+  }
+}
+@media (max-width: 299px) {
+  .post-wrap .post-title {
+    font-size: 1.5em;
   }
 }
