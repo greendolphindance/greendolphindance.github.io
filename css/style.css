@@ -1666,6 +1666,24 @@ header label {
     font-size: 1.5em;
   }
 }
+@media screen and (max-width: 479px) {
+  .navbar-mobile .menu {
+    position: absolute;
+    top: 80.66px; /* 调整这个值，使菜单栏下移 */
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* 或其他颜色 */
+    z-index: 2; /* 确保在其他元素之上 */
+    display: none; /* 默认隐藏 */
+  }
+  .navbar-mobile .menu.active {
+    display: block; /* 当菜单激活时显示 */
+  }
+  .navbar-mobile .navbar-header,
+  .navbar-mobile .menu-toggle {
+    z-index: 1; /* 确保在菜单之下 */
+  }
+}
 .highlight {
   color: #657b83;
   background: #fdf6e3;
