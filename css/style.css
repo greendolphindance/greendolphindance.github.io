@@ -1725,12 +1725,15 @@ header label {
 .highlight .code .strong {
   font-weight: bold;
 }
+.dark-theme .post-content,
 body.dark-theme .post-title {
   color: #a9a9b2;
 }
 body.dark-theme .post-content {
   color: #a9a9b2;
+!important
 }
+!important
 body.dark-theme #footer {
   color: #a9a9b2 !important;
 }
