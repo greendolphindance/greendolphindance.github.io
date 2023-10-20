@@ -75,6 +75,214 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- 搜索的部分 -->
+
+
+
+    <script>
+    // function searchToggle() {
+    //     const width = $(document.body).width()
+    //     if(width > 479) {
+    //         return;
+    //     }
+    //     const search = $('.search');
+    //     const searchForm = $('.form-search')
+
+    //     if(!search.hasClass("mobile-search")) {
+    //         search.addClass("mobile-search");
+    //     } else {
+    //         search.removeClass("mobile-search");
+    //     }
+    // }
+
+    function searchToggle() {
+        const width = $(document.body).width()
+        if(width > 479) {
+            return;
+        }
+        const search = $('.search');
+        const searchForm = $('.form-search');
+        const menuToggle = $('.menu-toggle');
+        const title = $('.navbar-header-title ');
+
+        if(!search.hasClass("mobile-search")) {
+            search.addClass("mobile-search");
+            menuToggle.addClass("open-search")
+            title.addClass("mobile-title-hidden")
+        } else {
+            search.removeClass("mobile-search");
+            menuToggle.removeClass("open-search")
+            // title.css({visibility: 'visible'})
+            title.removeClass("mobile-title-hidden")
+        }
+    }
+
+
+
+    function search(searchInputEl, formEl, flag) {
+        const path = "/" + "search.json"; // 可以在public 下查看这个search.json
+        $(formEl).submit(function(e){
+            e.preventDefault();
+            let target = null
+            if(searchInputEl == null) {
+                const screenWidth = $(document.body).width();
+                target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
+                console.log(target);
+            } else {
+                target = $(searchInputEl)
+            }
+
+            if(!flag && target.val() === '') {
+                return ;
+            }
+
+            $("#u-search").fadeIn(500, function() {
+                $("body > .wrapper").addClass("modal-active");
+
+                $.ajax({
+                    url: path,
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        $input = target.val();
+                        $(".form-input").val($input);
+                        const loadingBar = $('.search-loading-bar')
+                        loadingBar.css({
+                            width:'100%',
+                            display: 'block'
+                        });
+                    },
+                    success: function( datas ) {
+                        console.log(datas);
+                        const $resultPanel = $(".modal-body")[0];
+                        let str = `<ul class="modal-results">`;
+                        var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
+                        $resultPanel.innerHTML = "";
+                        let hasResult = false
+                        let text = `<div class="no-result">找不到与关键词相关的内容....</div>`;
+
+                        if ($(".form-input").val().trim().length <= 0) {
+                            // 没有结果
+                            $resultPanel.innerHTML = text;
+                            return;
+                        }
+                        datas.forEach(function (data, index) {
+                            var isMatch = true;
+                            if (!data.title || data.title.trim() === '') {
+                                data.title = "Untitled";
+                            }
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content && data.content.trim().replace(/<[^>]+>/g, "").toLowerCase() || '';
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty contents
+                            if (data_content !== '') {
+                                keywords.forEach(function (keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        hasResult = true
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            } else {
+                                isMatch = false;
+                            }
+                            // show search results
+                            if (isMatch) {
+                                str += `<li class='result-item'><a href='${data_url}' class='result-item-detail'> <span class="title">${data_title}</span>`;
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 200 characters
+                                    var start = first_occur - 40;
+                                    var end = first_occur + 160;
+
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+
+                                    if (start == 0) {
+                                        end = 200;
+                                    }
+
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+
+                                    var match_content = content.substring(start, end);
+
+                                    // highlight all keywords
+                                    keywords.forEach(function (keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, `<em class="search-keyword">${keyword}</em>`);
+                                    });
+
+                                    str += `<span class="content"> ${match_content} ...</span></a>`;
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        if(hasResult) {
+                            $resultPanel.innerHTML = str;
+                        } else {
+                            $resultPanel.innerHTML = text;
+                        }
+
+                    },
+                    complete: function() {
+                        setTimeout(() => {
+                                const loadingBar = $('.search-loading-bar')
+                                loadingBar.css({
+                                    width:'0%',
+                                    display: 'none'
+                                });
+                        }, 300)
+                    }
+                });
+            })
+
+        });
+    }
+
+    $(document).ready(function() {
+        $('.modal-close').click(function () {
+            $("#u-search").fadeOut();
+            $("body > .wrapper").removeClass("modal-active")
+        })
+
+        $('.modal-overlay').click(function() {
+            $("#u-search").fadeOut();
+            $("body > .wrapper").removeClass("modal-active")
+        })
+        search(null, ".form-search", false)
+        search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
+    })
+</script>
+
+
+
+        <script>
+        (function() {
+            const savedTheme = sessionStorage.getItem('theme');
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const useDarkMode = savedTheme ? savedTheme === 'dark' : userPrefersDark;
+
+            if (useDarkMode) {
+                document.documentElement.style.backgroundColor = '#121212'; // 临时背景色，可以根据你的暗主题颜色进行更改
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
 <meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -103,6 +311,19 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="container">
             <div class="navbar-header header-logo"><a href="/">Green Dolphin Dance</a></div>
             <div class="menu navbar-right">
+             <!-- 这里表示的是pc端搜索框 -->
+            
+            
+    <div class="search ">
+        <div class="search-btn" onClick="searchToggle()">
+            <img src="/imgs/search.png" class="search-btn-img" />
+        </div>
+        <form class="form-search">
+            <input class="input" placeholder="点此搜索" autocomplete="off" id="pc-search-input"/>
+        </form>
+    </div>
+
+
                 
                     <a class="menu-item" href="/archives">Posts</a>
                 
@@ -129,8 +350,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div>
                     <a href="/">Green Dolphin Dance</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
+                <div class="navbar-mobile-right">
+                
+                
+    <div class="search ">
+        <div class="search-btn" onClick="searchToggle()">
+            <img src="/imgs/search.png" class="search-btn-img" />
+        </div>
+        <form class="form-search">
+            <input class="input" placeholder="点此搜索" autocomplete="off" id="mobile-search-input"/>
+        </form>
+    </div>
+
+
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
+            
             <div class="menu" id="mobile-menu">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -176,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <section class="post-content">
             <p>女大学生，长期坚持的爱好基本上只有听音乐和折腾电子设备。喜欢摇滚乐和爵士乐，很偶尔听古典。虽然没有什么电脑知识，但很爱折腾，喜欢下载各种新奇的小工具偷偷把玩。最近在进行一些迷信活动。</p>
 <p>站名“Green Dolphin Dance”来源于爵士标准曲<em>On Green Doplhin Street</em>和<em>Dolphin Dance</em>。</p>
-<p>联系我：<a href="mailto:&#x63;&#x68;&#x65;&#110;&#99;&#x68;&#117;&#109;&#105;&#x61;&#x6f;&#x40;&#x6f;&#117;&#x74;&#x6c;&#111;&#111;&#x6b;&#x2e;&#99;&#x6f;&#x6d;">&#x63;&#x68;&#x65;&#110;&#99;&#x68;&#117;&#109;&#105;&#x61;&#x6f;&#x40;&#x6f;&#117;&#x74;&#x6c;&#111;&#111;&#x6b;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p>联系我：<a href="mailto:&#x63;&#104;&#x65;&#110;&#99;&#104;&#117;&#x6d;&#x69;&#97;&#111;&#x40;&#111;&#117;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#99;&#x6f;&#109;">&#x63;&#104;&#x65;&#110;&#99;&#104;&#117;&#x6d;&#x69;&#97;&#111;&#x40;&#111;&#117;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#99;&#x6f;&#109;</a></p>
 <p><del><a target="_blank" rel="noopener" href="https://tinyletter.com/greendolphindance">点此订阅本博客</a>。你将<em>不会</em>收到确认邮件。如果本博客已经更新，你却没有收到邮件推送，请查看垃圾邮件。或者</del>使用RSS订阅：<a href="https://greendolphindance.github.io/atom.xml">https://greendolphindance.github.io/atom.xml</a>。</p>
 <p>邮件订阅出问题了，<del>修复中</del>已放弃修复。 请使用RSS订阅。具体方法是下载一个RSS阅读器（我用的是<a target="_blank" rel="noopener" href="https://netnewswire.com/">NetNewsWire</a>），添加一个Feed，再把上述链接输入进去。如果不想下载多余的APP，或者比较喜欢邮件推送的形式，可以使用<a target="_blank" rel="noopener" href="https://app.briefcake.com/">Briefcake</a>。</p>
 <p>以下是一个歌单。感谢<a target="_blank" rel="noopener" href="https://music.163.com/#/artist?id=35945528">竹子</a>和<a target="_blank" rel="noopener" href="https://music.163.com/#/artist?id=34327004">Mon</a>贡献他们的作品！</p>
@@ -258,7 +493,7 @@ body.dark-theme .aplayer {
 <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>   
 
 
-    <div id="aplayer-jCDdjFCb" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-rhSwUnha" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="8793002560" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="2000px" data-preload="auto" data-theme="#555"
     ></div>
 
@@ -270,9 +505,15 @@ body.dark-theme .aplayer {
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© greendolphindance | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
-            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    | <span id="busuanzi_value_site_uv"></span>
+        <span>
+            <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+            </a>
+            | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a>
+            | <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_value_site_uv"></span>
+        </span>
     </div>
     
 <div id="totop" style="position:fixed;bottom:20px;right:30px;cursor: pointer;">
@@ -294,6 +535,45 @@ body.dark-theme .aplayer {
 </footer>
 
     </div>
+    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleCheckbox = document.getElementById('switch_default');
+            const themeToggleButton = document.getElementById('mobile-toggle-theme');
+
+            themeToggleCheckbox.addEventListener('change', function() {
+                const isDark = themeToggleCheckbox.checked;
+                document.body.classList.toggle('dark-theme', isDark);
+                themeToggleButton.textContent = isDark ? '· Dark' : '· Light';
+                sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
+    
+<!-- 搜索功能 -->
+<!-- Chic/layout.ejs -->
+<div id="u-search">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="container">
+                <form id="u-search-modal-form" class="u-search-modal-form">
+                    <button type="submit" class="form-submit-btn">
+                        <img src="/imgs/search.png" class="search-btn-img" />
+                    </button>
+                    <input placeholder="搜索内容..." class="form-input" id="modal-form-input">
+                </form>
+                <a class="modal-close">x</a>
+            </div>
+            <div class="search-loading">
+                <div class="search-loading-bar"></div>
+            </div>
+        </div>
+        <div class="modal-body">
+        </div>
+    </div>
+    <div class="modal-overlay"></div>
+</div>
+
     
 </body>
 
