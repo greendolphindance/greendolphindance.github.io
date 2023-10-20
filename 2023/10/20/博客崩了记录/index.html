@@ -16,7 +16,7 @@
 
 
 
-<title>最近下载的小玩意：Typewriter | Green Dolphin Dance</title>
+<title>博客崩了记录 | Green Dolphin Dance</title>
 
 
 
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">最近下载的小玩意：Typewriter</h1>
+            <h1 class="post-title">博客崩了记录</h1>
             
                 <div class="post-meta">
                 
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                         <span class="post-time">
                         
-                        Date: <a href="#">2023-10-17&nbsp;&nbsp;13:06:18</a>
+                        Date: <a href="#">2023-10-20&nbsp;&nbsp;12:07:52</a>
                         </span>
                     
 
@@ -421,7 +421,7 @@ Category:
 
 Words:
 
-<a href="">740</a>
+<a href="">2.1k</a>
 
 </span>
 
@@ -435,7 +435,7 @@ Words:
 
 Time:
 
-<a href="">2min</a>
+<a href="">7min</a>
 
 </span>
 
@@ -446,32 +446,134 @@ Time:
         </header>
 
         <div class="post-content">
-            <img width="100" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/04b81b8a-3ecd-4ee1-90eb-41e0341af953">
+            <p>如题，昨天博客突然崩了。当时是想尝试添加置顶功能，然后不知道为什么编译报错，页面整个404。然后把指定功能相关的代码删除了，但仍然报错。好奇怪！</p>
+<p>用Mac的时间机器将它恢复到了15号的样子，但是编辑任意文件，提示文件已锁定，且不能解锁。试着生成网页，也提示没有权限。于是一气之下建立了一个新的博客文件夹，把所有东西复制一份过去，然后把原文件夹删除，cd到新目录再编辑里面的内容。比较惊讶的是删除原文件夹竟然没有提示权限不够！？</p>
+<p>于是15号之后的修改都要重做了。花了一天时间，根据之前的<a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/">笔记</a>重新操作。但是！明明是一模一样的代码，却出现了新的bugs！</p>
+<p>解决这些Bugs的过程中参考了社友AliceZ的建议，在此感谢。</p>
+<h1 id="Bug-1：切换到与系统偏好相反的颜色模式后，再切换页面，颜色模式跳回到和系统偏好一致"><a href="#Bug-1：切换到与系统偏好相反的颜色模式后，再切换页面，颜色模式跳回到和系统偏好一致" class="headerlink" title="Bug 1：切换到与系统偏好相反的颜色模式后，再切换页面，颜色模式跳回到和系统偏好一致"></a>Bug 1：切换到与系统偏好相反的颜色模式后，再切换页面，颜色模式跳回到和系统偏好一致</h1><p>把夜间模式相关的代码改成和<a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/#%E5%A4%9C%E9%97%B4%E6%A8%A1%E5%BC%8F%E9%9A%8F%E7%B3%BB%E7%BB%9F%E9%A2%9C%E8%89%B2%E6%A8%A1%E5%BC%8F%E5%BC%80%E5%90%AF">这个页面</a>所写的一致（2023-10-19版本），结果出现了这个问题。以前从未有过。解决方案如下：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
+    (function() <span class="token entity" title="&#123;">&amp;#123;</span>
+        // 在页面加载时根据存储的主题或用户的系统偏好设置主题
+        const savedTheme = sessionStorage.getItem('theme') || localStorage.getItem('theme');
+        const userPrefersDark = window.matchMedia &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const useDarkMode = savedTheme ? savedTheme === 'dark' : userPrefersDark;
 
-<p>平台：macOS、iOS、iPadOS</p>
-<p>价格：¥0</p>
-<p>下载地址：App Store</p>
-<hr>
-<p>终于被我找到了，全家桶适用的免费Markdown编辑器！</p>
-<p>本来一直在用Typora的试用版的，但是发现了一些问题。有时候代码的预览不是很灵，而且一旦转为预览的格式，再编辑就有点麻烦。总之是一些小问题，但还是让我有点困扰。所以有想过改用一个编辑和预览分开的编辑器。</p>
-<p>之前社友Origakid推荐了VS Code。但是我这人比较奇怪，想要一个专门用来写Markdown的编辑器，二来电脑里已经装了Xcode和Sublime Text两个用来写代码的工具，总觉得再装一个好难受啊！所以暂时把寻找Markdown编辑器的计划搁置了。</p>
-<p>结果刚好，今天在微博看到少数派发了<a target="_blank" rel="noopener" href="https://sspai.com/prime/story/free-markdown-editor-2023">一篇文章</a>，介绍各个平台上的免费Markdown编辑器。虽然是介绍免费编辑器，但文章本身竟是收费的，要开会员才能看。但是！天无绝人之路，在手机端看文章，刚好可以在试读部分的最后看到在macOS和iOS上的推荐！</p>
-<p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/b5659f46-6c86-41b4-9a3a-7684eee5d11a" alt="IMG_4953"></p>
-<p>就是你了！Typewriter！马上下载了来试试看。发现这个编辑器的编辑和预览不完全是分离的，编辑板块也有一些格式，比如标题和链接。</p>
-<p>先说缺点。预览有时候显示是错误的，比如我这篇文章的FrontMatter：</p>
-<img width="1248" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/15dd77ca-7991-45c8-a0f1-479ad4ebeb63">
+        if (useDarkMode) <span class="token entity" title="&#123;">&amp;#123;</span>
+            document.documentElement.classList.add('dark-theme');
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>)();
 
-<p>这个信息本来不会出现在正文中的，但Typewriter不仅让它显示在了正文中，而且自作多情地给它把格式转换了：Categories类目下的“- 折腾”被直接转换成了无序列表。相反，Typora会用单独的格式将这部分信息标示出来。</p>
-<p>另一个例子，我在另一篇文章里插入了一个代码块，其中有一个注释，以“#”开头。结果Typewriter把这个井号判定成了标题的标志，在编辑板块显示成了标题的样子：</p>
-<img width="1221" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/39bbcb60-06c2-42f1-a73f-e63cea15548c">
+    document.addEventListener('DOMContentLoaded', function() <span class="token entity" title="&#123;">&amp;#123;</span>
+        const themeToggleMobile = document.getElementById('mobile-toggle-theme');
 
-<p>此外，可以发现在预览板块，这一段代码是没有格式的。虽然这段代码取自yml文件，Typewriter可能不支持高亮，但是至少要体现一下它是一段代码吧！</p>
-<p>总之，感觉Typewriter的这些细节抓得不是很好，让我强迫症有点难受。</p>
-<p>但是，它毕竟不要钱啊！而且其他方面都还可以，例如可以在编辑板块显示文章目录：</p>
-<img width="192" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/8985b299-077d-41c0-9a67-bcc9f53a1260">
+        function updateButtonText(isDark) <span class="token entity" title="&#123;">&amp;#123;</span>
+            themeToggleMobile.textContent = isDark ? '· Dark' : '· Light';
+        <span class="token entity" title="&#125;">&amp;#125;</span>
 
-<p>这点比Typora好（或者也可能是我没用会Typora？），我在写<a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/">《博客搭建小记》</a>时，因为文章太长，所以没有目录的Typora用得很难受。今天补充内容时用Typewriter编辑，感觉比较不错，可以快速跳转到各个小标题去。</p>
-<p>总而言之，虽然Typewriter还有一些缺点，但我暂时就用它了。如果有更好的再说吧！</p>
+        function toggleTheme() <span class="token entity" title="&#123;">&amp;#123;</span>
+            const isDark = document.documentElement.classList.toggle('dark-theme');
+            document.body.classList.toggle('dark-theme', isDark);
+            sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateButtonText(isDark);
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+
+        // 初始化按钮文本
+        const initialIsDark = document.documentElement.classList.contains('dark-theme');
+        updateButtonText(initialIsDark);
+
+        // 为移动端的切换按钮添加事件监听器
+        themeToggleMobile.addEventListener('click', toggleTheme);
+    <span class="token entity" title="&#125;">&amp;#125;</span>)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>中途发生了一件神奇的事情：ChatGPT给我生成的代码，Light和Dark刚好是反的……我手动更换了一下才正确。实在是非常奇怪，居然出现这样的失误？</p>
+<h1 id="Bug-2：菜单展开时将页面左上角的内容挤到一起"><a href="#Bug-2：菜单展开时将页面左上角的内容挤到一起" class="headerlink" title="Bug 2：菜单展开时将页面左上角的内容挤到一起"></a>Bug 2：菜单展开时将页面左上角的内容挤到一起</h1><p>如图：</p>
+<p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/10c6e13a-c760-4202-9a8b-09390276932e" alt="9a149dc368370a0bb795a5f783e992f3"></p>
+<p>也是之前根本没出现过的问题！</p>
+<p>最后的解决是让展开的菜单栏“浮在”左上角各个元素之上，让它直接覆盖在这些元素的上面而不是挤到它们：</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> screen and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 479px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+    <span class="token selector"><span class="token class">.navbar-mobile</span> <span class="token class">.menu</span> </span><span class="token punctuation">{</span>
+        <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+        <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">80.66</span>px<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 调整这个值，使菜单栏下移 */</span>
+        <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#fff</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 或其他颜色 */</span>
+        <span class="token property">z-index</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 确保在其他元素之上 */</span>
+        <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 默认隐藏 */</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token selector"><span class="token class">.navbar-mobile</span> <span class="token class">.menu.active</span> </span><span class="token punctuation">{</span>
+        <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 当菜单激活时显示 */</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token selector"><span class="token class">.navbar-mobile</span> <span class="token class">.navbar-header</span>,
+    <span class="token class">.navbar-mobile</span> <span class="token class">.menu-toggle</span> </span><span class="token punctuation">{</span>
+        <span class="token property">z-index</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 确保在菜单之下 */</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中80.66px是用网页检查器测量出来的上方元素的高度。这样修改后就没问题了。</p>
+<h1 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h1><p>在这个事件中，我显然犯了一些错误。下面进行反思。</p>
+<h2 id="不要急着推倒重来"><a href="#不要急着推倒重来" class="headerlink" title="不要急着推倒重来"></a>不要急着推倒重来</h2><p>博客刚崩掉并且回滚代码恢复不了时，我的第一反应是用时间机器恢复到以前的版本。但是仔细想想，应该有更优的解决方案。首先，GitHub上有历史记录可以恢复！这个我根本就不知道，还是我男朋友告诉我的。但他告诉我时，我已经重建了博客文件夹，历史记录就没有了。</p>
+<p>而且我发现我缺乏一种刨根问底的精神，觉得只要问题解决了就可以了。诚然，重建博客文件夹或许可以解决这个问题，但是一旦重建，我就没法知道究竟是什么原因导致博客崩掉的了。虽然据说程序员的原则是“能跑就行”，但是我不是程序员啊！我只是一个普通的爱好者！作为爱好的话，还是尝试深入理解其本质比较合适吧。</p>
+<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><p>在这两天之前我完全没听说过“版本控制”这个词……结果AliceZ和茨月都强调了版本控制的重要性。于是去查了，以下是GPT的解说：</p>
+<blockquote>
+<p>Version control（版本控制）是一种记录文件更改历史的系统，以便将来可以查看特定版本的文件。版本控制系统对于软件开发项目特别有用，因为它们帮助开发团队跟踪和管理代码的更改。GitHub 是一个基于 Git 的在线版本控制系统，用于协作开发项目。</p>
+<p>以下是如何在 GitHub 上进行版本控制的基本步骤：</p>
+<h3 id="1-创建仓库（Repository）"><a href="#1-创建仓库（Repository）" class="headerlink" title="1. 创建仓库（Repository）"></a>1. <strong>创建仓库（Repository）</strong></h3><ul>
+<li>访问 <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>。</li>
+<li>点击右上角的 “+”，然后选择 “New repository”。</li>
+<li>填写仓库名称、描述等信息，然后点击 “Create repository”。</li>
+</ul>
+<h3 id="2-克隆仓库（Clone）"><a href="#2-克隆仓库（Clone）" class="headerlink" title="2. 克隆仓库（Clone）"></a>2. <strong>克隆仓库（Clone）</strong></h3><ul>
+<li>找到你想要克隆的仓库。</li>
+<li>点击 “Code” 按钮，复制 URL。</li>
+<li>在本地计算机上打开命令行，输入以下命令：<pre><code>git clone [复制的URL]
+</code></pre>
+</li>
+</ul>
+<h3 id="3-创建和切换分支（Branch）"><a href="#3-创建和切换分支（Branch）" class="headerlink" title="3. 创建和切换分支（Branch）"></a>3. <strong>创建和切换分支（Branch）</strong></h3><ul>
+<li>在命令行中，进入你的项目目录。</li>
+<li>输入以下命令创建并切换到新分支：<pre><code>git checkout -b [分支名称]
+</code></pre>
+</li>
+</ul>
+<h3 id="4-添加和提交更改（Add-Commit）"><a href="#4-添加和提交更改（Add-Commit）" class="headerlink" title="4. 添加和提交更改（Add &amp; Commit）"></a>4. <strong>添加和提交更改（Add &amp; Commit）</strong></h3><ul>
+<li>对项目进行更改。</li>
+<li>使用以下命令将更改添加到暂存区：<pre><code>git add .
+</code></pre>
+</li>
+<li>使用以下命令提交更改：<pre><code>git commit -m "[提交信息]"
+</code></pre>
+</li>
+</ul>
+<h3 id="5-推送更改到-GitHub（Push）"><a href="#5-推送更改到-GitHub（Push）" class="headerlink" title="5. 推送更改到 GitHub（Push）"></a>5. <strong>推送更改到 GitHub（Push）</strong></h3><ul>
+<li>使用以下命令将更改推送到 GitHub：<pre><code>git push origin [分支名称]
+</code></pre>
+</li>
+</ul>
+<h3 id="6-创建拉取请求（Pull-Request）"><a href="#6-创建拉取请求（Pull-Request）" class="headerlink" title="6. 创建拉取请求（Pull Request）"></a>6. <strong>创建拉取请求（Pull Request）</strong></h3><ul>
+<li>返回 GitHub 的仓库页面。</li>
+<li>点击 “Pull requests”，然后点击 “New pull request”。</li>
+<li>选择你推送的分支，然后点击 “Create pull request”。</li>
+</ul>
+<h3 id="7-合并拉取请求（Merge-Pull-Request）"><a href="#7-合并拉取请求（Merge-Pull-Request）" class="headerlink" title="7. 合并拉取请求（Merge Pull Request）"></a>7. <strong>合并拉取请求（Merge Pull Request）</strong></h3><ul>
+<li>在拉取请求页面，点击 “Merge pull request”，然后点击 “Confirm merge”。</li>
+</ul>
+<h3 id="8-拉取最新更改（Pull）"><a href="#8-拉取最新更改（Pull）" class="headerlink" title="8. 拉取最新更改（Pull）"></a>8. <strong>拉取最新更改（Pull）</strong></h3><ul>
+<li>在本地项目目录中，切换回主分支：<pre><code>git checkout main
+</code></pre>
+</li>
+<li>拉取最新更改：<pre><code>git pull origin main
+</code></pre>
+</li>
+</ul>
+<p>以上是 GitHub 版本控制的基本流程。根据项目和团队的不同，可能会有更多的步骤和策略，如代码审查、持续集成/持续部署（CI/CD）等。</p>
+</blockquote>
+<p>大概意思是要做什么修改的时候，就切换到一个新分支，然后修改成功之后再把它拉回主分支吧。我学习！以后一定吸取教训！！</p>
+<h2 id="情绪管理"><a href="#情绪管理" class="headerlink" title="情绪管理"></a>情绪管理</h2><p>这一点就不多说了。昨天修了一天bug还没修好，大崩溃。今天修好了，心情就大好。感觉情绪忽上忽下的，总之还是没能成为一个成熟的大人。</p>
+<h2 id="寻求帮助"><a href="#寻求帮助" class="headerlink" title="寻求帮助"></a>寻求帮助</h2><p>出现这两个新bug之后不好意思问男朋友具体的解决办法，毕竟他已经多年没写前端了，问他会给他增加额外的学习成本。之后在闭社发嘟文吐槽，附上了问题描述，其实有暗戳戳期待会不会有人来帮忙。好在最后没有尴尬收场：AliceZ在评论区提出了建议，我也根据这些建议解决了部分问题。</p>
+<p>发现我在寻求帮助的时候总是很别扭，一方面希望有人帮忙，另一方面又怕麻烦别人，于是就采取了这种迂回的方式求助（而不是比如直接给了解前端开发的社友发私信）。这跟我的性格有关，我的默认状态是不向任何人求助，自己独立解决问题。这在人生的早期比较好使，因为我当时算是同龄人中较聪明者，遇到问题的时候每每自己就给它解决了，不会造成很多困难。但是现在，我的能力渐渐触碰到天花板，遇到的无法独立解决的棘手问题越来越多，这种时候一个人内耗就不好使了。</p>
+<p>所以真的很感谢GPT（的开发者）……虽然它经常不怎么靠谱，但是我可以一直问它而没有心理负担。但一直依赖GPT也不是办法，我总要找到一个适合我的向活人求助的方式，因为总会有需要这样的场合出现。所以还是得继续探索自我。</p>
 
         </div>
 
@@ -490,7 +592,7 @@ Time:
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%B7%A5%E5%85%B7/"># 工具</a>
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
                     
                         
                 </span>
@@ -503,10 +605,8 @@ Time:
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/20/%E5%8D%9A%E5%AE%A2%E5%B4%A9%E4%BA%86%E8%AE%B0%E5%BD%95/">博客崩了记录</a>
             
-            
-            <a class="next" rel="next" href="/2023/10/10/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AQSpace-Pro/">最近下载的小玩意：QSpace Pro</a>
+            <a class="next" rel="next" href="/2023/10/17/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ATypewriter/">最近下载的小玩意：Typewriter</a>
             
         </section>
 
