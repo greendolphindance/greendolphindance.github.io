@@ -18,8 +18,3 @@ body.dark-theme #footer {
     display: block;
   }
 }
-@media (max-width: 1024px) {
-  .search {
-    display: none !important;
-  }
-}

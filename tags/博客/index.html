@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+<meta name="google-site-verification" content="zn35ZLEP0On5fOgBn4JhRUUvkwCf7aHCy5sF7KY_ztQ" />
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -80,28 +81,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <script>
+    // function searchToggle() {
+    //     const width = $(document.body).width()
+    //     if(width > 479) {
+    //         return;
+    //     }
+    //     const search = $('.search');
+    //     const searchForm = $('.form-search')
+
+    //     if(!search.hasClass("mobile-search")) {
+    //         search.addClass("mobile-search");
+    //     } else {
+    //         search.removeClass("mobile-search");
+    //     }
+    // }
+
     function searchToggle() {
-    const width = $(document.body).width()
-    if(width > 479) {
-        return;
-    }
-    const search = $('.search');
-    const searchForm = $('.form-search');
-    const menuToggle = $('.menu-toggle');
-    const title = $('.navbar-header-title ');
+        const width = $(document.body).width()
+        if(width > 479) {
+            return;
+        }
+        const search = $('.search');
+        const searchForm = $('.form-search');
+        const menuToggle = $('.menu-toggle');
+        const title = $('.navbar-header-title ');
 
-    if(!search.hasClass("mobile-search")) {
-        search.addClass("mobile-search");
-        menuToggle.addClass("open-search")
-        title.addClass("mobile-title-hidden")
-    } else {
-        search.removeClass("mobile-search");
-        menuToggle.removeClass("open-search")
-        // title.css({visibility: 'visible'})
-        title.removeClass("mobile-title-hidden")
+        if(!search.hasClass("mobile-search")) {
+            search.addClass("mobile-search");
+            menuToggle.addClass("open-search")
+            title.addClass("mobile-title-hidden")
+        } else {
+            search.removeClass("mobile-search");
+            menuToggle.removeClass("open-search")
+            // title.css({visibility: 'visible'})
+            title.removeClass("mobile-title-hidden")
+        }
     }
-}
-
 
 
 
@@ -269,7 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })();
     </script>
-<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
@@ -337,19 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="/">Green Dolphin Dance</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="navbar-mobile-right">
-                
-                
-    <div class="search ">
-        <div class="search-btn" onClick="searchToggle()">
-            <img src="/imgs/search.png" class="search-btn-img" />
-        </div>
-        <form class="form-search">
-            <input class="input" placeholder="点此搜索" autocomplete="off" id="mobile-search-input"/>
-        </form>
-    </div>
-
-
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 目录</div>
             </div>
             
             <div class="menu" id="mobile-menu">
@@ -406,12 +411,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
         <article class="archive-item">
-            <a class="archive-item-link" href="/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/">博客搭建小记</a>
+            <a class="archive-item-link" href="/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/">
+            <li>
+            博客搭建小记
+            </li>
+            </a>
             <span class="archive-item-date">2023-10-07</span>
         </article>
     
     
 </div>
+<style>
+
+ li{
+
+ width: 650px;
+
+ height: 29.5px;
+
+ /*不换行*/
+
+ white-space: nowrap;
+
+ /*溢出的话，隐藏*/
+
+ overflow: hidden;
+
+ /*文本溢出时，是否....*/
+
+ text-overflow: ellipsis;
+
+ }
+
+</style>
+
 </div>
 
             </div>
@@ -486,7 +519,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="modal-overlay"></div>
 </div>
 
-    
 </body>
 
 </html>

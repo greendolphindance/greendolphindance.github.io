@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+<meta name="google-site-verification" content="zn35ZLEP0On5fOgBn4JhRUUvkwCf7aHCy5sF7KY_ztQ" />
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -80,28 +81,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <script>
+    // function searchToggle() {
+    //     const width = $(document.body).width()
+    //     if(width > 479) {
+    //         return;
+    //     }
+    //     const search = $('.search');
+    //     const searchForm = $('.form-search')
+
+    //     if(!search.hasClass("mobile-search")) {
+    //         search.addClass("mobile-search");
+    //     } else {
+    //         search.removeClass("mobile-search");
+    //     }
+    // }
+
     function searchToggle() {
-    const width = $(document.body).width()
-    if(width > 479) {
-        return;
-    }
-    const search = $('.search');
-    const searchForm = $('.form-search');
-    const menuToggle = $('.menu-toggle');
-    const title = $('.navbar-header-title ');
+        const width = $(document.body).width()
+        if(width > 479) {
+            return;
+        }
+        const search = $('.search');
+        const searchForm = $('.form-search');
+        const menuToggle = $('.menu-toggle');
+        const title = $('.navbar-header-title ');
 
-    if(!search.hasClass("mobile-search")) {
-        search.addClass("mobile-search");
-        menuToggle.addClass("open-search")
-        title.addClass("mobile-title-hidden")
-    } else {
-        search.removeClass("mobile-search");
-        menuToggle.removeClass("open-search")
-        // title.css({visibility: 'visible'})
-        title.removeClass("mobile-title-hidden")
+        if(!search.hasClass("mobile-search")) {
+            search.addClass("mobile-search");
+            menuToggle.addClass("open-search")
+            title.addClass("mobile-title-hidden")
+        } else {
+            search.removeClass("mobile-search");
+            menuToggle.removeClass("open-search")
+            // title.css({visibility: 'visible'})
+            title.removeClass("mobile-title-hidden")
+        }
     }
-}
-
 
 
 
@@ -269,7 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })();
     </script>
-<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
@@ -337,19 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="/">Green Dolphin Dance</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="navbar-mobile-right">
-                
-                
-    <div class="search ">
-        <div class="search-btn" onClick="searchToggle()">
-            <img src="/imgs/search.png" class="search-btn-img" />
-        </div>
-        <form class="form-search">
-            <input class="input" placeholder="点此搜索" autocomplete="off" id="mobile-search-input"/>
-        </form>
-    </div>
-
-
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 目录</div>
             </div>
             
             <div class="menu" id="mobile-menu">
@@ -408,14 +413,50 @@ document.addEventListener('DOMContentLoaded', function() {
                         Date: <a href="#">2023-10-09&nbsp;&nbsp;13:50:05</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-                            
-                        </span>
-                    
+
+
+<span class="post-category">
+
+Category:
+
+
+
+<a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+
+
+
+</span>
+
+
+
+ 
+
+
+
+<span class="post-count">
+
+Words:
+
+<a href="">2.2k</a>
+
+</span>
+
+
+
+ 
+
+
+
+<span class="post-count">
+
+Time:
+
+<a href="">7min</a>
+
+</span>
+
+
+
                 </div>
             
         </header>
@@ -425,10 +466,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>然后，她竟然开始给大家布置作业，让每天抽一张日签并分析，发到群里，然后她来给大家点评。我觉得这一整件事情都挺好玩的，而且反正她暂时还没有收钱的迹象，我就还真的每天认真完成作业。</p>
 <h1 id="生命灵数"><a href="#生命灵数" class="headerlink" title="生命灵数"></a>生命灵数</h1><p>前两天她突然提到一个什么“生命灵数”，要求我们大家都算一下自己的并相互分析。算法是这样的：</p>
 <blockquote>
-<p>1、生命灵数（性格数字）&#x3D;年+月+日（加到个位数）<br>eg:20020824,2+0+0+2+0+8+2+4&#x3D;18，1+8&#x3D;9，生命灵数就是9隐士</p>
-<p>2、生命角色&#x3D;月+日（加到个位）<br>eg:20020824,0+8+2+4&#x3D;14，1+4&#x3D;5，生命角色是5教皇,教皇有“教育、辅导、援助”这些意思，他喜欢辅导别人，没可能是学些传统的东西，发挥纯正，也会是以为很棒的心灵导师</p>
-<p>3、态度品质&#x3D;小牌元素+生命灵数<br>小牌元素第一种算法（态度品质1）&#x3D;年+月+日相加总和&#x2F;4的余数<br>eg:20020824，2+0+0+2+0+8+2+4&#x3D;18,18&#x2F;4&#x3D;4余</p>
-<p>小牌元素第二种算法（态度品质2）&#x3D;月+日相加总和&#x2F;4的余数<br>eg:20020824，0+8+2+4&#x3D;14,14&#x2F;4&#x3D;3余</p>
+<p>1、生命灵数（性格数字）=年+月+日（加到个位数）<br>eg:20020824,2+0+0+2+0+8+2+4=18，1+8=9，生命灵数就是9隐士</p>
+<p>2、生命角色=月+日（加到个位）<br>eg:20020824,0+8+2+4=14，1+4=5，生命角色是5教皇,教皇有“教育、辅导、援助”这些意思，他喜欢辅导别人，没可能是学些传统的东西，发挥纯正，也会是以为很棒的心灵导师</p>
+<p>3、态度品质=小牌元素+生命灵数<br>小牌元素第一种算法（态度品质1）=年+月+日相加总和/4的余数<br>eg:20020824，2+0+0+2+0+8+2+4=18,18/4=4余</p>
+<p>小牌元素第二种算法（态度品质2）=月+日相加总和/4的余数<br>eg:20020824，0+8+2+4=14,14/4=3余</p>
 <p>从余数看态度品质，余数1代表权杖，余数2代表圣杯，余数3代表宝剑，余数0没有余数代表星币。</p>
 <p>那么20020824的态度品质就是圣杯9</p>
 </blockquote>
@@ -643,7 +684,6 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="modal-overlay"></div>
 </div>
 
-    
 </body>
 
 </html>

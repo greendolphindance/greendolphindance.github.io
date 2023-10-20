@@ -1721,11 +1721,6 @@ body.dark-theme #footer {
     display: block;
   }
 }
-@media (max-width: 1024px) {
-  .search {
-    display: none !important;
-  }
-}
 .search-input {
   font-size: 0.875rem;
   height: 1.75rem;
