@@ -1263,12 +1263,13 @@ header label {
   text-align: right;
 }
 .break-link {
-  overflow-wrap: break-word;
-word-break
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
 }
 .no-style {
-  color: inherit;
-  text-decoration: none;
+  color: inherit !important;
+  text-decoration: none !important;
+  cursor: default;
 }
 .post-copyright {
   margin-top: 5rem;
