@@ -173,26 +173,24 @@ document.addEventListener('DOMContentLoaded', function() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Webpage</title>
-    <style>
-         .comment-box {
-        width: 80%; /* 默认宽度为80% */
+    <title>Green Doplhin Dance</title>
+<style>
+    .comment-box {
+        width: 100%;
+        max-width: 780px; /* 适用于桌面和横屏 iPad */
         margin: auto; /* 居中显示 */
-        }
+    }
 
-        @media (max-width: 768px) {
-            .comment-box {
-                width: 95%; /* 在宽度小于或等于768px的屏幕上宽度为95% */
-            }
+    /* 适用于屏幕宽度小于 767px 的所有设备，无论横屏还是竖屏 */
+    @media (max-width: 767px) {
+        .comment-box {
+            width: 92.5%; /* 相对于设备宽度的 92.5% */
+            margin: auto; /* 居中显示 */
         }
-        
-        body {
-    background-color: white;
-    color: black;
-}
-        
-    </style>
+    }
+</style>
 </head>
+
 <body>
 <div class="comment-box">
     <script src="https://giscus.app/client.js"
