@@ -1731,9 +1731,7 @@ body.dark-theme .post-title {
 }
 body.dark-theme .post-content {
   color: #a9a9b2;
-!important
 }
-!important
 body.dark-theme #footer {
   color: #a9a9b2 !important;
 }
@@ -1864,9 +1862,6 @@ a.toc-link {
 body {
   width: 100vw; /* 设置页面宽度为视口宽度的百分比 */
   overflow-x: hidden; /* 隐藏水平滚动条，防止页面宽度变化 */
-}
-#mobile-menu {
-  z-index: 1; /* 设置一个较低的 z-index 值 */
 }
 @media (max-width: 1024px) {
   .search {
