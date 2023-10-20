@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
@@ -516,13 +516,13 @@ scripts:
 <p>就这样，这个问题也被我在不明所以的情况下解决了！特别鸣谢我亲爱的男朋友！</p>
 <h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>突然（2023-10-18）觉得手机上的“回到顶部”图标太大了，于是想到修改代码。我分别下载了长宽为48px和32px的图标，分别命名为back-top-48.png和back-top-32.png，保存到/themes/light/source/imgs目录下。</p>
 <p>将totop.ejs的代码修改如下：</p>
-<pre><code>&lt;div id="totop" style="position:fixed;bottom:20px;right:30px;cursor: pointer;"&gt;
-    &lt;a title="返回顶部"&gt;
-        &lt;img src="/imgs/back-top-32.png" class="back-top-small"/&gt;
-        &lt;img src="/imgs/back-top-48.png" class="back-top-large"/&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"totop"</span> style<span class="token operator">=</span><span class="token string">"position:fixed;bottom:20px;right:30px;cursor: pointer;"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>a title<span class="token operator">=</span><span class="token string">"返回顶部"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"/imgs/back-top-32.png"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"back-top-small"</span><span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"/imgs/back-top-48.png"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"back-top-large"</span><span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在任意CSS文档里添加如下代码：</p>
 <pre><code>.back-top-large {
     display: none;
