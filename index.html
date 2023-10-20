@@ -80,42 +80,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <script>
-    // function searchToggle() {
-    //     const width = $(document.body).width()
-    //     if(width > 479) {
-    //         return;
-    //     }
-    //     const search = $('.search');
-    //     const searchForm = $('.form-search')
-
-    //     if(!search.hasClass("mobile-search")) {
-    //         search.addClass("mobile-search");
-    //     } else {
-    //         search.removeClass("mobile-search");
-    //     }
-    // }
-
     function searchToggle() {
-        const width = $(document.body).width()
-        if(width > 479) {
-            return;
-        }
-        const search = $('.search');
-        const searchForm = $('.form-search');
-        const menuToggle = $('.menu-toggle');
-        const title = $('.navbar-header-title ');
-
-        if(!search.hasClass("mobile-search")) {
-            search.addClass("mobile-search");
-            menuToggle.addClass("open-search")
-            title.addClass("mobile-title-hidden")
-        } else {
-            search.removeClass("mobile-search");
-            menuToggle.removeClass("open-search")
-            // title.css({visibility: 'visible'})
-            title.removeClass("mobile-title-hidden")
-        }
+    const width = $(document.body).width()
+    if(width > 479) {
+        return;
     }
+    const search = $('.search');
+    const searchForm = $('.form-search');
+    const menuToggle = $('.menu-toggle');
+    const title = $('.navbar-header-title ');
+
+    if(!search.hasClass("mobile-search")) {
+        search.addClass("mobile-search");
+        menuToggle.addClass("open-search")
+        title.addClass("mobile-title-hidden")
+    } else {
+        search.removeClass("mobile-search");
+        menuToggle.removeClass("open-search")
+        // title.css({visibility: 'visible'})
+        title.removeClass("mobile-title-hidden")
+    }
+}
+
 
 
 
@@ -325,17 +311,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
                 
-                    <a class="menu-item" href="/archives">Posts</a>
+                    <a class="menu-item" href="/archives">归档</a>
                 
-                    <a class="menu-item" href="/categories">Categories</a>
+                    <a class="menu-item" href="/categories">分类</a>
                 
-                    <a class="menu-item" href="/tags">Tags</a>
+                    <a class="menu-item" href="/tags">标签</a>
                 
-                    <a class="menu-item" href="/guestbook">Guestbook</a>
+                    <a class="menu-item" href="/guestbook">留言板</a>
                 
-                    <a class="menu-item" href="/about">About</a>
+                    <a class="menu-item" href="/about">关于</a>
                 
-                    <a class="menu-item" href="/links">Links</a>
+                    <a class="menu-item" href="/links">友链</a>
                 
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
@@ -368,17 +354,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="menu" id="mobile-menu">
                 
-                    <a class="menu-item" href="/archives">Posts</a>
+                    <a class="menu-item" href="/archives">归档</a>
                 
-                    <a class="menu-item" href="/categories">Categories</a>
+                    <a class="menu-item" href="/categories">分类</a>
                 
-                    <a class="menu-item" href="/tags">Tags</a>
+                    <a class="menu-item" href="/tags">标签</a>
                 
-                    <a class="menu-item" href="/guestbook">Guestbook</a>
+                    <a class="menu-item" href="/guestbook">留言板</a>
                 
-                    <a class="menu-item" href="/about">About</a>
+                    <a class="menu-item" href="/about">关于</a>
                 
-                    <a class="menu-item" href="/links">Links</a>
+                    <a class="menu-item" href="/links">友链</a>
                 
             </div>
         </div>
@@ -407,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="container profile-container">
     <div class="intro">
         <div class="avatar">
-            <a href="/archives"><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/e66871c0-be6e-4fc7-8fa6-ceae6932cbaf"></a>
+            <a href="/"><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/e66871c0-be6e-4fc7-8fa6-ceae6932cbaf"></a>
         </div>
         <div class="nickname">GreenDolphinDance</div>
         <div class="description"><p>Back to the rough ground!</p>
