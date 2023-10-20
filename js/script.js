@@ -85,3 +85,28 @@ document.ready(
         // ready function.
     }
 );
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleCheckbox = document.getElementById('switch_default');
+    const themeToggleButton = document.getElementById('mobile-toggle-theme');
+
+    // 检测用户的系统主题偏好
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // 根据用户的系统主题偏好设置 toggle 的状态和 body 的类
+    if (userPrefersDark) {
+        document.body.classList.add('dark-theme');
+        themeToggleCheckbox.checked = true; // 设置 toggle 为打开状态
+        themeToggleButton.textContent = '· Dark'; // 设置按钮文本
+    } else {
+        document.body.classList.remove('dark-theme');
+        themeToggleCheckbox.checked = false; // 设置 toggle 为关闭状态
+        themeToggleButton.textContent = '· Light'; // 设置按钮文本
+    }
+
+    // 当用户手动切换 toggle 时，更新颜色模式
+    themeToggleCheckbox.addEventListener('change', function() {
+        document.body.classList.toggle('dark-theme', themeToggleCheckbox.checked);
+        themeToggleButton.textContent = themeToggleCheckbox.checked ? '· Dark' : '· Light'; // 更新按钮文本
+    });
+});
