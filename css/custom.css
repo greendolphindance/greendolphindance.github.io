@@ -19,7 +19,7 @@ body.dark-theme #footer {
   }
 }
 @media (max-width: 1024px) {
-  .search-box {
+  .search {
     display: none !important;
   }
 }
