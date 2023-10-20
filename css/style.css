@@ -1380,6 +1380,17 @@ body.dark-theme .post-content {
 body.dark-theme #footer {
   color: #a9a9b2 !important;
 }
+.back-top-large {
+  display: none;
+}
+@media (min-width: 1281px) {
+  .back-top-small {
+    display: none;
+  }
+  .back-top-large {
+    display: block;
+  }
+}
 .search-input {
   font-size: 0.875rem;
   height: 1.75rem;
