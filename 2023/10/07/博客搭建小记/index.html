@@ -420,7 +420,7 @@ Category:
 
 Words:
 
-<a href="">11.9k</a>
+<a href="">12.1k</a>
 
 </span>
 
@@ -1488,6 +1488,9 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>即可。</p>
+<h1 id="页面标题对齐"><a href="#页面标题对齐" class="headerlink" title="页面标题对齐"></a>页面标题对齐</h1><p>今天发现Categories和Tags页面、About和Links页面、文章的标题不在同一高度上。我希望把它们全部调整成和Categories与Tags的标题等高（从网页检查器得知需要设置margin-top为2rem）。</p>
+<p>About和Links页面标题的高度在/themes/Chic/source/css/_page/page.styl中调整，将padding-top改为2rem即可。</p>
+<p>文章标题的高度在/themes/Chic/source/css/_page/_post/post_header.styl中调整，需要进行两步操作：（1）将post-title的margin-top设置为2rem;(2)将post-header h1下的“margin 0 !important”删除，否则标题高度将不会发生变化。</p>
 
         </div>
 
