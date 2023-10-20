@@ -272,41 +272,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-        <script>
+    <script>
         (function() {
-            const savedTheme = sessionStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('theme');
             const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            console.log("Saved theme: ", savedTheme); // 输出保存的主题
+            console.log("User prefers dark theme: ", userPrefersDark); // 输出用户的系统偏好
+            
             const useDarkMode = savedTheme ? savedTheme === 'dark' : userPrefersDark;
-
             if (useDarkMode) {
-                document.documentElement.style.backgroundColor = '#121212'; // 临时背景色，可以根据你的暗主题颜色进行更改
+                document.documentElement.style.backgroundColor = '#121212';
                 document.documentElement.classList.add('dark-theme');
             }
         })();
     </script>
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body>
-    <script>
-        // this function is used to check current theme before page loaded.
-        (() => {
-            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
-            const isDark = currentTheme === 'dark';
-            const pagebody = document.getElementsByTagName('body')[0]
-            if (isDark) {
-                pagebody.classList.add('dark-theme');
-                // mobile
-                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
-            } else {
-                pagebody.classList.remove('dark-theme');
-                // mobile
-                document.getElementById("mobile-toggle-theme").innerText = "· Light"
-            }
-        })();
-    </script>
-
     <div class="wrapper">
         <header>
     <nav class="navbar">
@@ -399,24 +384,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
 <div class="container">
     <div class="post-wrap categories">
-        <!-- <h2 class="post-title">-&nbsp;Categories&nbsp;·&nbsp;随笔-</h2> -->
         <h2 class="post-title">-&nbsp;<i class="iconfont icon-fenlei" style="font-size: 1em;"></i>类别&nbsp;·&nbsp;随笔-</h2>
-        <!-- 2022年4月5日 下面这句注释掉了 -->
-        
-        <!-- 2022年4月5日 上面这句注释掉了 -->
-        <!-- 2022年4月5日 对单页的样式进行单独设置 -->
-        <!-- 2022年4月5日 每页条数 -->
-        
-        
         
         
         <!-- 按date逆序排序 -->
         
         
-                
-                
-                    <h3>2023</h3>
-                
                 <article class="archive-item">
                     <a class="archive-item-link" href="/2023/10/09/%E5%A1%94%E7%BD%97%E7%89%8C%E3%80%81%E7%94%9F%E5%91%BD%E7%81%B5%E6%95%B0%E3%80%81%E6%98%9F%E5%BA%A7%E5%92%8CMBTI/">
                     <li class="category-page-post">
@@ -426,8 +399,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="archive-item-date">2023-10-09</span>
                 </article>
         
-                
-                
                 <article class="archive-item">
                     <a class="archive-item-link" href="/2023/10/06/%E5%A1%94%E7%BD%97%E7%89%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E5%87%BA%E9%94%99/">
                     <li class="category-page-post">
@@ -437,8 +408,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="archive-item-date">2023-10-06</span>
                 </article>
         
-        
-        <!-- 2022年4月5日 对单页的样式进行单独设置如上 -->
     </div>
 </div>
 <!-- 2022年4月5日 添加过长博文名省略 -->
@@ -519,19 +488,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 
     </div>
-    
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggleCheckbox = document.getElementById('switch_default');
-            const themeToggleButton = document.getElementById('mobile-toggle-theme');
-
-            themeToggleCheckbox.addEventListener('change', function() {
-                const isDark = themeToggleCheckbox.checked;
-                document.body.classList.toggle('dark-theme', isDark);
-                themeToggleButton.textContent = isDark ? '· Dark' : '· Light';
-                sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
-        });
     </script>
     
 <!-- 搜索功能 -->
@@ -569,6 +525,22 @@ headingSelector: 'h1, h2, h3, h4',
 });
 });
 </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleCheckbox = document.getElementById('switch_default');
+            const themeToggleButton = document.getElementById('mobile-toggle-theme');
+
+            themeToggleCheckbox.addEventListener('change', function() {
+                const isDark = themeToggleCheckbox.checked;
+                console.log("Is dark theme: ", isDark); // 输出切换后的主题
+                
+                document.body.classList.toggle('dark-theme', isDark);
+                themeToggleButton.textContent = isDark ? '· Dark' : '· Light';
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
 
 </body>
 
