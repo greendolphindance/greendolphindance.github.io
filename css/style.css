@@ -1896,17 +1896,6 @@ a.toc-link {
     display: none;
   }
 }
-.back-top-large {
-  display: none;
-}
-@media (min-width: 1281px) {
-  .back-top-small {
-    display: none;
-  }
-  .back-top-large {
-    display: block;
-  }
-}
 body {
   width: 100vw; /* 设置页面宽度为视口宽度的百分比 */
   overflow-x: hidden; /* 隐藏水平滚动条，防止页面宽度变化 */

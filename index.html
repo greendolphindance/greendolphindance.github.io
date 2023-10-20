@@ -428,10 +428,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
 <div id="totop" style="position:fixed;bottom:20px;right:30px;cursor: pointer;">
     <a title="返回顶部">
-        <img src="/imgs/back-top-32.png" class="back-top-small"/>
-        <img src="/imgs/back-top-48.png" class="back-top-large"/>
+        <svg t="1697771647324" class="icon back-top-svg" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2324" width="32px" height="32px">
+            <path d="M946.494 754.216c19.445-19.445 19.445-51.265 0-70.711L547.355 284.368c-19.445-19.445-51.265-19.445-70.711 0L77.506 683.506c-19.445 19.445-19.445 51.265 0 70.711" p-id="2325" fill="#8a8a8a"></path>
+        </svg>
     </a>
 </div>
+
+<style>
+    .back-top-svg {
+        width: 32px; /* or any size you want */
+        height: 32px; /* or any size you want */
+    }
+
+    /* You can also use media queries to change the size based on screen width */
+    @media (min-width: 768px) {
+        .back-top-svg {
+            width: 48px;
+            height: 48px;
+        }
+    }
+</style>
 
 <script src="/js/totop.js"></script>
 
