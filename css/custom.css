@@ -124,6 +124,10 @@ a.toc-link {
 .is-active-link::before {
   background-color: #54bc4b;
 }
+/* 去掉目录前面的数字 */
+.toc-list li {
+  list-style-type: none; /* 设置列表样式类型为 none */
+}
 /* 当屏幕宽度小于或等于 1280px 时应用这些样式 */
 @media screen and (max-width: 1280px) {
   .js-toc {
