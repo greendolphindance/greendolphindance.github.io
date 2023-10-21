@@ -236,7 +236,7 @@
     right: 2em; /* 距离右侧的距离，可以根据需要调整 */
     width: 15rem; /* 目录的宽度，可以根据需要调整 */
     font-size: 0.75rem;
-    overflow-y: visible; /* 如果目录很长，这将添加滚动条 */
+    overflow-y: auto !important; /* 如果目录很长，这将添加滚动条 */
     max-height: 500px; /* 最大高度，可以根据需要调整 */
     background-color: transparent; /* 背景颜色，可以根据需要调整 */
     z-index: 1000; /* 确保目录显示在其他元素之上 */
@@ -370,7 +370,7 @@ a.toc-link {
     display: none;
     max-width: 85vw; /* 设置最大宽度为视口宽度的 70% */
     max-height: 70vh; /* 设置最大高度为视口高度的 70% */
-    overflow: auto; /* 如果内容超出最大高度或宽度，添加滚动条 */
+    overflow-y: auto !important; /* 如果内容超出最大高度或宽度，添加滚动条 */
   }
   body.dark-theme .js-toc {
     background-color: #292a2d !important;
