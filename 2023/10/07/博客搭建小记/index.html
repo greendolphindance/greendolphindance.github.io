@@ -274,6 +274,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+        <style>
+        body.hide-content * {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        (function() {
+            document.body.classList.add('hide-content');
+            
+            const savedTheme = localStorage.getItem('theme');
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let useDarkMode;
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                useDarkMode = savedTheme === 'dark';
+            } else {
+                useDarkMode = userPrefersDark;
+            }
+            document.body.classList.toggle('dark-theme', useDarkMode);
+            document.body.classList.remove('hide-content');
+        })();
+    </script>
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
@@ -421,7 +442,7 @@ Category:
 
 Words:
 
-<a href="">13.4k</a>
+<a href="">13.9k</a>
 
 </span>
 
@@ -435,7 +456,7 @@ Words:
 
 Time:
 
-<a href="">54min</a>
+<a href="">56min</a>
 
 </span>
 
@@ -1047,7 +1068,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中包括电脑端和移动端。一开始踩了个坑是在同一个页面中用了两个“window.onload”函数，结果前一个被后一个覆盖了。然后把两个合并成一个，就修好了。注释很详细，其中一部分代码是用于在网页随系统自动切换成夜间模式的时候，让Toggle呈打开状态（或是在移动端时，显示“Dark”）。一点小小强迫症。</p>
-<p>这个问题虽然解决了，但是从日间自动切换到夜间模式的速度很慢，表现为屏幕会闪烁一下白色。问了ChatGPT，按道理来说这个不应该用JavaScript改，应该直接在CSS里面改，不过我懒得再重新研究了，于是问GPT能不能在我JavaScript代码的基础上进行优化。它给了这么一段代码：</p>
+<h3 id="夜间模式下切换页面时发生白色闪烁"><a href="#夜间模式下切换页面时发生白色闪烁" class="headerlink" title="夜间模式下切换页面时发生白色闪烁"></a>夜间模式下切换页面时发生白色闪烁</h3><p>这个问题虽然解决了，但是从日间自动切换到夜间模式的速度很慢，表现为屏幕会闪烁一下白色。问了ChatGPT，按道理来说这个不应该用JavaScript改，应该直接在CSS里面改，不过我懒得再重新研究了，于是问GPT能不能在我JavaScript代码的基础上进行优化。它给了这么一段代码：</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> themeToggleCheckbox <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'switch_default'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> themeToggleButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'mobile-toggle-theme'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1074,7 +1095,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>改过之后还是有白色闪烁，不过加载速度是快一点了。</p>
-<p>结果又有了别的问题……在系统为夜间模式的情况下，将按钮调到日间模式，页面变白。但是当点击链接跳转到其他页面时，页面又会转为黑色。所以又让GPT生成了新的代码：</p>
+<h3 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h3><p>结果又有了别的问题……在系统为夜间模式的情况下，将按钮调到日间模式，页面变白。但是当点击链接跳转到其他页面时，页面又会转为黑色。所以又让GPT生成了新的代码：</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> themeToggleCheckbox <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'switch_default'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> themeToggleButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'mobile-toggle-theme'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1101,7 +1122,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>似乎暂时解决了问题。</p>
-<p>（2023-10-19）又折腾了，想让GPT把相同的逻辑在ejs文件里操作完成，而不是js文件里，从而看看能不能减少闪烁。GPT给出的建议是：</p>
+<h3 id="白色闪烁2"><a href="#白色闪烁2" class="headerlink" title="白色闪烁2"></a>白色闪烁2</h3><p>（2023-10-19）又折腾了，想让GPT把相同的逻辑在ejs文件里操作完成，而不是js文件里，从而看看能不能减少闪烁。GPT给出的建议是：</p>
 <blockquote>
 <p>将 JavaScript 逻辑放在 HTML 文档的 <code>&lt;head&gt;</code> 部分，并直接在其中执行（而不是等待 DOMContentLoaded 事件），可能会帮助减少页面加载时的闪烁。以下是如何在 HTML 文档的 <code>&lt;head&gt;</code> 部分内嵌此逻辑的示例：</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
@@ -1156,7 +1177,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 </blockquote>
 <p>于是把base.styl里有关transition的代码都删除了。删除之后，闪烁时屏幕为白色的时间缩短了，也就是闪得更快了。</p>
 <p>虽然还是没有完全解决问题，但是折腾了这么久，有这个结果我也很是欣慰了……以后看看还有没有优化的空间吧。</p>
-<p>2023-10-20更新：草，昨天博客崩了……修好之后上面的代码出问题了，只好又弄了一个，暂时还算是正确的？</p>
+<h3 id="从头再来"><a href="#从头再来" class="headerlink" title="从头再来"></a>从头再来</h3><p>2023-10-20更新：草，昨天博客崩了……修好之后上面的代码出问题了，只好又弄了一个，暂时还算是正确的？</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
     <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// 在页面加载时根据存储的主题或用户的系统偏好设置主题</span>
@@ -1192,7 +1213,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>晚上更新：随着夜幕的降临，我的系统切换成了夜间模式，结果……又出现了问题……</p>
+<h3 id="html元素始终是dark-theme类"><a href="#html元素始终是dark-theme类" class="headerlink" title="html元素始终是dark-theme类"></a>html元素始终是dark-theme类</h3><p>晚上更新：随着夜幕的降临，我的系统切换成了夜间模式，结果……又出现了问题……</p>
 <p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/58490fdd-cf76-4fe6-a917-f46236449e27" alt="18782d644e33b666eda1c4a6511c6a12"></p>
 <p>啊啊啊啊啊啊啊！！崩溃！</p>
 <p>冷静下来开始解决问题。通过网页检查器调试，发现问题可以被表述为：html元素的类属性始终是“dark-theme“。于是开始调教GPT。</p>
@@ -1259,6 +1280,47 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>祈祷不要再出问题了……</p>
+<h3 id="白色闪烁3"><a href="#白色闪烁3" class="headerlink" title="白色闪烁3"></a>白色闪烁3</h3><p>惊讶地发现移动端已经很少出现白色闪烁了（虽然有时候还是有），但是桌面端的闪烁则仍很频繁。GPT给出了两个方案，我同时采纳了，体感闪烁频率有所减少，而且闪烁速度加快，但还是时不时会有。GPT的总结如下：</p>
+<blockquote>
+<p><strong>1. 优先执行主题设置的 JavaScript</strong>:</p>
+<p>   将处理主题的 JavaScript 代码放在页面 <code>&lt;head&gt;</code> 部分并优先执行。这是为了确保在加载和应用其他 CSS 或 JavaScript 之前，根据本地存储或用户的偏好来设置相应的主题。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+        <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> savedTheme <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'theme'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">const</span> userPrefersDark <span class="token operator">=</span> window<span class="token punctuation">.</span>matchMedia <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">'(prefers-color-scheme: dark)'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>matches<span class="token punctuation">;</span>
+            <span class="token keyword">let</span> useDarkMode <span class="token operator">=</span> savedTheme <span class="token operator">?</span> savedTheme <span class="token operator">===</span> <span class="token string">'dark'</span> <span class="token punctuation">:</span> userPrefersDark<span class="token punctuation">;</span>
+            document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">toggle</span><span class="token punctuation">(</span><span class="token string">'dark-theme'</span><span class="token punctuation">,</span> useDarkMode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>2. 使用 CSS 隐藏内容</strong>:</p>
+<p>   如果即便优先执行了主题设置代码仍然出现闪烁，可以考虑暂时使用 CSS 来隐藏页面的内容，直至 JavaScript 代码运行并应用了正确的主题。</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">body </span><span class="token punctuation">{</span>
+    <span class="token property">visibility</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 初始隐藏内容 */</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">body<span class="token class">.theme-loaded</span> </span><span class="token punctuation">{</span>
+    <span class="token property">visibility</span><span class="token punctuation">:</span> visible<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* JavaScript 设置完主题后显示内容 */</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>   在 JavaScript 中，当主题被正确设置后，您可以添加一个类（例如 <code>theme-loaded</code>）来显示页面内容。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> themeToggleCheckbox <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'switch_default'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    themeToggleCheckbox<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> isChecked <span class="token operator">=</span> themeToggleCheckbox<span class="token punctuation">.</span>checked<span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">toggle</span><span class="token punctuation">(</span><span class="token string">'dark-theme'</span><span class="token punctuation">,</span> isChecked<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'theme'</span><span class="token punctuation">,</span> isChecked <span class="token operator">?</span> <span class="token string">'dark'</span> <span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'theme-loaded'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 页面加载完成后显示内容</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这种方式尽可能减少了页面加载时的闪烁，通过在页面结构加载之前就确定并设置好用户的主题偏好。在全部内容加载完毕后再显示，从而避免了主题切换时的闪烁。</p>
+</blockquote>
+<p>好吧，看来这就是我的能力限度了。暂时先这样吧。</p>
 <h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h1><p>我使用的是CC协议，在<a target="_blank" rel="noopener" href="https://chooser-beta.creativecommons.org/">这个</a>网站上生成html代码。生成代码后，我进行了各种调整，包括去掉文字只显示图标、调整footer内容顺序、图标缩小、图标居中等等，把GPT烦死了。弄好之后我的footer.ejs部分内容如下：</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>copyright<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
