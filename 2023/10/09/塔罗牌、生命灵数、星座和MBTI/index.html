@@ -295,9 +295,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('hide-content');
         })();
     </script>
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -634,6 +634,30 @@ document.getElementById('overlay').addEventListener('click', function() {
     document.querySelector('.js-toc').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
 });
+</script>
+
+<script>
+    window.onload = function() {
+        var toc = document.querySelector('.js-toc'); // 获取目录元素
+        var tocButton = document.getElementById('tocButton'); // 获取目录按钮元素
+
+        console.log('Page is fully loaded.'); // 输出消息，表示页面已完全加载
+
+        if (toc) { // 如果目录元素存在
+            console.log('TOC element is found.'); // 输出消息，表示找到了目录元素
+
+            if (toc.innerText.trim() === '') { // 如果目录内容为空
+                console.log('TOC is empty.'); // 输出消息，表示目录为空
+                tocButton.style.display = 'none'; // 隐藏目录按钮
+            } else {
+                console.log('TOC has content.'); // 输出消息，表示目录有内容
+                tocButton.style.display = 'block'; // 显示目录按钮
+            }
+        } else {
+            console.log('TOC element is not found.'); // 输出消息，表示没有找到目录元素
+            tocButton.style.display = 'none'; // 隐藏目录按钮
+        }
+    };
 </script>
 
 </article>
