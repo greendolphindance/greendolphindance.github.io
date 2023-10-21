@@ -420,7 +420,7 @@ Category:
 
 Words:
 
-<a href="">12.1k</a>
+<a href="">12.2k</a>
 
 </span>
 
@@ -434,7 +434,7 @@ Words:
 
 Time:
 
-<a href="">49min</a>
+<a href="">50min</a>
 
 </span>
 
@@ -1491,6 +1491,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <h1 id="页面标题对齐"><a href="#页面标题对齐" class="headerlink" title="页面标题对齐"></a>页面标题对齐</h1><p>今天发现Categories和Tags页面、About和Links页面、文章的标题不在同一高度上。我希望把它们全部调整成和Categories与Tags的标题等高（从网页检查器得知需要设置margin-top为2rem）。</p>
 <p>About和Links页面标题的高度在/themes/Chic/source/css/_page/page.styl中调整，将padding-top改为2rem即可。</p>
 <p>文章标题的高度在/themes/Chic/source/css/_page/_post/post_header.styl中调整，需要进行两步操作：（1）将post-title的margin-top设置为2rem;(2)将post-header h1下的“margin 0 !important”删除，否则标题高度将不会发生变化。</p>
+<p>但是，我没有改Archives页面标题的高度，即便这一页面的标题比其他的标题位置高。因为（1）Archives中的标题“2023”字号比其他页面标题的字号小，那么将前者与页面其他内容排列得更紧凑似乎要美观一些。（2）其实Archives标题的padding-top也是2rem，但是它可能是按这个标题的字号计算的，所以这个2rem的绝对长度比别的页面的2rem要短；然后我懒得计算它们的绝对高度了，所以就算了吧。</p>
 
         </div>
 
