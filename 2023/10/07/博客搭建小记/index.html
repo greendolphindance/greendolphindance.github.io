@@ -274,9 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -1566,15 +1566,15 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <p>在修改之前，顶栏标题中“｜”前面的内容都乱七八糟的，有“归档”、“Categories”、“- 关于我 -”之类的。于是想把它们统一起来。</p>
 <p>首先了解到顶栏标题和md文件的title有关，于是把分类和留言板等的title改成了中文，显示正常。但是由于Chic主题默认的分类和标签页面的标题是左右带“-”的，我就把关于和友链页面的title改成了“- 关于我 -”和“- 友情链接 -”，这样顶栏标题也是带“-”的，不统一。</p>
 <p>修改方法如下：首先在md文件的FrontMatter中添加一个新的变量，如：</p>
-<pre><code>title: "- 关于我 -"
+<pre class="line-numbers language-markdown"><code class="language-markdown">title: "- 关于我 -"
 browser_title: "关于"
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>然后找到负责渲染页面标题的模板文件（我的是/themes/Chic/layout/_partial/head.ejs），修改这段代码：</p>
-<pre><code>&lt;a class="break-link"&gt; &lt;title&gt;&lt;% if (title){ %&gt;&lt;%= title %&gt; | &lt;% } %&gt;&lt;%= config.title %&gt;&lt;/title&gt; &lt;/a&gt;
-</code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>title<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> title <span class="token operator">%</span><span class="token operator">></span> <span class="token operator">|</span> <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> config<span class="token punctuation">.</span>title <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如下：</p>
-<pre><code>&lt;a class="break-link"&gt; &lt;title&gt;&lt;% if (page.browser_title){ %&gt;&lt;%= page.browser_title %&gt; | &lt;% } else if (title){ %&gt;&lt;%= title %&gt; | &lt;% } %&gt;&lt;%= config.title %&gt;&lt;/title&gt; &lt;/a&gt;
-</code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>title<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>page<span class="token punctuation">.</span>browser_title<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> page<span class="token punctuation">.</span>browser_title <span class="token operator">%</span><span class="token operator">></span> <span class="token operator">|</span> <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> title <span class="token operator">%</span><span class="token operator">></span> <span class="token operator">|</span> <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> config<span class="token punctuation">.</span>title <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>即可。</p>
 
         </div>
