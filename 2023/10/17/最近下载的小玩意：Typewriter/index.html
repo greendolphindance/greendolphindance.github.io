@@ -611,43 +611,41 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('tocButton').addEventListener('click', function() {
     var toc = document.querySelector('.js-toc');
     var overlay = document.getElementById('overlay');
+    var body = document.body;
+
     if (toc.style.display === 'none' || toc.style.display === '') {
-        toc.style.display = 'block';
-        overlay.style.display = 'block';
+        toc.style.display = 'block'; // 显示目录
+        overlay.style.display = 'block'; // 显示遮罩层
+        body.style.overflow = 'hidden'; // 禁用页面滚动
     } else {
-        toc.style.display = 'none';
-        overlay.style.display = 'none';
+        toc.style.display = 'none'; // 隐藏目录
+        overlay.style.display = 'none'; // 隐藏遮罩层
+        body.style.overflow = ''; // 启用页面滚动
     }
 });
+
+// 点击遮罩层时隐藏目录和遮罩层，并启用页面滚动
+document.getElementById('overlay').addEventListener('click', function() {
+    document.querySelector('.js-toc').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.body.style.overflow = ''; // 启用页面滚动
+});
+
+// 页面加载时根据目录内容的有无显示或隐藏目录按钮
+window.onload = function() {
+    var toc = document.querySelector('.js-toc');
+    var tocButton = document.getElementById('tocButton');
+    if (toc) {
+        tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
+    } else {
+        tocButton.style.display = 'none';
+    }
+};
 
 document.getElementById('overlay').addEventListener('click', function() {
     document.querySelector('.js-toc').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
 });
-</script>
-
-<script>
-    window.onload = function() {
-        var toc = document.querySelector('.js-toc'); // 获取目录元素
-        var tocButton = document.getElementById('tocButton'); // 获取目录按钮元素
-
-        console.log('Page is fully loaded.'); // 输出消息，表示页面已完全加载
-
-        if (toc) { // 如果目录元素存在
-            console.log('TOC element is found.'); // 输出消息，表示找到了目录元素
-
-            if (toc.innerText.trim() === '') { // 如果目录内容为空
-                console.log('TOC is empty.'); // 输出消息，表示目录为空
-                tocButton.style.display = 'none'; // 隐藏目录按钮
-            } else {
-                console.log('TOC has content.'); // 输出消息，表示目录有内容
-                tocButton.style.display = 'block'; // 显示目录按钮
-            }
-        } else {
-            console.log('TOC element is not found.'); // 输出消息，表示没有找到目录元素
-            tocButton.style.display = 'none'; // 隐藏目录按钮
-        }
-    };
 </script>
 
 </article>
