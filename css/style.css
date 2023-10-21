@@ -1797,7 +1797,7 @@ a.toc-link {
     display: block;
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 6.5vw;
     z-index: 1001; /* 确保 tocButton 在 js-toc 上面 */
     width: 32px;
     height: 32px;
