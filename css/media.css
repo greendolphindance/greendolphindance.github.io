@@ -223,3 +223,156 @@
     z-index: 1; /* 确保在菜单之下 */
   }
 }
+/* post toc Style */
+@media screen and (max-width: 1279px) {
+  .post-toc {
+    display: none;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .js-toc {
+    position: fixed;
+    top: 95px; /* 距离顶部的距离，可以根据需要调整 */
+    right: 2em; /* 距离右侧的距离，可以根据需要调整 */
+    width: 15rem; /* 目录的宽度，可以根据需要调整 */
+    font-size: 0.75rem;
+    overflow-y: visible; /* 如果目录很长，这将添加滚动条 */
+    max-height: 500px; /* 最大高度，可以根据需要调整 */
+    background-color: transparent; /* 背景颜色，可以根据需要调整 */
+    z-index: 1000; /* 确保目录显示在其他元素之上 */
+  }
+}
+.js-toc .tocbot-list {
+  max-height: 450px;
+  max-width: 250px;
+  overflow: auto;
+  position: relative;
+  padding-right: 0.875rem;
+}
+.js-toc .tocbot-list::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.js-toc .tocbot-list::-webkit-scrollbar-thumb {
+  width: 6px;
+  background-color: #eee;
+  border-radius: 2px;
+}
+.js-toc .tocbot-list ul {
+  list-style: none;
+  position: inherit;
+  overflow: hidden;
+}
+.js-toc .tocbot-list ul li {
+  margin-left: 0.25rem;
+}
+.js-toc .toc-link::before {
+  background-color: #fff;
+}
+.js-toc .is-active-link::before {
+  background-color: #2d96bd;
+}
+.js-toc .tocbot-list-menu {
+  margin: 1rem 0.75rem;
+  font-size: 0.75rem;
+}
+.js-toc .tocbot-list-menu a {
+  display: block;
+  margin: 0.375rem 0;
+  color: #999;
+  cursor: pointer;
+}
+.js-toc .tocbot-list-menu a:hover {
+  color: #808080;
+}
+.toc {
+  overflow-y: auto;
+}
+.toc>.toc-list {
+  overflow: hidden;
+  position: relative;
+}
+.toc>.toc-list li {
+  list-style: none;
+}
+.toc-list {
+  margin: 0;
+  padding-left: 10px;
+}
+a.toc-link {
+  color: currentColor;
+  height: 100%;
+}
+.is-collapsible {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+}
+.is-collapsed {
+  max-height: 0;
+}
+.is-position-fixed {
+  position: fixed !important;
+  top: 0;
+}
+.is-active-link {
+  font-weight: 700;
+}
+.toc-link::before {
+  background-color: #eee;
+  content: ' ';
+  display: inline-block;
+  height: inherit;
+  left: 0;
+  margin-top: -1px;
+  position: absolute;
+  width: 2px;
+}
+.is-active-link::before {
+  background-color: #54bc4b;
+}
+/* 去掉目录前面的数字 */
+.toc-list li {
+  list-style-type: none; /* 设置列表样式类型为 none */
+}
+/* 当屏幕宽度小于或等于 1280px 时应用这些样式 */
+@media screen and (max-width: 1280px) {
+  #tocButton {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001; /* 确保 tocButton 在 js-toc 上面 */
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+  }
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999;
+  }
+  .js-toc {
+    position: fixed;
+    top: 50%; /* 将元素的顶部边缘定位到屏幕的垂直中央 */
+    left: 50%; /* 将元素的左边缘定位到屏幕的水平中央 */
+    transform: translate(-50%, -50%); /* 微调位置，确保元素的中心位于屏幕的中央 */
+    z-index: 1000;
+    background-color: #fff !important;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+    max-width: 85vw; /* 设置最大宽度为视口宽度的 70% */
+    max-height: 70vh; /* 设置最大高度为视口高度的 70% */
+    overflow: auto; /* 如果内容超出最大高度或宽度，添加滚动条 */
+  }
+  body.dark-theme .js-toc {
+    background-color: #292a2d !important;
+  }
+}
