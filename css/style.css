@@ -581,7 +581,6 @@ a:hover {
   height: 4rem;
   width: 100%;
   text-align: center;
-  line-height: 4rem;
 }
 @charset "utf-8";
 
@@ -1797,7 +1796,8 @@ a.toc-link {
     display: block;
     position: fixed;
     bottom: 20px;
-    right: 6.5vw;
+    right: 5vw;
+    cursor: pointer;
     z-index: 1001; /* 确保 tocButton 在 js-toc 上面 */
     width: 32px;
     height: 32px;
@@ -1830,6 +1830,12 @@ a.toc-link {
   }
   body.dark-theme .js-toc {
     background-color: #292a2d !important;
+  }
+}
+@media screen and (max-width: 1280px) and (min-width: 768px) {
+  #tocButton {
+    width: 48px;
+    height: 48px;
   }
 }
 .highlight {
