@@ -1681,12 +1681,12 @@ header label {
     z-index: 1; /* 确保在菜单之下 */
   }
 }
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 1499px) {
   .post-toc {
     display: none;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1500px) {
   .js-toc {
     position: fixed;
     top: 95px; /* 距离顶部的距离，可以根据需要调整 */
@@ -1791,13 +1791,12 @@ a.toc-link {
 .toc-list li {
   list-style-type: none; /* 设置列表样式类型为 none */
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1499px) {
   #tocButton {
     display: block;
     position: fixed;
     bottom: 20px;
-    right: 5vw;
-    cursor: pointer;
+    right: 6.5vw;
     z-index: 1001; /* 确保 tocButton 在 js-toc 上面 */
     width: 32px;
     height: 32px;
@@ -1825,27 +1824,11 @@ a.toc-link {
     padding: 10px;
     display: none;
     max-width: 85vw; /* 设置最大宽度为视口宽度的 70% */
-    min-width: 50vw;
-    max-height: 60vh; /* 设置最大高度为视口高度的 70% */
+    max-height: 70vh; /* 设置最大高度为视口高度的 70% */
     overflow-y: auto !important; /* 如果内容超出最大高度或宽度，添加滚动条 */
   }
   body.dark-theme .js-toc {
     background-color: #292a2d !important;
-  }
-}
-.js-toc::-webkit-scrollbar {
-  display: none;
-}
-.js-toc {
-  -ms-overflow-style: none;
-}
-.js-toc {
-  scrollbar-width: none;
-}
-@media screen and (max-width: 1280px) and (min-width: 768px) {
-  #tocButton {
-    width: 48px;
-    height: 48px;
   }
 }
 .highlight {
@@ -1926,6 +1909,11 @@ body.dark-theme #footer {
   }
   .back-top-large {
     display: block;
+  }
+}
+@media (max-width: 800px) {
+  .search {
+    display: none !important;
   }
 }
 .search-input {
