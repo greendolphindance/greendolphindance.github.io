@@ -801,6 +801,28 @@ headingSelector: 'h1, h2, h3, h4',
     });
 </script>
 
+<script>
+    var tocContainer = document.querySelector('.js-toc');
+
+    tocContainer.addEventListener('scroll', handleScroll);
+
+    function handleScroll(e) {
+        // 你原来的滚动事件处理代码
+    }
+
+    // 当点击目录条目时
+    tocContainer.addEventListener('click', function(e) {
+        // 禁用滚动事件监听器
+        tocContainer.removeEventListener('scroll', handleScroll);
+
+        // 在跳转完成后重新启用滚动事件监听器
+        setTimeout(function() {
+            tocContainer.addEventListener('scroll', handleScroll);
+        }, 100); // 你可以根据需要调整延迟时间
+    });
+</script>
+
+
 </body>
 
 </html>
