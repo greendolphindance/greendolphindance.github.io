@@ -1681,12 +1681,12 @@ header label {
     z-index: 1; /* 确保在菜单之下 */
   }
 }
-@media screen and (max-width: 1499px) {
+@media screen and (max-width: 1379px) {
   .post-toc {
     display: none;
   }
 }
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1380px) {
   .js-toc {
     position: fixed;
     top: 95px; /* 距离顶部的距离，可以根据需要调整 */
@@ -1791,7 +1791,7 @@ a.toc-link {
 .toc-list li {
   list-style-type: none; /* 设置列表样式类型为 none */
 }
-@media screen and (max-width: 1499px) {
+@media screen and (max-width: 1379px) {
   #tocButton {
     display: block;
     position: fixed;
@@ -1830,6 +1830,15 @@ a.toc-link {
   body.dark-theme .js-toc {
     background-color: #292a2d !important;
   }
+}
+.js-toc::-webkit-scrollbar {
+  display: none;
+}
+.js-toc {
+  -ms-overflow-style: none;
+}
+.js-toc {
+  scrollbar-width: none;
 }
 .highlight {
   color: #657b83;
