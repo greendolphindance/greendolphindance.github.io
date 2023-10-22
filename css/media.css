@@ -370,7 +370,8 @@ a.toc-link {
     padding: 10px;
     display: none;
     max-width: 85vw; /* 设置最大宽度为视口宽度的 70% */
-    max-height: 70vh; /* 设置最大高度为视口高度的 70% */
+    min-width: 50vw;
+    max-height: 60vh; /* 设置最大高度为视口高度的 70% */
     overflow-y: auto !important; /* 如果内容超出最大高度或宽度，添加滚动条 */
   }
   body.dark-theme .js-toc {
@@ -382,4 +383,16 @@ a.toc-link {
     width: 48px;
     height: 48px;
   }
+}
+/* 针对 Chrome、Edge 和 Safari */
+.js-toc::-webkit-scrollbar {
+  display: none;
+}
+/* 针对 IE 和 Edge */
+.js-toc {
+  -ms-overflow-style: none;
+}
+/* 针对 Firefox */
+.js-toc {
+  scrollbar-width: none;
 }

@@ -456,7 +456,7 @@ Category:
 
 Words:
 
-<a href="">14.7k</a>
+<a href="">15.7k</a>
 
 </span>
 
@@ -470,7 +470,7 @@ Words:
 
 Time:
 
-<a href="">60min</a>
+<a href="">64min</a>
 
 </span>
 
@@ -1581,7 +1581,7 @@ document<span class="token punctuation">.</span><span class="token function">get
         <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
         <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
         <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span>
-        <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">5</span>vw+<span class="token number">1.5</span>px<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 这里是我试了好久试出来的。我希望目录图标和回到顶部图标对齐，但是在单位是px、rem、占屏幕的百分比的情况下，即便设置了一样的数值，它们还是对不齐。所以我试了好久试出了这么个暴力办法（但有些设备上依旧没有对齐）。 */</span>
+        <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">5</span>vw+<span class="token number">1.5</span>px<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 这里是我试了好久试出来的， */</span>
         <span class="token property">z-index</span><span class="token punctuation">:</span> <span class="token number">1001</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 确保 tocButton 在 js-toc 上面 */</span>
         <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">32</span>px<span class="token punctuation">;</span>
         <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">32</span>px<span class="token punctuation">;</span>
@@ -1620,7 +1620,111 @@ document<span class="token punctuation">.</span><span class="token function">get
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>好像就可以了。后续还要优化……</p>
+<h3 id="目录为空时不显示目录图标"><a href="#目录为空时不显示目录图标" class="headerlink" title="目录为空时不显示目录图标"></a>目录为空时不显示目录图标</h3><p>实现代码如下：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    window<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> toc <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-toc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 获取目录元素</span>
+        <span class="token keyword">var</span> tocButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'tocButton'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 获取目录按钮元素</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>toc<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 如果目录元素存在</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>toc<span class="token punctuation">.</span>innerText<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">''</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 如果目录内容为空</span>
+                tocButton<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 隐藏目录按钮</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                tocButton<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 显示目录按钮</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            tocButton<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 隐藏目录按钮</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="在目录打开时禁用页面的滚动"><a href="#在目录打开时禁用页面的滚动" class="headerlink" title="在目录打开时禁用页面的滚动"></a>在目录打开时禁用页面的滚动</h3><p>GPT生成了代码，并建议我合并一些事件监听器以使得代码整洁。以下是合并后的代码：</p>
+<pre class="line-numbers language-html"><code class="language-html">document.getElementById('tocButton').addEventListener('click', function() {
+    var toc = document.querySelector('.js-toc');
+    var overlay = document.getElementById('overlay');
+    var body = document.body;
+
+    if (toc.style.display === 'none' || toc.style.display === '') {
+        toc.style.display = 'block'; // 显示目录
+        overlay.style.display = 'block'; // 显示遮罩层
+        body.style.overflow = 'hidden'; // 禁用页面滚动
+    } else {
+        toc.style.display = 'none'; // 隐藏目录
+        overlay.style.display = 'none'; // 隐藏遮罩层
+        body.style.overflow = ''; // 启用页面滚动
+    }
+});
+
+// 点击遮罩层时隐藏目录和遮罩层，并启用页面滚动
+document.getElementById('overlay').addEventListener('click', function() {
+    document.querySelector('.js-toc').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.body.style.overflow = ''; // 启用页面滚动
+});
+
+// 页面加载时根据目录内容的有无显示或隐藏目录按钮
+window.onload = function() {
+    var toc = document.querySelector('.js-toc');
+    var tocButton = document.getElementById('tocButton');
+    if (toc) {
+        tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
+    } else {
+        tocButton.style.display = 'none';
+    }
+};
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="允许垂直滚动"><a href="#允许垂直滚动" class="headerlink" title="允许垂直滚动"></a>允许垂直滚动</h3><p>发现在移动端滑动手指，目录不滚动。解决办法是修改overflow-y的值：</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token property">overflow-y</span><span class="token punctuation">:</span> auto <span class="token important">!important</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样即可。</p>
+<h3 id="垂直滚动的下限（？）"><a href="#垂直滚动的下限（？）" class="headerlink" title="垂直滚动的下限（？）"></a>垂直滚动的下限（？）</h3><p>垂直滚动到底部时，本来理想的情况是目录文字的最后一行滑到底边框的上面一点点，就不能滑动了。但实际上还能滑动，一直滑到整个目录框变成空白（内容全部滑上去了），才不能滑动。 </p>
+<p>解决方案是在layout.ejs里添加如下代码（我一开始添加到post.ejs里，结果没有被调用？）：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript"> 
+    document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-toc'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> tocList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.toc-list'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> maxHeight <span class="token operator">=</span> tocList<span class="token punctuation">.</span>scrollHeight <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>clientHeight <span class="token operator">+</span> <span class="token number">20</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 计算最大可滚动高度</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>scrollTop <span class="token operator">>=</span> maxHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>scrollTop <span class="token operator">=</span> maxHeight<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 如果滚动超过最大高度，则设置滚动位置为最大高度</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>更新：放弃了这个功能，因为这样的话，当目录内容到达最底部不能再滑动时，右边的滑块还在中间，这个我不知道怎么解决。</p>
+<p>再更新：突然灵光一闪，我让滑块不显示不就可以了吗？反正感觉很多可以滑动的东西都不会显示滑块啊。说干就干：</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* 针对 Chrome、Edge 和 Safari */</span>
+<span class="token selector"><span class="token class">.js-toc</span><span class="token pseudo-element">::-webkit-scrollbar</span> </span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* 针对 IE 和 Edge */</span>
+<span class="token selector"><span class="token class">.js-toc</span> </span><span class="token punctuation">{</span>
+    <span class="token property">-ms-overflow-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* 针对 Firefox */</span>
+<span class="token selector"><span class="token class">.js-toc</span> </span><span class="token punctuation">{</span>
+    <span class="token property">scrollbar-width</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>搞定。我可真他妈是个天才！</p>
+<h3 id="“目录”按钮和“回到顶部”按钮垂直对齐"><a href="#“目录”按钮和“回到顶部”按钮垂直对齐" class="headerlink" title="“目录”按钮和“回到顶部”按钮垂直对齐"></a>“目录”按钮和“回到顶部”按钮垂直对齐</h3><p>这个也折腾了好久。明明两个东西right的数值设置成了一样的，但是总是对不齐。一开始GPT给的方案是弄一个，叫什么，Flexbox？就是把“目录”和“回到顶部”包裹到同一个类里面去，再设定两者的相对位置。但是不知道为什么，调了很久都不行。</p>
+<p>然后看网页检查器找线索，发现鼠标放在Element中“totop”这个类时，网页中被标示出来的区域和“目录”按钮的实际位置有错位。而我是把“totop”这个类和“目录”按钮对齐的，所以造成实际显示效果没有对齐。</p>
+<p>经查，鼠标放在“totop”下面的SVG链接时，页面上标示的区域和“目录”按钮是重叠的。于是在layout.ejs增加代码如下：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+    <span class="token selector"><span class="token id">#tocButton</span> svg </span><span class="token punctuation">{</span>
+        <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+        <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 调整到你想要的位置 */</span>
+        <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">5</span>vw<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token selector"><span class="token id">#totop</span> </span><span class="token punctuation">{</span>
+        <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+        <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">20</span>px+<span class="token number">2</span>rem<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 调整到你想要的位置 */</span>
+        <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">5</span>vw<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>问题解决。我还做了一些小的调整，比如调整某些情况下“回到顶部”按钮的大小。</p>
+<p>修改完之后觉得两个按钮距离太近了，就改了#totop中bottom的数值，但是没有反应。经查，这一条规则没有被应用，被应用的是“totop”类中的bottom规则。于是把这一数值由50px改为60px。</p>
 <h1 id="优化宽度"><a href="#优化宽度" class="headerlink" title="优化宽度<300px的手机上的显示"></a>优化宽度&lt;300px的手机上的显示</h1><p>不多说，放代码。代码放在media.styl里。</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* 在封面页减小标题栏、nickname、description、copyright的字体大小 */</span>
 <span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 299px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
