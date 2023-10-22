@@ -376,6 +376,9 @@ a.toc-link {
     background-color: #292a2d !important;
   }
 }
+li.toc-list-item {
+  margin-bottom: 0.5rem; /* 添加间距 */
+}
 /* 针对 Chrome、Edge 和 Safari */
 .js-toc::-webkit-scrollbar {
   display: none;
