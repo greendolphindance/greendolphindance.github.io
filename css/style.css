@@ -1824,6 +1824,7 @@ a.toc-link {
     padding: 10px;
     display: none;
     max-width: 85vw; /* 设置最大宽度为视口宽度的 70% */
+    min-width: 60vw;
     max-height: 70vh; /* 设置最大高度为视口高度的 70% */
     overflow-y: auto !important; /* 如果内容超出最大高度或宽度，添加滚动条 */
   }
