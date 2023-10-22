@@ -456,7 +456,7 @@ Category:
 
 Words:
 
-<a href="">15.7k</a>
+<a href="">16k</a>
 
 </span>
 
@@ -470,7 +470,7 @@ Words:
 
 Time:
 
-<a href="">64min</a>
+<a href="">65min</a>
 
 </span>
 
@@ -1725,6 +1725,34 @@ window.onload = function() {
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>问题解决。我还做了一些小的调整，比如调整某些情况下“回到顶部”按钮的大小。</p>
 <p>修改完之后觉得两个按钮距离太近了，就改了#totop中bottom的数值，但是没有反应。经查，这一条规则没有被应用，被应用的是“totop”类中的bottom规则。于是把这一数值由50px改为60px。</p>
+<h3 id="桌面端点击目录时疯狂上下抖动！"><a href="#桌面端点击目录时疯狂上下抖动！" class="headerlink" title="桌面端点击目录时疯狂上下抖动！"></a>桌面端点击目录时疯狂上下抖动！</h3><p>如题，死马当活马医地问了一下GPT，结果轻松就解决了！方法如下：</p>
+<blockquote>
+<p>这个问题可能是由于浏览器尝试在点击目录条目时保持目录的当前滚动位置所导致的。当页面内容滚动以将所选条目对齐到视口顶部时，目录的滚动位置也会相应地调整，从而导致“疯狂上下抖动”的现象。</p>
+<p>为了解决这个问题，你可以尝试在点击目录条目时禁用目录的滚动事件监听器，然后在跳转完成后再重新启用。这里是一个可能的解决方案：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+    <span class="token keyword">var</span> tocContainer <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-toc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    tocContainer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> handleScroll<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">handleScroll</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 你原来的滚动事件处理代码</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 当点击目录条目时</span>
+    tocContainer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 禁用滚动事件监听器</span>
+        tocContainer<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> handleScroll<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 在跳转完成后重新启用滚动事件监听器</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            tocContainer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> handleScroll<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 你可以根据需要调整延迟时间</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在这段代码中，我添加了一个点击事件监听器，当点击目录条目时，它会禁用滚动事件监听器，然后在一个延迟后重新启用。这样可以防止在跳转过程中触发滚动事件，从而避免抖动的问题。</p>
+<p>你可以尝试使用这段代码，并根据你的实际情况进行相应的调整。希望这能解决你的问题！</p>
+</blockquote>
 <h1 id="优化宽度"><a href="#优化宽度" class="headerlink" title="优化宽度<300px的手机上的显示"></a>优化宽度&lt;300px的手机上的显示</h1><p>不多说，放代码。代码放在media.styl里。</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* 在封面页减小标题栏、nickname、description、copyright的字体大小 */</span>
 <span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 299px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
