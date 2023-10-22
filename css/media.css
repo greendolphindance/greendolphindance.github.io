@@ -377,7 +377,7 @@ a.toc-link {
   }
 }
 li.toc-list-item {
-  margin-bottom: 0.5rem; /* 添加间距 */
+  margin-bottom: 0.5rem !important;
 }
 /* 针对 Chrome、Edge 和 Safari */
 .js-toc::-webkit-scrollbar {

@@ -1832,7 +1832,7 @@ a.toc-link {
   }
 }
 li.toc-list-item {
-  margin-bottom: 0.5rem; /* 添加间距 */
+  margin-bottom: 0.5rem !important;
 }
 .js-toc::-webkit-scrollbar {
   display: none;
