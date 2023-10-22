@@ -309,9 +309,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 </style>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -624,56 +624,64 @@ document.addEventListener('DOMContentLoaded', function () {
         <path d="M 863.113 0 H 160.887 A 161.064 161.064 0 0 0 0 160.887 v 702.225 a 161.064 161.064 0 0 0 160.887 160.887 h 702.225 a 161.064 161.064 0 0 0 160.887 -160.887 V 160.887 a 161.064 161.064 0 0 0 -160.887 -160.887 Z M 242.94 725.908 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 242.94 333.037 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 534.146 392.839 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 777.086 333.037 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z" fill="#8a8a8a" p-id="5388"></path>
 </button>
 
-<div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay" onclick="hideToc()"></div>
 
-        <script>
-            window.onload = function() {
-                // 根据目录内容的有无显示或隐藏目录按钮
-                var toc = document.querySelector('.js-toc');
-                var tocButton = document.getElementById('tocButton');
-                if (toc) {
-                    tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
-                } else {
-                    tocButton.style.display = 'none';
-                }
+<script>
+    function hideToc() {
+        var toc = document.querySelector('.js-toc');
+        var overlay = document.getElementById('overlay');
+        var body = document.body;
 
-                // 检查窗口宽度，根据宽度显示或隐藏tocButton
-                checkWindowSize();
-            };
+        toc.style.display = 'none'; // 隐藏目录
+        overlay.style.display = 'none'; // 隐藏遮罩层
+        body.style.overflow = ''; // 启用页面滚动
+    }
+    window.onload = function() {
+        // 根据目录内容的有无显示或隐藏目录按钮
+        var toc = document.querySelector('.js-toc');
+        var tocButton = document.getElementById('tocButton');
+        if (toc) {
+            tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
+        } else {
+            tocButton.style.display = 'none';
+        }
 
-            function checkWindowSize() {
-                var windowWidth = window.innerWidth;
-                var tocButton = document.getElementById('tocButton');
+        // 检查窗口宽度，根据宽度显示或隐藏tocButton
+        checkWindowSize();
+    };
 
-                if (windowWidth > 1379) {
-                    tocButton.style.display = 'none'; // 隐藏tocButton
-                } else {
-                    tocButton.style.display = 'block'; // 显示tocButton
-                }
-            }
+    function checkWindowSize() {
+        var windowWidth = window.innerWidth;
+        var tocButton = document.getElementById('tocButton');
 
-            // 点击tocButton时执行的函数
-            document.getElementById('tocButton').addEventListener('click', function() {
-                var toc = document.querySelector('.js-toc');
-                var overlay = document.getElementById('overlay');
-                var body = document.body;
+        if (windowWidth > 1379) {
+            tocButton.style.display = 'none'; // 隐藏tocButton
+        } else {
+            tocButton.style.display = 'block'; // 显示tocButton
+        }
+    }
 
-                if (toc.style.display === 'none' || toc.style.display === '') {
-                    toc.style.display = 'block'; // 显示目录
-                    overlay.style.display = 'block'; // 显示遮罩层
-                    body.style.overflow = 'hidden'; // 禁用页面滚动
-                } else {
-                    toc.style.display = 'none'; // 隐藏目录
-                    overlay.style.display = 'none'; // 隐藏遮罩层
-                    body.style.overflow = ''; // 启用页面滚动
-                }
-            });
+    // 点击tocButton时执行的函数
+    document.getElementById('tocButton').addEventListener('click', function() {
+        var toc = document.querySelector('.js-toc');
+        var overlay = document.getElementById('overlay');
+        var body = document.body;
 
-            // 窗口大小变化时检查窗口宽度
-            window.onresize = checkWindowSize;
-        </script>
+        if (toc.style.display === 'none' || toc.style.display === '') {
+            toc.style.display = 'block'; // 显示目录
+            overlay.style.display = 'block'; // 显示遮罩层
+            body.style.overflow = 'hidden'; // 禁用页面滚动
+        } else {
+            hideToc();
+        }
+    });
 
-    <script>
+
+    // 窗口大小变化时检查窗口宽度
+    window.onresize = checkWindowSize;
+</script>
+
+<script>
     var tocContainer = document.querySelector('.js-toc');
 
     tocContainer.addEventListener('scroll', handleScroll);
