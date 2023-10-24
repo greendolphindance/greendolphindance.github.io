@@ -16,7 +16,7 @@
 
 
 
-<title>标签 | Green Dolphin Dance</title>
+<title>Green Dolphin Dance</title>
 
 
 
@@ -309,9 +309,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 </style>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -414,23 +414,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="main">
                 
-
-    <div class="container">
-        <div class="post-wrap tags">
-            <h2 class="post-title">-&nbsp;标签&nbsp;-</h2>
-
-            <div class="tag-cloud-tags">
+    <div class="container profile-container">
+    <div class="intro">
+        <div class="avatar">
+            <a href="/"><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/e66871c0-be6e-4fc7-8fa6-ceae6932cbaf"></a>
+        </div>
+        <div class="nickname">GreenDolphinDance</div>
+        <div class="description"><p>Back to the rough ground!</p>
+</div>
+        <div class="links">
+            
                 
-                    <a href="/tags/%E5%8D%A0%E5%8D%9C/">占卜<small>(2)</small></a>
-                
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">工具<small>(4)</small></a>
-                
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客<small>(2)</small></a>
-                
-            </div>
+            
         </div>
     </div>
-
+</div>
 
 
             </div>
@@ -551,6 +549,28 @@ headingSelector: 'h1, h2, h3, h4',
         }
     });
 </script>
+
+<script>
+    var tocContainer = document.querySelector('.js-toc');
+
+    tocContainer.addEventListener('scroll', handleScroll);
+
+    function handleScroll(e) {
+        // 你原来的滚动事件处理代码
+    }
+
+    // 当点击目录条目时
+    tocContainer.addEventListener('click', function(e) {
+        // 禁用滚动事件监听器
+        tocContainer.removeEventListener('scroll', handleScroll);
+
+        // 在跳转完成后重新启用滚动事件监听器
+        setTimeout(function() {
+            tocContainer.addEventListener('scroll', handleScroll);
+        }, 100); // 你可以根据需要调整延迟时间
+    });
+</script>
+
 
 </body>
 
