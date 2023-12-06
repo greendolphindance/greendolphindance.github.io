@@ -1929,6 +1929,18 @@ body.dark-theme #footer {
     display: none !important;
   }
 }
+body::before {
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
+}
 .search-input {
   font-size: 0.875rem;
   height: 1.75rem;
