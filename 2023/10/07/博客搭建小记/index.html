@@ -456,7 +456,7 @@ Category:
 
 Words:
 
-<a href="">17.2k</a>
+<a href="">17.3k</a>
 
 </span>
 
@@ -1366,6 +1366,30 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <p><a target="_blank" rel="noopener" href="https://myoontyee.github.io/article/264c6a00.html">谷歌收录</a>：将博客部署到搜索引擎如Google上使得其能被搜索到。</p>
 <p><a target="_blank" rel="noopener" href="https://myoontyee.github.io/article/cb001f78.html">打赏</a>：如题，我暂时用不到，先存在这里。</p>
 <p><a target="_blank" rel="noopener" href="https://myoontyee.github.io/article/fee5a0e2.html">文章置顶</a>：也暂时用不到，先存在这里。</p>
+<h2 id="过长博文名省略"><a href="#过长博文名省略" class="headerlink" title="过长博文名省略"></a>过长博文名省略</h2><p>（2023-12-5更新）发现按照上面的教程操作，只有桌面端的博文名省略了，移动端依旧会超过屏幕。所以修改插入到archive.ejs中的代码如下：</p>
+<pre class="line-numbers language-css"><code class="language-css">  <span class="token atrule"><span class="token rule">@media</span> screen and <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 769px<span class="token punctuation">)</span></span><span class="token punctuation">{</span> 
+    <span class="token selector">li </span><span class="token punctuation">{</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">650</span>px<span class="token punctuation">;</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">29.5</span>px<span class="token punctuation">;</span>
+        <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+        <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+        <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">/* Mobile styles */</span>
+  <span class="token atrule"><span class="token rule">@media</span> screen and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+    <span class="token selector">li </span><span class="token punctuation">{</span>
+      <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">285</span>px<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">/* Adjust the width for mobile */</span>
+      <span class="token comment" spellcheck="true">/* Retain other properties or adjust as needed */</span>
+      <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">29.5</span>px<span class="token punctuation">;</span>
+      <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+      <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+      <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  但在“分类”页面中，某些设备不显示省略号，不知何故。</p>
 <h1 id="长链接"><a href="#长链接" class="headerlink" title="长链接"></a>长链接</h1><p>这篇博文里有一些很长的链接。这些链接，尤其在移动端的时候，无法自动断行，导致页面被撑开，很丑。</p>
 <p>我首先在post_content.styl里加入如下代码：</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token number">.</span>break-link
