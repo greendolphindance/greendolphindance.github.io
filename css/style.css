@@ -1666,7 +1666,7 @@ header label {
 @media screen and (max-width: 479px) {
   .navbar-mobile .menu {
     position: absolute;
-    top: 80.66px; /* 调整这个值，使菜单栏下移 */
+    top: 75px; /* 调整这个值，使菜单栏下移 */
     left: 0;
     width: 100%;
     background-color: #fff; /* 或其他颜色 */
