@@ -445,47 +445,20 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 
+
+
 <!-- 添加过长博文名省略 -->
 <style>
-  /* Existing desktop styles */
-  @media screen and (min-width: 769px){ 
     li {
-        width: 650px;
+        width: 240px;  /* Adjust the width for mobile */
+        /* Retain other properties or adjust as needed */
         height: 29.5px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-  }
-
-  /* Mobile styles */
-  @media screen and (max-width: 768px) {
-    li {
-      width: 285px;  /* Adjust the width for mobile */
-      /* Retain other properties or adjust as needed */
-      height: 29.5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-</style>
-
-
-<!-- 2022年4月4日 添加过长博文名省略 -->
-<style>
-    li{
-        width: 285px;
-        height: 24.2px;
-        /*不换行*/
-        white-space: nowrap;
-        /*溢出的话，隐藏*/
-        overflow: hidden;
-        /*文本溢出时，是否....*/
-        text-overflow: ellipsis;
-    }
-</style>
-
+  </style>
+  
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">

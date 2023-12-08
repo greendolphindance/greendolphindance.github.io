@@ -456,7 +456,7 @@ Category:
 
 Words:
 
-<a href="">19.5k</a>
+<a href="">19.6k</a>
 
 </span>
 
@@ -1472,6 +1472,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
   <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  但在“分类”页面中，某些设备不显示省略号，不知何故。</p>
+<p>  （2023-12-7更新）知道是什么原因了。解决方法是微调参数。我将tag和archive页面的min-width改为768px，max-width改为767px，然后把大屏幕下的width改为600px，小屏幕下的width改为240px，问题解决。至于categories页面，我直接把所有屏幕尺寸的宽度调成了240px。</p>
 <h1 id="长链接"><a href="#长链接" class="headerlink" title="长链接"></a>长链接</h1><p>这篇博文里有一些很长的链接。这些链接，尤其在移动端的时候，无法自动断行，导致页面被撑开，很丑。</p>
 <p>我首先在post_content.styl里加入如下代码：</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token number">.</span>break-link
