@@ -456,7 +456,7 @@ Category:
 
 Words:
 
-<a href="">19.6k</a>
+<a href="">20.7k</a>
 
 </span>
 
@@ -470,7 +470,7 @@ Words:
 
 Time:
 
-<a href="">84min</a>
+<a href="">90min</a>
 
 </span>
 
@@ -2037,6 +2037,182 @@ browser_title: "关于"
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>title<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>page<span class="token punctuation">.</span>browser_title<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> page<span class="token punctuation">.</span>browser_title <span class="token operator">%</span><span class="token operator">></span> <span class="token operator">|</span> <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> title <span class="token operator">%</span><span class="token operator">></span> <span class="token operator">|</span> <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">=</span> config<span class="token punctuation">.</span>title <span class="token operator">%</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>即可。</p>
+<h1 id="分类和标签页面的排序"><a href="#分类和标签页面的排序" class="headerlink" title="分类和标签页面的排序"></a>分类和标签页面的排序</h1><p>（2023-12-11更新）首先说明一下这两个页面的结构。分类主页面如下图所示：</p>
+<img width="600" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/d1e06696-a3f6-4fd3-9d47-621a6788d7b9">
+
+<p>其中，“折腾”“随笔”等分类名都可以点开，点开后出现如下界面：</p>
+<img width="400" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/989e9276-734c-4624-9045-011ade52edff">
+
+<p>我希望主页面的各个分类、各个分类下的文章名，以及点开某个分类后其下的文章名，都按字母顺序排列。</p>
+<p>标签主页面如下图所示：</p>
+<img width="600" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/80eda191-3c39-4f8b-b7de-fd474e53abc6">
+
+<p>其中，点开任意标签可以进入类似如下的界面：</p>
+<img width="600" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/d5ac9cd6-9c67-4b4a-8feb-9d94f345e51f">
+
+<p>我希望每个标签，以及点开某个标签后其下的文章名，都按字母顺序排列。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>这个事情的本质是让categories页面的每个card-item按照其下h3的文本的字母顺序排列。ChatGPT解决方案的原理是：</p>
+<blockquote>
+<p>为了让 categories 页面的每个 card-item 按照其下 h3 标签的文本（即分类名称）的字母顺序排列，您需要在循环之前对 site.categories 进行排序。</p>
+</blockquote>
+<p>给出的代码如下，修改后blog/themes/Chic/layout/category.ejs中的代码如下：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%#</span> <span class="token attr-name">single</span> <span class="token attr-name">category</span> <span class="token attr-name">page</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">if(is_category()){</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    &lt;%- partial('_page/category', {pagination: config.category, index: true}) %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}else{</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-wrap categories<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>-<span class="token entity" title="&nbsp;">&amp;nbsp;</span>分类<span class="token entity" title="&nbsp;">&amp;nbsp;</span>-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>categories-card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                &lt;% 
+                    // Convert categories to an array and sort them alphabetically by name
+                    var sortedCategories = site.categories.toArray().sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+                %>
+                &lt;% sortedCategories.forEach(category_item => { %>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>categories<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%- url_for(category_item.path) %<span class="token punctuation">></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>
+                                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iconfont icon-category<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding-right</span><span class="token punctuation">:</span><span class="token number">3</span>px</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>
+                                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">category_item.name</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+                            &lt;% category_item.posts.forEach((post_item, index = 0) => { %>
+                                &lt;% if(++index &lt;= 5){ %>
+                                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>archive-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>archive-item-link<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%- url_for(post_item.path) %<span class="token punctuation">></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                                           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">post_item.title</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+                                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+                                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">></span></span>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">})</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">if(category_item.posts.length</span> <span class="token punctuation">></span></span> 5){ %>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>more-post-link<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%- url_for(category_item.path) %<span class="token punctuation">></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>更多 >><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">})</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- Style for handling ellipsis in post titles --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+    <span class="token comment" spellcheck="true">/* Existing styles for li elements */</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="各分类下的文章标题"><a href="#各分类下的文章标题" class="headerlink" title="各分类下的文章标题"></a>各分类下的文章标题</h2><p>这个需要在blog/themes/Chic/layout/_page/category.ejs中进行修改。修改后改文件的代码如下：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%#</span> <span class="token attr-name">single</span> <span class="token attr-name">category</span> <span class="token attr-name">page%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-wrap categories<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>-<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iconfont icon-fenlei<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">1</span>em<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>分类<span class="token entity" title="&nbsp;">&amp;nbsp;</span>·<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-page.category%</span><span class="token punctuation">></span></span>-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+        
+        &lt;% var posts = site.categories.findOne({name: page.category}).posts %>
+        <span class="token comment" spellcheck="true">&lt;!-- 按title字母顺序排序 --></span>
+        &lt;% posts.data.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())) %>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">posts.each(function</span> <span class="token attr-name">(post)</span> <span class="token attr-name">{</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>archive-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>archive-item-link<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%- url_for(post.path) %<span class="token punctuation">></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>category-page-post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                    &lt;%= post.title %>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">})</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>类似地，标签本身的顺序在blog/themes/Chic/layout/tag.ejs里改，点开每个标签后列表文章的排列顺序在blog/themes/Chic/layout/_page/tag.ejs里改。修改后，第一个文档里的代码如下：</p>
+<pre class="line-numbers language-html"><code class="language-html">&lt;%#
+
+this page will judge whether current page is 'tag.'
+url:'http://localhost:4000/tag/' return false.
+url:'http://localhost:4000/tags/test/' return true.
+
+if you enter 'tag' page by click link will show all tags.
+otherwise if you enter 'tags' by click post header link will show the single tag of this post.
+
+how to add a tag page:
+
+    1. hexo new page "tag"
+    2. cd source/tag/index.md
+    3. add layout pattern like this:
+    ---
+    title: '''tag'''
+    date: 2019-06-09 09:56:49
+    layout: tag
+    ---
+
+ %>
+ 
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">if(is_tag()){</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    &lt;%- partial('_page/tag', {pagination: config.tag, index: true}) %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}else{</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-wrap tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>-<span class="token entity" title="&nbsp;">&amp;nbsp;</span>标签<span class="token entity" title="&nbsp;">&amp;nbsp;</span>-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tag-cloud-tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                &lt;% 
+                    // Convert tags to an array and sort them alphabetically by name
+                    var sortedTags = site.tags.toArray().sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+                %>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">sortedTags.forEach(function(tag)</span> <span class="token attr-name">{</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%- url_for(tag.path) %<span class="token punctuation">></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">tag.name</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>small</span><span class="token punctuation">></span></span>(<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">tag.length</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">});</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第二个文档里的则如下：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%#</span> <span class="token attr-name">single</span> <span class="token attr-name">tag</span> <span class="token attr-name">page</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-wrap tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post-title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>-<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iconfont icon-biaoqian<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">1</span>em<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span>标签<span class="token entity" title="&nbsp;">&amp;nbsp;</span>·<span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-page.tag%</span><span class="token punctuation">></span></span>-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+        
+        &lt;% var posts = site.tags.findOne({name: page.tag}).posts %>
+        <span class="token comment" spellcheck="true">&lt;!-- 按title字母顺序排序 --></span>
+        &lt;% posts.data.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase())) %>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">posts.each(function</span> <span class="token attr-name">(post)</span> <span class="token attr-name">{</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>archive-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>archive-item-link<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%- url_for(post.path) %<span class="token punctuation">></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tag-page-post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                        &lt;%= post.title %>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">})</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment" spellcheck="true">&lt;!-- Style for handling ellipsis in post titles --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+    <span class="token comment" spellcheck="true">/* Existing desktop styles */</span>
+    <span class="token atrule"><span class="token rule">@media</span> screen and <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span><span class="token punctuation">{</span> 
+        <span class="token selector">li </span><span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">600</span>px<span class="token punctuation">;</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">29.5</span>px<span class="token punctuation">;</span>
+            <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+            <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+            <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  
+    <span class="token comment" spellcheck="true">/* Mobile styles */</span>
+    <span class="token atrule"><span class="token rule">@media</span> screen and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 767px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+        <span class="token selector">li </span><span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">285</span>px<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* Adjust the width for mobile */</span>
+            <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">29.5</span>px<span class="token punctuation">;</span>
+            <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+            <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+            <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
         </div>
 
