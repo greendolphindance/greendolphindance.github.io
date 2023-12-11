@@ -16,7 +16,7 @@
 
 
 
-<title>最近下载的小玩意：iBar | Green Dolphin Dance</title>
+<title>Hexo博客分类、标签的排序问题，以及调教GPT心得 | Green Dolphin Dance</title>
 
 
 
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">最近下载的小玩意：iBar</h1>
+            <h1 class="post-title">Hexo博客分类、标签的排序问题，以及调教GPT心得</h1>
             
                 <div class="post-meta">
                 
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                         <span class="post-time">
                         
-                        Date: <a href="#">2023-11-04&nbsp;&nbsp;20:01:24</a>
+                        Date: <a href="#">2023-12-08&nbsp;&nbsp;16:44:48</a>
                         </span>
                     
 
@@ -456,7 +456,7 @@ Category:
 
 Words:
 
-<a href="">415</a>
+<a href="">404</a>
 
 </span>
 
@@ -481,28 +481,27 @@ Time:
         </header>
 
         <div class="post-content">
-            <img width="100" alt="logo" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/b86e5392-8728-4be4-aabe-f58f1dfbc251">
+            <p>我希望我博客中除“归档”外的所有页面中，内容都按照字母顺序排列（“归档”页面中按发布时间排列）。这基本上就是在说“分类”和“标签”页面。这个事情涉及很多方面，我以前折腾过，但是一直没能成功。结果今天通过调教GPT，零基础完成了这一工作。</p>
+<h1 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h1><p>首先说明一下这两个页面的结构。分类主页面如下图所示：</p>
+<img width="600" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/d1e06696-a3f6-4fd3-9d47-621a6788d7b9">
 
-<p>平台：macOS</p>
-<p>价格：¥0</p>
-<p>下载地址：App Store</p>
-<hr>
-<p>因为平常使用的小工具太多（……），我的电脑顶上那一栏的图标基本上是满的。然后打开某个APP时，顶栏左边的菜单项就会把右边的图标挤没。有时候要点图标，还得返回到桌面再点，很麻烦。</p>
-<p>我一直想解决这个问题，但没想出来可以怎么解决。直到我随便点了一篇微信推给我的公众号文章，里面提到了这个工具。</p>
-<p>使用很简单：安装这个APP，做好必要的授权，然后配置。我的配置是这样的：</p>
-<img width="860" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/f75345c1-cd16-41bc-bc1d-96a69b1a208b">
+<p>其中，“折腾”“随笔”等分类名都可以点开，点开后出现如下界面：</p>
+<img width="400" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/989e9276-734c-4624-9045-011ade52edff">
 
-<p>于是平常的时候，菜单栏的图标是全部隐藏的，只有少量图标（包括iBar的图标）和日期时间等显示。点击菜单栏空白处的时候，所有图标会展开显示在下方，如图所示：</p>
-<img width="1439" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/ac917719-cdbf-4088-ab79-f40a7902c997">
+<p>我希望主页面的各个分类、各个分类下的文章名，以及点开某个分类后其下的文章名，都按字母顺序排列。</p>
+<p>标签主页面如下图所示：</p>
+<img width="600" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/80eda191-3c39-4f8b-b7de-fd474e53abc6">
 
-<p>如果点击展开的栏中的某个图标，该图标会短暂地显示在顶栏中，但过不了多久就会消失。不知道这个特性有什么意义。</p>
-<p>一个实用功能是，你可以选择始终显示在顶栏的图标。比如Wi-Fi、蓝牙、耳机等，设置成始终显示就比较方便。设置方法是在图标上右键—偏好设置—菜单栏布局：</p>
-<img width="860" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/b5f28f6f-45b7-4b59-b466-2e0e41dc45bd">
+<p>其中，点开任意标签可以进入类似如下的界面：</p>
+<img width="600" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/d5ac9cd6-9c67-4b4a-8feb-9d94f345e51f">
 
-<p>效果如下：</p>
-<img width="442" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/6cbb718a-1cf5-45cf-b572-d6c05ee41141">
-
-<p>暂时还没发现这个APP有什么大缺陷，除了展开的栏中的图标不能改顺序，但我好像没这需求。再就是这个APP本身是一个蛮丑陋的解决方案，但我好像想不到更好的。</p>
+<p>我希望每个标签，以及点开某个标签后其下的文章名，都按字母顺序排列。</p>
+<h1 id="调教经过"><a href="#调教经过" class="headerlink" title="调教经过"></a>调教经过</h1><p>虽然最近有在看前端网课，但我的进度还停留在CSS，也就是说，我对JavaScript属于是一窍不通。一开始让GPT帮忙写代码时，我犯了过于笼统的错误。例如我对GPT说：</p>
+<blockquote>
+<p>这是layout/page/tag.ejs里的内容，请说明其中的排序算法有什么问题。……</p>
+</blockquote>
+<p>（我此前用GPT写过一些代码放在文件里，但是不起作用。）</p>
+<p>这显然不行，但是由于我实在是一窍不通，一开始只好这么问。结果GPT居然说这段代码没有问题。</p>
 
         </div>
 
@@ -534,10 +533,8 @@ Time:
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/11/16/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AInput-Source-Pro%E3%80%81Maccy/">最近下载的小玩意：Input Source Pro、Maccy</a>
             
-            
-            <a class="next" rel="next" href="/2023/10/24/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AVisual-Studio-Code/">最近下载的小玩意：Visual Studio Code</a>
+            <a class="next" rel="next" href="/2023/12/07/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ASleeve%202%E3%80%81%E5%B7%B4%E5%88%AB%E5%A1%94%E5%9C%A3%E6%AD%8C%E3%80%81%E4%B8%80%E7%94%9F%E8%B6%B3%E8%BF%B9%E3%80%81Bark-%E7%9F%AD%E4%BF%A1%E8%BD%AC%E5%8F%91%E5%99%A8%E3%80%81Niagara-Launcher/">最近下载的小玩意：Sleeve 2、巴别塔圣歌、一生足迹、Bark+短信转发器、Niagara Launcher</a>
             
         </section>
 
