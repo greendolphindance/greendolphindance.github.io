@@ -311,11 +311,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 </style>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
+</head>
 
 <body>
     <div class="wrapper">
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 字数:
 
-<a href="">20.7k</a>
+<a href="">20.8k</a>
 
 </span>
 
@@ -2225,6 +2225,19 @@ how to add a tag page:
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="本站运行时间"><a href="#本站运行时间" class="headerlink" title="本站运行时间"></a>本站运行时间</h1><p>参考的是<a target="_blank" rel="noopener" href="https://www.fadai.cc/posts/8fda83f9/">这个教程</a>，很简单。</p>
+<h1 id="最后更新时间"><a href="#最后更新时间" class="headerlink" title="最后更新时间"></a>最后更新时间</h1><p>部分参考了<a target="_blank" rel="noopener" href="https://blog.vanxnf.top/2018/09/03/Hexo-%E5%8D%9A%E5%AE%A2-Hiker-%E4%B8%BB%E9%A2%98%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%EF%BC%8C%E5%B9%B6%E6%8C%89%E7%85%A7%E6%9C%80%E5%90%8E%E7%BC%96%E8%BE%91%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">这个教程</a>（虽然ta和我用的主题不一样）。</p>
+<p>首先修改blog/scaffolds/post.md。在frontmatter里添加一行：</p>
+<pre class="line-numbers language-markdown"><code class="language-markdown">updated: {{ date }}
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后每修改一次文章内容，都要手动修改一下updated后面的时间（好麻烦）。</p>
+<p>接着修改blog/themes/Chic/layout/_page/post.ejs，增加下面一段：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">if(page.updated){</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updated-time<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        最后更新: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">date(page.updated,</span> <span class="token attr-name">theme.date_format)</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token entity" title="&nbsp;">&amp;nbsp;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%-</span> <span class="token attr-name">time(page.updated,</span> <span class="token attr-name">theme.time_format)%</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>即可。</p>
 
         </div>
 
