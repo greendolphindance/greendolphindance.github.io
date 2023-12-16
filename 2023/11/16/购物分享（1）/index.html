@@ -720,19 +720,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                             body.style.overflow = ''; // 启用页面滚动
                                         }
                                         window.onload = function () {
-                                            console.log('Window loaded'); // 确认 window.onload 正在触发
 
                                             var toc = document.querySelector('.js-toc');
                                             var tocButton = document.getElementById('tocButton');
-
-                                            // 调试信息，检查是否正确选中元素
-                                            console.log('toc:', toc);
-                                            console.log('tocButton:', tocButton);
-
                                             if (toc) {
-                                                // 检查 toc 的内容
-                                                console.log('toc content:', toc.innerText.trim());
-
                                                 // 根据 toc 内容的有无显示或隐藏目录按钮
                                                 tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
                                             } else {
