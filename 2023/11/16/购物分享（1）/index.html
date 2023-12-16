@@ -277,39 +277,41 @@ document.addEventListener('DOMContentLoaded', function() {
 <script async src="https://us.umami.is/script.js" data-website-id="38f19c51-0534-4438-abae-315f586a457d"></script>
 
         <style>
-        body.hide-content * {
-            visibility: hidden;
-        }
-    </style>
-    <script>
-        (function() {
-            document.body.classList.add('hide-content');
-            
-            const savedTheme = localStorage.getItem('theme');
-            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            let useDarkMode;
-            if (savedTheme === 'dark' || savedTheme === 'light') {
-                useDarkMode = savedTheme === 'dark';
-            } else {
-                useDarkMode = userPrefersDark;
+            body.hide-content * {
+                visibility: hidden;
             }
-            document.body.classList.toggle('dark-theme', useDarkMode);
-            document.body.classList.remove('hide-content');
-        })();
-    </script>
-<style>
-    #tocButton svg {
-        position: fixed;
-        bottom: 20px; /* 调整到你想要的位置 */
-        right: 5vw;
-    }
+        </style>
+        <script>
+            (function () {
+                document.body.classList.add('hide-content');
 
-    #totop {
-        position: fixed;
-        bottom: 20px+2rem; /* 调整到你想要的位置 */
-        right: 5vw;
-    }
-</style>
+                const savedTheme = localStorage.getItem('theme');
+                const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                let useDarkMode;
+                if (savedTheme === 'dark' || savedTheme === 'light') {
+                    useDarkMode = savedTheme === 'dark';
+                } else {
+                    useDarkMode = userPrefersDark;
+                }
+                document.body.classList.toggle('dark-theme', useDarkMode);
+                document.body.classList.remove('hide-content');
+            })();
+        </script>
+        <style>
+            #tocButton svg {
+                position: fixed;
+                bottom: 20px;
+                /* 调整到你想要的位置 */
+                right: 5vw;
+            }
+
+            #totop {
+                position: fixed;
+                bottom: 20px+2rem;
+                /* 调整到你想要的位置 */
+                right: 5vw;
+            }
+        </style>
 
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
@@ -322,11 +324,13 @@ document.addEventListener('DOMContentLoaded', function() {
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">Green Dolphin Dance</a></div>
+            <div class="navbar-header header-logo"><a href="/">
+                    Green Dolphin Dance
+                </a></div>
             <div class="menu navbar-right">
-             <!-- 这里表示的是pc端搜索框 -->
-            
-            
+                <!-- 这里表示的是pc端搜索框 -->
+                
+                    
     <div class="search ">
         <div class="search-btn" onClick="searchToggle()">
             <img src="/imgs/search.png" class="search-btn-img" />
@@ -337,35 +341,49 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
 
-                
-                    <a class="menu-item" href="/archives">归档</a>
-                
-                    <a class="menu-item" href="/categories">分类</a>
-                
-                    <a class="menu-item" href="/tags">标签</a>
-                
-                    <a class="menu-item" href="/guestbook">留言板</a>
-                
-                    <a class="menu-item" href="/about">关于</a>
-                
-                    <a class="menu-item" href="/links">友链</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
+                        
+                            <a class="menu-item" href="/archives">
+                                归档
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                分类
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                标签
+                            </a>
+                            
+                            <a class="menu-item" href="/guestbook">
+                                留言板
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                关于
+                            </a>
+                            
+                            <a class="menu-item" href="/links">
+                                友链
+                            </a>
+                            
+                                <input id="switch_default" type="checkbox" class="switch_default">
+                                <label for="switch_default" class="toggleBtn"></label>
             </div>
         </div>
     </nav>
 
     
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">Green Dolphin Dance</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="navbar-mobile-right">
-                 
-                
+        <nav class="navbar-mobile" id="nav-mobile">
+            <div class="container">
+                <div class="navbar-header">
+                    <div>
+                        <a href="/">
+                            Green Dolphin Dance
+                        </a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    </div>
+                    <div class="navbar-mobile-right">
+                        
+                            
     <div class="search ">
         <div class="search-btn" onClick="searchToggle()">
             <img src="/imgs/search.png" class="search-btn-img" />
@@ -376,26 +394,39 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
 
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 目录</div>
-            </div>
-            
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">归档</a>
-                
-                    <a class="menu-item" href="/categories">分类</a>
-                
-                    <a class="menu-item" href="/tags">标签</a>
-                
-                    <a class="menu-item" href="/guestbook">留言板</a>
-                
-                    <a class="menu-item" href="/about">关于</a>
-                
-                    <a class="menu-item" href="/links">友链</a>
-                
-            </div>
-        </div>
-    </nav>
+                                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 目录</div>
+                    </div>
+
+                    <div class="menu" id="mobile-menu">
+                        
+                            <a class="menu-item" href="/archives">
+                                归档
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                分类
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                标签
+                            </a>
+                            
+                            <a class="menu-item" href="/guestbook">
+                                留言板
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                关于
+                            </a>
+                            
+                            <a class="menu-item" href="/links">
+                                友链
+                            </a>
+                            
+                    </div>
+                </div>
+        </nav>
+
 
 
 
@@ -404,16 +435,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var mobileBtn = function f() {
         var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
         var mobileMenu = document.getElementById("mobile-menu");
-        if(toggleMenu.classList.contains("active")){
-           toggleMenu.classList.remove("active")
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
             mobileMenu.classList.remove("active")
-        }else{
+        } else {
             toggleMenu.classList.add("active")
             mobileMenu.classList.add("active")
         }
     }
 </script>
-
             <div class="main">
                 <div class="container">
     
@@ -608,9 +638,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     
                                                         <a href="/tags/%E5%B7%A5%E5%85%B7/"># 工具</a>
                                                         
-                                                        <a href="/tags/%E6%9C%8D%E9%A5%B0/"># 服饰</a>
-                                                        
                                                         <a href="/tags/%E7%BE%8E%E5%A6%86/"># 美妆</a>
+                                                        
+                                                        <a href="/tags/%E6%9C%8D%E9%A5%B0/"># 服饰</a>
                                                         
                                                             
                                             </span>
@@ -991,90 +1021,88 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="aplayer no-destroy" data-id="8793002560" data-server="netease" data-type="playlist" data-mini="true"
             data-fixed="true" data-autoplay="false" data-order="random" data-lrctype="-1"> </div>
 
-            
 </footer>
     </div>
     </script>
-    
-<!-- 搜索功能 -->
-<!-- Chic/layout.ejs -->
-<div id="u-search">
-    <div class="modal">
-        <div class="modal-header">
-            <div class="container">
-                <form id="u-search-modal-form" class="u-search-modal-form">
-                    <button type="submit" class="form-submit-btn">
-                        <img src="/imgs/search.png" class="search-btn-img" />
-                    </button>
-                    <input placeholder="搜索内容..." class="form-input" id="modal-form-input">
-                </form>
-                <a class="modal-close">x</a>
+
+    <!-- 搜索功能 -->
+    <!-- Chic/layout.ejs -->
+    <div id="u-search">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="container">
+                    <form id="u-search-modal-form" class="u-search-modal-form">
+                        <button type="submit" class="form-submit-btn">
+                            <img src="/imgs/search.png" class="search-btn-img" />
+                        </button>
+                        <input placeholder="搜索内容..." class="form-input" id="modal-form-input">
+                    </form>
+                    <a class="modal-close">x</a>
+                </div>
+                <div class="search-loading">
+                    <div class="search-loading-bar"></div>
+                </div>
             </div>
-            <div class="search-loading">
-                <div class="search-loading-bar"></div>
+            <div class="modal-body">
             </div>
         </div>
-        <div class="modal-body">
-        </div>
+        <div class="modal-overlay"></div>
     </div>
-    <div class="modal-overlay"></div>
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.css" />
-<script src="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-tocbot.init({
-tocSelector: '.js-toc',
-contentSelector: '.post-content',
-headingSelector: 'h1, h2, h3, h4',
-});
-});
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const savedTheme = localStorage.getItem('theme');
-        console.log("Saved theme: ", savedTheme); // 输出保存的主题
-
-        const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        console.log("User prefers dark theme: ", userPrefersDark); // 输出用户的系统偏好
-        
-        let useDarkMode;
-        if (savedTheme === 'dark' || savedTheme === 'light') { // 当有明确的保存主题时
-            useDarkMode = savedTheme === 'dark';
-        } else {
-            useDarkMode = userPrefersDark; // 默认使用系统偏好
-        }
-
-        console.log("Using dark theme: ", useDarkMode); // 输出是否使用暗主题
-
-        document.body.classList.toggle('dark-theme', useDarkMode); // 应用或移除 dark-theme 类
-
-        const themeToggleCheckbox = document.getElementById('switch_default');
-        if (themeToggleCheckbox) {
-            themeToggleCheckbox.checked = useDarkMode;
-        }
-
-        themeToggleCheckbox.addEventListener('change', function() {
-            const isChecked = themeToggleCheckbox.checked;
-            console.log("Checkbox is checked: ", isChecked); // 输出复选框的状态
-            
-            document.body.classList.toggle('dark-theme', isChecked);
-            localStorage.setItem('theme', isChecked ? 'dark' : 'light');
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            tocbot.init({
+                tocSelector: '.js-toc',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4',
+            });
         });
-    });
-</script>
+    </script>
 
-<script>
-    document.querySelector('.js-toc').addEventListener('scroll', function(e) {
-        var tocList = document.querySelector('.toc-list');
-        var maxHeight = tocList.scrollHeight - this.clientHeight + 20; // 计算最大可滚动高度
-        if (this.scrollTop >= maxHeight) {
-            this.scrollTop = maxHeight; // 如果滚动超过最大高度，则设置滚动位置为最大高度
-        }
-    });
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme: ", savedTheme); // 输出保存的主题
+
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            console.log("User prefers dark theme: ", userPrefersDark); // 输出用户的系统偏好
+
+            let useDarkMode;
+            if (savedTheme === 'dark' || savedTheme === 'light') { // 当有明确的保存主题时
+                useDarkMode = savedTheme === 'dark';
+            } else {
+                useDarkMode = userPrefersDark; // 默认使用系统偏好
+            }
+
+            console.log("Using dark theme: ", useDarkMode); // 输出是否使用暗主题
+
+            document.body.classList.toggle('dark-theme', useDarkMode); // 应用或移除 dark-theme 类
+
+            const themeToggleCheckbox = document.getElementById('switch_default');
+            if (themeToggleCheckbox) {
+                themeToggleCheckbox.checked = useDarkMode;
+            }
+
+            themeToggleCheckbox.addEventListener('change', function () {
+                const isChecked = themeToggleCheckbox.checked;
+                console.log("Checkbox is checked: ", isChecked); // 输出复选框的状态
+
+                document.body.classList.toggle('dark-theme', isChecked);
+                localStorage.setItem('theme', isChecked ? 'dark' : 'light');
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelector('.js-toc').addEventListener('scroll', function (e) {
+            var tocList = document.querySelector('.toc-list');
+            var maxHeight = tocList.scrollHeight - this.clientHeight + 20; // 计算最大可滚动高度
+            if (this.scrollTop >= maxHeight) {
+                this.scrollTop = maxHeight; // 如果滚动超过最大高度，则设置滚动位置为最大高度
+            }
+        });
+    </script>
 
 </body>
 
