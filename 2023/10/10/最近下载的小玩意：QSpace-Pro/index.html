@@ -671,14 +671,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                         function checkWindowSize() {
                                             var windowWidth = window.innerWidth;
+                                            var toc = document.querySelector('.js-toc');
                                             var tocButton = document.getElementById('tocButton');
 
-                                            if (windowWidth > 1379) {
-                                                tocButton.style.display = 'none'; // 隐藏tocButton
+                                            if (windowWidth > 1379 || toc.innerText.trim() === '') {
+                                                tocButton.style.display = 'none';
                                             } else {
-                                                tocButton.style.display = 'block'; // 显示tocButton
+                                                tocButton.style.display = 'block';
                                             }
                                         }
+
 
                                         // 点击tocButton时执行的函数
                                         document.getElementById('tocButton').addEventListener('click', function () {
