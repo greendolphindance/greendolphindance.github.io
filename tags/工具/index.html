@@ -314,10 +314,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </style>
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 <body>
     <div class="wrapper">
@@ -589,6 +589,75 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     </style>
             
+
+
+                        <style>
+                            .tag {
+                                display: inline-block;
+                                margin: 0 10px;
+                                padding: 5px 10px;
+                                border: 1px solid #ddd;
+                                transition: opacity 0.3s;
+                            }
+
+                            .tag:hover {
+                                cursor: pointer;
+                                opacity: 1;
+                                /* 鼠标悬停时，标签不会减淡 */
+                            }
+
+                            .dimmed {
+                                opacity: 0.5;
+                                /* 减淡显示的样式 */
+                            }
+
+                            #tag-background {
+                                display: none;
+                                /* 默认不显示 */
+                                position: fixed;
+                                left: 0;
+                                top: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-color: rgba(255, 255, 255, 0.9);
+                                /* 轻微透明的白色背景 */
+                                z-index: 10;
+                                text-align: center;
+                                font-size: 5em;
+                                /* 大字号 */
+                                line-height: 100vh;
+                                /* 垂直居中 */
+                                color: #333;
+                            }
+                        </style>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var tags = document.querySelectorAll('.tag-cloud-tags a');
+                                var background = document.getElementById('tag-background');
+
+                                tags.forEach(function (tag) {
+                                    tag.addEventListener('mouseover', function () {
+                                        var group = this.getAttribute('data-tag-group');
+                                        background.textContent = group; // 设置背景中的文本为分组名称
+                                        background.style.display = 'block'; // 显示背景
+
+                                        tags.forEach(function (otherTag) {
+                                            if (otherTag.getAttribute('data-tag-group') !== group) {
+                                                otherTag.classList.add('dimmed');
+                                            }
+                                        });
+                                    });
+
+                                    tag.addEventListener('mouseout', function () {
+                                        background.style.display = 'none'; // 隐藏背景
+                                        tags.forEach(function (otherTag) {
+                                            otherTag.classList.remove('dimmed');
+                                        });
+                                    });
+                                });
+                            });
+                        </script>
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
