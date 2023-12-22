@@ -624,6 +624,57 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
 
                         </script>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var tags = document.querySelectorAll('.tag-cloud-tags a');
+                                var groupNameDisplay = document.getElementById('tag-group-name');
+
+                                function handleTagInteraction(currentTag, isMouseOver) {
+                                    var group = currentTag.getAttribute('data-tag-group');
+                                    groupNameDisplay.textContent = group;
+                                    groupNameDisplay.style.display = isMouseOver ? 'block' : 'none';
+
+                                    tags.forEach(function (tag) {
+                                        if (isMouseOver && tag.getAttribute('data-tag-group') !== group) {
+                                            tag.classList.add('dimmed');
+                                        } else {
+                                            tag.classList.remove('dimmed');
+                                        }
+                                    });
+                                }
+
+                                tags.forEach(function (tag) {
+                                    // 鼠标悬停效果
+                                    tag.addEventListener('mouseover', function () {
+                                        handleTagInteraction(this, true);
+                                    });
+
+                                    tag.addEventListener('mouseout', function () {
+                                        handleTagInteraction(this, false);
+                                    });
+
+                                    // 移动端点击效果
+                                    tag.addEventListener('touchend', function (event) {
+                                        // 阻止默认的链接跳转
+                                        event.preventDefault();
+
+                                        // 切换激活状态
+                                        if (!this.classList.contains('active')) {
+                                            // 移除之前激活的标签的激活状态
+                                            document.querySelector('.tag-cloud-tags a.active')?.classList.remove('active');
+
+                                            // 激活当前标签并应用效果
+                                            this.classList.add('active');
+                                            handleTagInteraction(this, true);
+                                        } else {
+                                            // 如果已经激活，则允许链接跳转
+                                            window.location.href = this.href;
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
@@ -718,7 +769,7 @@ document.addEventListener('DOMContentLoaded', function() {
             show_runtime();
         </script>
         <span class="post-count">
-            41.3k
+            41.6k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
