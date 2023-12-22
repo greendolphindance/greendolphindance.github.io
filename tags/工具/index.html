@@ -693,49 +693,56 @@ document.addEventListener('DOMContentLoaded', function() {
                             document.addEventListener('DOMContentLoaded', function () {
                                 var tags = document.querySelectorAll('.tag-cloud-tags a');
                                 var groupNameDisplay = document.getElementById('tag-group-name');
+                                var currentlySelectedTag = null;
 
-                                function handleTagInteraction(currentTag, isMouseOver) {
-                                    var group = currentTag.getAttribute('data-tag-group');
+                                function applyDimEffect(tagToHighlight) {
+                                    var group = tagToHighlight.getAttribute('data-tag-group');
                                     groupNameDisplay.textContent = group;
-                                    groupNameDisplay.style.display = isMouseOver ? 'block' : 'none';
+                                    groupNameDisplay.style.display = 'block';
 
                                     tags.forEach(function (tag) {
-                                        if (isMouseOver && tag.getAttribute('data-tag-group') !== group) {
+                                        if (tag !== tagToHighlight && tag.getAttribute('data-tag-group') !== group) {
                                             tag.classList.add('dimmed');
-                                        } else {
-                                            tag.classList.remove('dimmed');
                                         }
                                     });
                                 }
 
+                                function clearDimEffect() {
+                                    groupNameDisplay.style.display = 'none';
+                                    tags.forEach(function (tag) {
+                                        tag.classList.remove('dimmed');
+                                    });
+                                }
+
                                 tags.forEach(function (tag) {
-                                    // 鼠标悬停效果
+                                    // 鼠标悬停效果（桌面端）
                                     tag.addEventListener('mouseover', function () {
-                                        handleTagInteraction(this, true);
+                                        applyDimEffect(this);
                                     });
 
-                                    tag.addEventListener('mouseout', function () {
-                                        handleTagInteraction(this, false);
-                                    });
+                                    tag.addEventListener('mouseout', clearDimEffect);
 
                                     // 移动端点击效果
-                                    tag.addEventListener('touchend', function (event) {
-                                        // 阻止默认的链接跳转
-                                        event.preventDefault();
-
-                                        // 切换激活状态
-                                        if (!this.classList.contains('active')) {
-                                            // 移除之前激活的标签的激活状态
-                                            document.querySelector('.tag-cloud-tags a.active')?.classList.remove('active');
-
-                                            // 激活当前标签并应用效果
-                                            this.classList.add('active');
-                                            handleTagInteraction(this, true);
+                                    tag.addEventListener('click', function (event) {
+                                        if (currentlySelectedTag !== this) {
+                                            // 阻止默认行为并应用减淡效果
+                                            event.preventDefault();
+                                            clearDimEffect();
+                                            applyDimEffect(this);
+                                            currentlySelectedTag = this;
                                         } else {
-                                            // 如果已经激活，则允许链接跳转
-                                            window.location.href = this.href;
+                                            // 允许默认行为，跳转链接
+                                            currentlySelectedTag = null;
                                         }
                                     });
+                                });
+
+                                // 在移动端，点击页面其他部分移除减淡效果
+                                document.addEventListener('touchend', function (event) {
+                                    if (event.target.closest('.tag-cloud-tags a') === null) {
+                                        clearDimEffect();
+                                        currentlySelectedTag = null;
+                                    }
                                 });
                             });
                         </script>
