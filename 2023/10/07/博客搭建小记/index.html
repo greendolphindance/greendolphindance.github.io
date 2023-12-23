@@ -533,7 +533,7 @@
                                                                                 字数:
 
                                                                                 <a href="">
-                                                                                    20.8k
+                                                                                    21k
                                                                                 </a>
 
                                                                             </span>
@@ -549,7 +549,7 @@
                                                                                         阅读时长:
 
                                                                                         <a href="">
-                                                                                            90min
+                                                                                            91min
                                                                                         </a>
 
                                                                                     </span>
@@ -2307,6 +2307,59 @@ how to add a tag page:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>即可。</p>
+<h1 id="代码复制按钮"><a href="#代码复制按钮" class="headerlink" title="代码复制按钮"></a>代码复制按钮</h1><p>首先去GitHub下载<a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js/releases">clipboard.js文件</a>。将dist/clipboard.min.js放入博客主题目录下的source/js文件夹中。</p>
+<p>然后在post.ejs中插入如下代码：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/js/clipboard.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> codeBlocks <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'article pre code'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        codeBlocks<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>codeBlock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> copyButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            copyButton<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'copy-button'</span><span class="token punctuation">;</span>
+            copyButton<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">'Copy'</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">// Check if the code block is in the article content</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>codeBlock<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'article'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                codeBlock<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>style<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token string">'relative'</span><span class="token punctuation">;</span>
+                codeBlock<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>copyButton<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将按钮添加到 codeBlock 的父节点内</span>
+
+                <span class="token keyword">var</span> isCopying <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+                copyButton<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isCopying<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">var</span> codeText <span class="token operator">=</span> codeBlock<span class="token punctuation">.</span>innerText<span class="token punctuation">;</span>
+                        navigator<span class="token punctuation">.</span>clipboard<span class="token punctuation">.</span><span class="token function">writeText</span><span class="token punctuation">(</span>codeText<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            copyButton<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">'Copied!'</span><span class="token punctuation">;</span>
+                            isCopying <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                copyButton<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">'Copy'</span><span class="token punctuation">;</span>
+                                isCopying <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Copy failed'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+    <span class="token selector"><span class="token class">.copy-button</span> </span><span class="token punctuation">{</span>
+        <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+        <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#2d96bd</span><span class="token punctuation">;</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#fff</span><span class="token punctuation">;</span>
+        <span class="token property">border</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+        <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">10%</span><span class="token punctuation">;</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">5</span>px <span class="token number">10</span>px<span class="token punctuation">;</span>
+        <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                             </div>
 
@@ -2489,6 +2542,57 @@ how to add a tag page:
     }
 </style>
 
+<script src="/js/clipboard.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var codeBlocks = document.querySelectorAll('article pre code');
+
+        codeBlocks.forEach(function (codeBlock) {
+            var copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.innerText = 'Copy';
+
+            // Check if the code block is in the article content
+            if (codeBlock.closest('article')) {
+                codeBlock.parentNode.style.position = 'relative';
+                codeBlock.parentNode.appendChild(copyButton); // 将按钮添加到 codeBlock 的父节点内
+
+                var isCopying = false;
+
+                copyButton.addEventListener('click', function () {
+                    if (!isCopying) {
+                        var codeText = codeBlock.innerText;
+                        navigator.clipboard.writeText(codeText).then(function () {
+                            copyButton.innerText = 'Copied!';
+                            isCopying = true;
+                            setTimeout(function () {
+                                copyButton.innerText = 'Copy';
+                                isCopying = false;
+                            }, 1500);
+                        }).catch(function (err) {
+                            console.error('Copy failed', err);
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<style>
+    .copy-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #2d96bd;
+        color: #fff;
+        border: none;
+        border-radius: 10%;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+</style>
+
 <div class="js-toc"></div>
 <div class="post-content"> <!-- 这里的class需要根据自身情况修改 -->
 <!-- 博客文章内容将在这里渲染 -->
@@ -2588,7 +2692,7 @@ how to add a tag page:
             show_runtime();
         </script>
         <span class="post-count">
-            42.5k
+            42.7k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
