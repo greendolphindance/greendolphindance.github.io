@@ -313,9 +313,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         </style>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -557,8 +557,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
 
                             #tag-group-name {
-                                display: block;
-                                /* 默认显示 */
+                                display: none;
+                                /* 默认不显示 */
                                 position: fixed;
                                 left: 50%;
                                 bottom: 10%;
@@ -594,18 +594,50 @@ document.addEventListener('DOMContentLoaded', function() {
                             document.addEventListener('DOMContentLoaded', function () {
                                 var tags = document.querySelectorAll('.tag-cloud-tags a');
                                 var groupNameDisplay = document.getElementById('tag-group-name');
-                                var isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
-                                var lastClickedTag = null;
-                                var clickCount = 0;
 
-                                function applyDimEffect(tag) {
-                                    var group = tag.getAttribute('data-tag-group');
+                                tags.forEach(function (tag) {
+                                    tag.addEventListener('mouseover', function () {
+                                        var group = this.getAttribute('data-tag-group');
+                                        groupNameDisplay.textContent = group; // 设置分类名称文本
+                                        groupNameDisplay.style.display = 'block'; // 显示分类名称
+                                        groupNameDisplay.style.opacity = 1; // 使其可见
+                                        groupNameDisplay.style.bottom = '20%'; // 提高位置使其更可见
+
+                                        tags.forEach(function (otherTag) {
+                                            if (otherTag.getAttribute('data-tag-group') !== group) {
+                                                otherTag.classList.add('dimmed');
+                                            }
+                                        });
+                                    });
+
+                                    tag.addEventListener('mouseout', function () {
+                                        groupNameDisplay.style.opacity = 0; // 使其透明
+                                        groupNameDisplay.style.bottom = '10%'; // 降低位置
+                                        groupNameDisplay.style.display = 'none'; // 再次隐藏
+
+                                        tags.forEach(function (otherTag) {
+                                            otherTag.classList.remove('dimmed');
+                                        });
+                                    });
+                                });
+                            });
+
+                        </script>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var tags = document.querySelectorAll('.tag-cloud-tags a');
+                                var groupNameDisplay = document.getElementById('tag-group-name');
+                                var currentlySelectedTag = null;
+
+                                function applyDimEffect(tagToHighlight) {
+                                    var group = tagToHighlight.getAttribute('data-tag-group');
                                     groupNameDisplay.textContent = group;
                                     groupNameDisplay.style.display = 'block';
 
-                                    tags.forEach(function (otherTag) {
-                                        if (otherTag !== tag && otherTag.getAttribute('data-tag-group') !== group) {
-                                            otherTag.classList.add('dimmed');
+                                    tags.forEach(function (tag) {
+                                        if (tag !== tagToHighlight && tag.getAttribute('data-tag-group') !== group) {
+                                            tag.classList.add('dimmed');
                                         }
                                     });
                                 }
@@ -617,46 +649,36 @@ document.addEventListener('DOMContentLoaded', function() {
                                     });
                                 }
 
-                                // 移动端逻辑
-                                if (isMobileDevice) {
-                                    tags.forEach(function (tag) {
-                                        tag.addEventListener('click', function (event) {
+                                tags.forEach(function (tag) {
+                                    // 鼠标悬停效果（桌面端）
+                                    tag.addEventListener('mouseover', function () {
+                                        applyDimEffect(this);
+                                    });
+
+                                    tag.addEventListener('mouseout', clearDimEffect);
+
+                                    // 移动端点击效果
+                                    tag.addEventListener('click', function (event) {
+                                        if (currentlySelectedTag !== this) {
+                                            // 阻止默认行为并应用减淡效果
                                             event.preventDefault();
-
-                                            if (lastClickedTag === this) {
-                                                // 如果点击的是上次点击的标签，增加点击次数
-                                                clickCount++;
-
-                                                if (clickCount === 2) {
-                                                    // 如果点击次数为2，执行跳转
-                                                    window.location.href = this.href;
-                                                }
-                                            } else {
-                                                // 如果点击的是不同的标签，重置点击次数
-                                                lastClickedTag = this;
-                                                clickCount = 1;
-                                                applyDimEffect(this);
-                                            }
-                                        });
-                                    });
-                                }
-
-                                // 桌面端逻辑
-                                if (!isMobileDevice) {
-                                    tags.forEach(function (tag) {
-                                        tag.addEventListener('mouseover', function () {
-                                            applyDimEffect(this);
-                                        });
-
-                                        tag.addEventListener('mouseout', function () {
                                             clearDimEffect();
-                                        });
-
-                                        tag.addEventListener('click', function () {
-                                            window.location.href = this.href; // 直接跳转
-                                        });
+                                            applyDimEffect(this);
+                                            currentlySelectedTag = this;
+                                        } else {
+                                            // 允许默认行为，跳转链接
+                                            currentlySelectedTag = null;
+                                        }
                                     });
-                                }
+                                });
+
+                                // 在移动端，点击页面其他部分移除减淡效果
+                                document.addEventListener('click', function (event) {
+                                    if (event.target.closest('.tag-cloud-tags a') === null) {
+                                        clearDimEffect();
+                                        currentlySelectedTag = null;
+                                    }
+                                });
                             });
                         </script>
             </div>
