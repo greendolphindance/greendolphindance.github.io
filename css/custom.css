@@ -36,3 +36,10 @@ body::before {
   height: 100%;
   z-index: -1;
 }
+.dark-theme .post-content code {
+  color: #728fcb;
+}
+code[class*="language-"],
+pre[class*="language-"] {
+  background: transparent !important;
+}
