@@ -226,7 +226,7 @@
 @media screen and (min-width: 1280px) {
   .js-toc {
     position: fixed;
-    top: 140px; /* 距离顶部的距离，可以根据需要调整 */
+    top: 95px; /* 距离顶部的距离，可以根据需要调整 */
     right: 2em; /* 距离右侧的距离，可以根据需要调整 */
     width: 13rem; /* 目录的宽度，可以根据需要调整 */
     font-size: 0.75rem;
