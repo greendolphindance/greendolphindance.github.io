@@ -226,12 +226,12 @@
 @media screen and (min-width: 1280px) {
   .js-toc {
     position: fixed;
-    top: 95px; /* 距离顶部的距离，可以根据需要调整 */
+    top: 140px; /* 距离顶部的距离，可以根据需要调整 */
     right: 2em; /* 距离右侧的距离，可以根据需要调整 */
     width: 13rem; /* 目录的宽度，可以根据需要调整 */
     font-size: 0.75rem;
     overflow-y: auto !important; /* 如果目录很长，这将添加滚动条 */
-    max-height: 500px; /* 最大高度，可以根据需要调整 */
+    max-height: 300px; /* 最大高度，可以根据需要调整 */
     background-color: transparent; /* 背景颜色，可以根据需要调整 */
     z-index: 1000; /* 确保目录显示在其他元素之上 */
   }
