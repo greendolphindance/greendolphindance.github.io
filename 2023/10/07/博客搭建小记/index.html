@@ -533,7 +533,7 @@
                                                                                 字数:
 
                                                                                 <a href="">
-                                                                                    21.4k
+                                                                                    21.6k
                                                                                 </a>
 
                                                                             </span>
@@ -1553,6 +1553,35 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  但在“分类”页面中，某些设备不显示省略号，不知何故。</p>
 <p>  （2023-12-7更新）知道是什么原因了。解决方法是微调参数。我将tag和archive页面的min-width改为768px，max-width改为767px，然后把大屏幕下的width改为600px，小屏幕下的width改为240px，问题解决。至于categories页面，我直接把所有屏幕尺寸的宽度调成了240px。</p>
+<h2 id="置顶"><a href="#置顶" class="headerlink" title="置顶"></a>置顶</h2><p>教程见上。但我发现教程缺少了一步，就是把主题文件夹下的_config.yml中“归档”按钮的跳转链接改掉：</p>
+<pre class="line-numbers language-yml"><code class="language-yml">nav:
+  归档: /top # 本来是/archive
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>但是这样一来，归档页面的链接就会变成<a target="_blank" rel="noopener" href="https://greendolphindance.com/top/%E4%BA%86%EF%BC%8C%E6%9C%89%E7%82%B9%E4%B8%8D%E7%88%BD%EF%BC%8C%E4%B8%8D%E8%BF%87%E6%9A%82%E6%97%B6%E8%BF%98%E4%B8%8D%E7%9F%A5%E9%81%93%E6%80%8E%E4%B9%88%E6%94%B9%EF%BC%8C%E5%85%88%E6%94%BE%E7%9D%80%E5%90%A7%E3%80%82">https://greendolphindance.com/top/了，有点不爽，不过暂时还不知道怎么改，先放着吧。</a></p>
+<p>除此之外，由于我限定了桌面端li的宽度为650px，这会导致置顶栏的显示错位，于是修改CSS代码如下：</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">li </span><span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">650</span>px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">29.5</span>px<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/*不换行*/</span>
+    <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/*溢出的话，隐藏*/</span>
+    <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/*文本溢出时，是否....*/</span>
+    <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.top-item-date</span> </span><span class="token punctuation">{</span>
+    <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#a9a9b3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.top-item</span> </span><span class="token punctuation">{</span>
+    <span class="token property">margin-left</span><span class="token punctuation">:</span> <span class="token number">2</span>rem<span class="token punctuation">;</span>
+    <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">2</span>em<span class="token punctuation">;</span>
+    <span class="token property">margin-bottom</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="长链接"><a href="#长链接" class="headerlink" title="长链接"></a>长链接</h1><p>这篇博文里有一些很长的链接。这些链接，尤其在移动端的时候，无法自动断行，导致页面被撑开，很丑。</p>
 <p>我首先在post_content.styl里加入如下代码：</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token number">.</span>break-link
@@ -2449,9 +2478,9 @@ how to add a tag page:
                                             <span class="tag">
                                                 
                                                     
-                                                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
-                                                        
                                                         <a href="/tags/%E7%BD%AE%E9%A1%B6/"># 置顶</a>
+                                                        
+                                                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
                                                         
                                                             
                                             </span>
@@ -2772,7 +2801,7 @@ how to add a tag page:
             show_runtime();
         </script>
         <span class="post-count">
-            43k
+            43.2k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
