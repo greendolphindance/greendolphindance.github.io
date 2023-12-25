@@ -1557,7 +1557,7 @@ body<span class="token class">.dark-theme</span> <span class="token class">.apla
 <pre class="line-numbers language-yml"><code class="language-yml">nav:
   归档: /top # 本来是/archive
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>但是这样一来，归档页面的链接就会变成<a target="_blank" rel="noopener" href="https://greendolphindance.com/top/%E4%BA%86%EF%BC%8C%E6%9C%89%E7%82%B9%E4%B8%8D%E7%88%BD%E3%80%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%E3%80%82%E9%A6%96%E5%85%88top.js%E7%9A%84%E5%86%85%E5%AE%B9%E6%94%B9%E6%88%90%EF%BC%9A">https://greendolphindance.com/top/了，有点不爽。解决方法如下。首先top.js的内容改成：</a></p>
+<p>但是这样一来，归档页面的链接就会变成<span><a target="_blank" rel="noopener" href="https://greendolphindance.com/top/">https://greendolphindance.com/top/</a></span>了，有点不爽。解决方法如下。首先top.js的内容改成：</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> pagination <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'hexo-pagination'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>generator<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'top'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>locals<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">let</span> allPost <span class="token operator">=</span> locals<span class="token punctuation">.</span>posts<span class="token punctuation">;</span>
@@ -1574,7 +1574,7 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后用top.ejs里的内容替换掉archive.ejs里的内容，并在“pagination”位置作如下修改：</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>pagination<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    &lt;%- paginator({ prev_next: false, end_size: 1, mid_size: 2, format: 'archives/page/%d/' ,  <span class="token comment" spellcheck="true">&lt;!--这里top改成archives--></span>
+    &lt;%- paginator({ prev_next: false, end_size: 1, mid_size: 2, format: 'page/%d/' ,  <span class="token comment" spellcheck="true">&lt;!--这里top改成archives--></span>
     total: Math.ceil(posts.length / perPage) }) %>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
