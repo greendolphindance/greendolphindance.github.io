@@ -109,7 +109,7 @@
 
     function searchToggle() {
         const width = $(document.body).width()
-        if(width > 479) {
+        if (width > 900) {
             return;
         }
         const search = $('.search');
@@ -117,7 +117,7 @@
         const menuToggle = $('.menu-toggle');
         const title = $('.navbar-header-title ');
 
-        if(!search.hasClass("mobile-search")) {
+        if (!search.hasClass("mobile-search")) {
             search.addClass("mobile-search");
             menuToggle.addClass("open-search")
             title.addClass("mobile-title-hidden")
@@ -133,10 +133,10 @@
 
     function search(searchInputEl, formEl, flag) {
         const path = "/" + "search.json"; // 可以在public 下查看这个search.json
-        $(formEl).submit(function(e){
+        $(formEl).submit(function (e) {
             e.preventDefault();
             let target = null
-            if(searchInputEl == null) {
+            if (searchInputEl == null) {
                 const screenWidth = $(document.body).width();
                 target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
                 console.log(target);
@@ -144,11 +144,11 @@
                 target = $(searchInputEl)
             }
 
-            if(!flag && target.val() === '') {
-                return ;
+            if (!flag && target.val() === '') {
+                return;
             }
 
-            $("#u-search").fadeIn(500, function() {
+            $("#u-search").fadeIn(500, function () {
                 $("body > .wrapper").addClass("modal-active");
 
                 $.ajax({
@@ -159,11 +159,11 @@
                         $(".form-input").val($input);
                         const loadingBar = $('.search-loading-bar')
                         loadingBar.css({
-                            width:'100%',
+                            width: '100%',
                             display: 'block'
                         });
                     },
-                    success: function( datas ) {
+                    success: function (datas) {
                         console.log(datas);
                         const $resultPanel = $(".modal-body")[0];
                         let str = `<ul class="modal-results">`;
@@ -244,20 +244,20 @@
                             }
                         });
                         str += "</ul>";
-                        if(hasResult) {
+                        if (hasResult) {
                             $resultPanel.innerHTML = str;
                         } else {
                             $resultPanel.innerHTML = text;
                         }
 
                     },
-                    complete: function() {
+                    complete: function () {
                         setTimeout(() => {
-                                const loadingBar = $('.search-loading-bar')
-                                loadingBar.css({
-                                    width:'0%',
-                                    display: 'none'
-                                });
+                            const loadingBar = $('.search-loading-bar')
+                            loadingBar.css({
+                                width: '0%',
+                                display: 'none'
+                            });
                         }, 300)
                     }
                 });
@@ -266,13 +266,13 @@
         });
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.modal-close').click(function () {
             $("#u-search").fadeOut();
             $("body > .wrapper").removeClass("modal-active")
         })
 
-        $('.modal-overlay').click(function() {
+        $('.modal-overlay').click(function () {
             $("#u-search").fadeOut();
             $("body > .wrapper").removeClass("modal-active")
         })
@@ -280,7 +280,6 @@
         search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
     })
 </script>
-
                                                                                                                                                 
 
                                                                                                                                                     <script
@@ -660,9 +659,9 @@
                                             <span class="tag">
                                                 
                                                     
-                                                        <a href="/tags/%E9%A3%9F%E7%89%A9/"># 食物</a>
-                                                        
                                                         <a href="/tags/%E8%BF%90%E5%8A%A8/"># 运动</a>
+                                                        
+                                                        <a href="/tags/%E9%A3%9F%E7%89%A9/"># 食物</a>
                                                         
                                                         <a href="/tags/%E6%97%85%E8%A1%8C/"># 旅行</a>
                                                         

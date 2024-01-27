@@ -108,7 +108,7 @@
 
     function searchToggle() {
         const width = $(document.body).width()
-        if(width > 479) {
+        if (width > 900) {
             return;
         }
         const search = $('.search');
@@ -116,7 +116,7 @@
         const menuToggle = $('.menu-toggle');
         const title = $('.navbar-header-title ');
 
-        if(!search.hasClass("mobile-search")) {
+        if (!search.hasClass("mobile-search")) {
             search.addClass("mobile-search");
             menuToggle.addClass("open-search")
             title.addClass("mobile-title-hidden")
@@ -132,10 +132,10 @@
 
     function search(searchInputEl, formEl, flag) {
         const path = "/" + "search.json"; // 可以在public 下查看这个search.json
-        $(formEl).submit(function(e){
+        $(formEl).submit(function (e) {
             e.preventDefault();
             let target = null
-            if(searchInputEl == null) {
+            if (searchInputEl == null) {
                 const screenWidth = $(document.body).width();
                 target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
                 console.log(target);
@@ -143,11 +143,11 @@
                 target = $(searchInputEl)
             }
 
-            if(!flag && target.val() === '') {
-                return ;
+            if (!flag && target.val() === '') {
+                return;
             }
 
-            $("#u-search").fadeIn(500, function() {
+            $("#u-search").fadeIn(500, function () {
                 $("body > .wrapper").addClass("modal-active");
 
                 $.ajax({
@@ -158,11 +158,11 @@
                         $(".form-input").val($input);
                         const loadingBar = $('.search-loading-bar')
                         loadingBar.css({
-                            width:'100%',
+                            width: '100%',
                             display: 'block'
                         });
                     },
-                    success: function( datas ) {
+                    success: function (datas) {
                         console.log(datas);
                         const $resultPanel = $(".modal-body")[0];
                         let str = `<ul class="modal-results">`;
@@ -243,20 +243,20 @@
                             }
                         });
                         str += "</ul>";
-                        if(hasResult) {
+                        if (hasResult) {
                             $resultPanel.innerHTML = str;
                         } else {
                             $resultPanel.innerHTML = text;
                         }
 
                     },
-                    complete: function() {
+                    complete: function () {
                         setTimeout(() => {
-                                const loadingBar = $('.search-loading-bar')
-                                loadingBar.css({
-                                    width:'0%',
-                                    display: 'none'
-                                });
+                            const loadingBar = $('.search-loading-bar')
+                            loadingBar.css({
+                                width: '0%',
+                                display: 'none'
+                            });
                         }, 300)
                     }
                 });
@@ -265,13 +265,13 @@
         });
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.modal-close').click(function () {
             $("#u-search").fadeOut();
             $("body > .wrapper").removeClass("modal-active")
         })
 
-        $('.modal-overlay').click(function() {
+        $('.modal-overlay').click(function () {
             $("#u-search").fadeOut();
             $("body > .wrapper").removeClass("modal-active")
         })
@@ -279,7 +279,6 @@
         search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
     })
 </script>
-
                                                                                                                                                 
 
                                                                                                                                                     <script
@@ -508,8 +507,6 @@
                 
                     <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏<small>(1)</small></a>
                 
-                    <a href="/tags/%E9%A3%9F%E7%89%A9/">食物<small>(3)</small></a>
-                
                     <a href="/tags/%E7%BE%8E%E5%A6%86/">美妆<small>(1)</small></a>
                 
                     <a href="/tags/%E6%9C%8D%E9%A5%B0/">服饰<small>(3)</small></a>
@@ -518,9 +515,11 @@
                 
                     <a href="/tags/%E5%81%A5%E5%BA%B7/">健康<small>(1)</small></a>
                 
-                    <a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍<small>(1)</small></a>
+                    <a href="/tags/%E9%A3%9F%E7%89%A9/">食物<small>(3)</small></a>
                 
                     <a href="/tags/%E6%97%85%E8%A1%8C/">旅行<small>(1)</small></a>
+                
+                    <a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍<small>(1)</small></a>
                 
             </div> -->
       <!-- 2022年3月29日 添加置顶功能 -->
