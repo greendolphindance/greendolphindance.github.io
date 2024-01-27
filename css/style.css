@@ -1906,100 +1906,99 @@ li.toc-list-item {
   background: transparent;
   color: #000;
 }
-.highlight .comment,
-.highlight .quote,
-.highlight .variable {
+.highlight .code .comment,
+.highlight .code .quote,
+.highlight .code .variable {
   color: #5499c7;
 }
-.highlight .keyword,
-.highlight .selector-tag,
-.highlight .built_in,
-.highlight .name,
-.highlight .tag {
+.highlight .code .keyword,
+.highlight .code .selector-tag,
+.highlight .code .built_in,
+.highlight .code .name,
+.highlight .code .tag {
   color: #3498db;
 }
-.highlight .string,
-.highlight .title,
-.highlight .section,
-.highlight .attribute,
-.highlight .literal,
-.highlight .template-tag,
-.highlight .template-variable,
-.highlight .type,
-.highlight .addition {
+.highlight .code .string,
+.highlight .code .title,
+.highlight .code .section,
+.highlight .code .attribute,
+.highlight .code .literal,
+.highlight .code .template-tag,
+.highlight .code .template-variable,
+.highlight .code .type,
+.highlight .code .addition {
   color: #e74c3c;
 }
-.highlight .deletion,
-.highlight .selector-attr,
-.highlight .selector-pseudo,
-.highlight .meta {
+.highlight .code .deletion,
+.highlight .code .selector-attr,
+.highlight .code .selector-pseudo,
+.highlight .code .meta {
   color: #2980b9;
 }
-.highlight .doctag {
+.highlight .code .doctag {
   color: #95a5a6;
 }
-.highlight .attr {
+.highlight .code .attr {
   color: #e67e22;
 }
-.highlight .symbol,
-.highlight .bullet,
-.highlight .link {
+.highlight .code .symbol,
+.highlight .code .bullet,
+.highlight .code .link {
   color: #1abc9c;
 }
-.highlight .emphasis {
+.highlight .code .emphasis {
   font-style: italic;
 }
-.highlight .strong {
+.highlight .code .strong {
   font-weight: bold;
 }
 .dark-theme .highlight {
-  background: transparent;
-  color: #ecf0f1;
+  color: #fff;
 }
-.dark-theme .highlight .comment,
-.dark-theme .highlight .quote,
-.dark-theme .highlight .variable {
+.dark-theme .highlight .code .comment,
+.dark-theme .highlight .code .quote,
+.dark-theme .highlight .code .variable {
   color: #5499c7;
 }
-.dark-theme .highlight .keyword,
-.dark-theme .highlight .selector-tag,
-.dark-theme .highlight .built_in,
-.dark-theme .highlight .name,
-.dark-theme .highlight .tag {
+.dark-theme .highlight .code .keyword,
+.dark-theme .highlight .code .selector-tag,
+.dark-theme .highlight .code .built_in,
+.dark-theme .highlight .code .name,
+.dark-theme .highlight .code .tag {
   color: #3498db;
 }
-.dark-theme .highlight .string,
-.dark-theme .highlight .title,
-.dark-theme .highlight .section,
-.dark-theme .highlight .attribute,
-.dark-theme .highlight .literal,
-.dark-theme .highlight .template-tag,
-.dark-theme .highlight .template-variable,
-.dark-theme .highlight .type,
-.dark-theme .highlight .addition {
+.dark-theme .highlight .code .string,
+.dark-theme .highlight .code .title,
+.dark-theme .highlight .code .section,
+.dark-theme .highlight .code .attribute,
+.dark-theme .highlight .code .literal,
+.dark-theme .highlight .code .template-tag,
+.dark-theme .highlight .code .template-variable,
+.dark-theme .highlight .code .type,
+.dark-theme .highlight .code .addition {
   color: #e74c3c;
 }
-.dark-theme .highlight .deletion,
-.dark-theme .highlight .selector-attr,
-.dark-theme .highlight .selector-pseudo,
-.dark-theme .highlight .meta {
+.dark-theme .highlight .code .deletion,
+.dark-theme .highlight .code .selector-attr,
+.dark-theme .highlight .code .selector-pseudo,
+.dark-theme .highlight .code .meta {
   color: #2980b9;
 }
-.dark-theme .highlight .doctag {
+.dark-theme .highlight .code .doctag {
   color: #95a5a6;
 }
-.dark-theme .highlight .attr {
+.dark-theme .highlight .code .attr {
   color: #e67e22;
 }
-.dark-theme .highlight .symbol,
-.dark-theme .highlight .bullet,
-.dark-theme .highlight .link {
+.dark-theme .highlight .code .symbol,
+.dark-theme .highlight .code .bullet,
+.dark-theme .highlight .code .link {
   color: #1abc9c;
 }
-.dark-theme .highlight .emphasis {
+.dark-theme .highlight .code .emphasis {
   font-style: italic;
 }
-.dark-theme .highlight .strong {
+.dark-theme .highlight .code .strong {
   font-weight: bold;
 }
 .highlight .comment,
