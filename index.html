@@ -658,8 +658,8 @@ var data = [
             var xScale = d3.scaleBand().range([width, 0]).padding(0.1);
             var yScale = d3.scaleBand().range([height, 0]).padding(0.1);
 
-            var exponent = 0.6; // Adjust the exponent as needed
-            var colorScale = d3.scaleSequential(d3.interpolate("#add8e6", "#2d96bd"))
+            var exponent = 0.3; // Adjust the exponent as needed
+            var colorScale = d3.scaleSequential(d3.interpolate("lightblue", "#2d96bd"))
                 .domain([1, Math.pow(d3.max(data, function (d) { return d.word_count; }), exponent)]);
 
             xScale.domain(d3.range(45));

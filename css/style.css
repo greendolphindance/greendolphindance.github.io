@@ -1904,7 +1904,7 @@ li.toc-list-item {
   overflow-x: auto;
   padding: 0.5em;
   background: transparent;
-  color: #000;
+  color: #161209;
 }
 .highlight .code .comment,
 .highlight .code .quote,
@@ -1953,7 +1953,7 @@ li.toc-list-item {
   font-weight: bold;
 }
 .dark-theme .highlight {
-  color: #fff;
+  color: #a9a9b3;
 }
 .dark-theme .highlight .code .comment,
 .dark-theme .highlight .code .quote,
