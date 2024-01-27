@@ -17,7 +17,6 @@
                                 
                                     <title>
                                         
-                                                    最近下载的小玩意 | 
                                                             Green Dolphin Dance
                                     </title>
 
@@ -489,368 +488,288 @@
     }
 </script>
             <div class="main">
-                <div class="container">
+                
+    <div class="container profile-container">
+    <div class="intro">
+        <div class="avatar">
+            <a href="/"><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/e66871c0-be6e-4fc7-8fa6-ceae6932cbaf"></a>
+        </div>
+        <div id="heatmap-container"></div>
+
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                function getDateBefore(days) {
+                    var currentDate = new Date();
+                    currentDate.setDate(currentDate.getDate() - days);
+                    var year = currentDate.getFullYear();
+                    var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                    var day = String(currentDate.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+                }
+            
+
+var data = [
     
-        
-
-                    
-                        <article class="post-wrap">
-                            <header class="post-header">
-                                <h1 class="post-title">
-                                    最近下载的小玩意
-                                </h1>
-                                
-                                    <div class="post-meta">
-
-                                        
-
-                                                
-                                                    <span class="post-time">
-
-                                                        发表时间: <a href="#">2023-10-08&nbsp;&nbsp;10:36:41</a>
-                                                    </span>
-                                                    
-
-                                                        
-                                                            <span class="updated-time">
-                                                                最后更新: <a href="#">2023-10-20&nbsp;&nbsp;12:03:16</a>
-                                                            </span>
-                                                            
-
-
-
-                                                                
-
-                                                                    <span class="post-category">
-
-                                                                        分类:
-
-                                                                        
-
-                                                                            <a href="/categories/%E6%8A%98%E8%85%BE/">折腾</a>
-
-                                                                            
-
-                                                                    </span>
-
-                                                                    
-
-
-
-                                                                        
-
-                                                                            <span class="post-count">
-
-                                                                                字数:
-
-                                                                                <a href="">
-                                                                                    968
-                                                                                </a>
-
-                                                                            </span>
-
-                                                                            
-
-
-
-                                                                                
-
-                                                                                    <span class="post-count">
-
-                                                                                        阅读时长:
-
-                                                                                        <a href="">
-                                                                                            3min
-                                                                                        </a>
-
-                                                                                    </span>
-
-                                                                                    
-
-                                    </div>
-                                    
-                            </header>
-
-                            <div class="post-content">
-                                <p>因为又菜又爱折腾，所以我下载并使用了很多现成的小工具。本文章旨在分享这些小工具的使用体验（也许会成为一个系列）。</p>
-<p>我的设备：MacBook Pro M1、iPad Air、iPhone 12 mini。另有安卓备用机一部，是日产的Sony Xperia Ace II（不推荐）。</p>
-<h1 id="Foldery"><a href="#Foldery" class="headerlink" title="Foldery"></a>Foldery</h1><p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/7f9e037e-878e-414a-b46d-09764a5417d8" alt="logo"></p>
-<p>平台：macOS</p>
-<p>价格：¥0（限免）</p>
-<p>更新时间：2023-10-8</p>
-<p>Foldery是一个给文件夹图标改颜色的小工具。应用场景大概就是希望文件夹显得更加醒目的场合吧。使用方法很简单，打开Foldery和访达，在Foldery窗口上选好颜色，再把想要改颜色的文件夹拖拽到Foldery窗口就可以了。使用效果如图：</p>
-<p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/4ddae0e1-b8fa-47e9-9965-c81c0f87de38" alt="image-20231008104357029"></p>
-<p>里面默认的颜色都蛮和谐的，当然也可以自定义颜色，但是我懒。如果想要把文件夹还原为默认的颜色，就点文件夹图标左上角的叉叉，再把想要还原颜色的文件夹拖拽过去就好：</p>
-<p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/1f2a824c-7f81-4255-9f47-e75e7e53a6ed" alt="image-20231008104557637"></p>
-<p>就是这样啦！</p>
-<h1 id="TotalFinder"><a href="#TotalFinder" class="headerlink" title="TotalFinder"></a>TotalFinder</h1><img width="100" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/022bc32e-b82c-4d92-84eb-7878319d526e">
-
-<p>平台：macOS</p>
-<p>价格：¥0（官网的购买渠道点开是一份2021年发表的停止维护声明，没法买，所以我下了破解版。但是刚才发现最新版本更新时间是今年？不知道怎么回事。）</p>
-<p>更新时间：2023-10-8</p>
-<p>访达增强器！让访达更好用的小工具。可以让访达有tabs，以及支持dual mode。其实它还有一个功能，就是让文件夹标签的颜色成为文件夹的背景色，这个功能如果可以用的话就不用下载Foldery了，但是我开启了这个功能没反应。</p>
-<p>具体功能及使用方法可以去<a target="_blank" rel="noopener" href="https://totalfinder.binaryage.com/">官网</a>查看。我记得用这个要给一个什么权限来着，很麻烦，印象中重启了两次。然后开启了这个权限的话，Mac上有的APP就不能用了，比如微信读书、微博轻享版。所以需要作出一些权衡。</p>
-<p>tabs和dual mode演示：</p>
-<p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/629adc35-3db8-4eed-8a44-98940bbec656" alt="tabsanddualmode"></p>
-<p>一个小tip：TotalFinder会修改访达的图标，有点丑，可以在访达 -&gt; 设置 -&gt; TotalFinder -&gt; Dock里勾选“使用原Finder图标”来改回去。</p>
-<h1 id="Bob"><a href="#Bob" class="headerlink" title="Bob"></a>Bob</h1><img width="100" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/4ce5b05a-c5f5-4eb1-90d3-f3ebe40f96f6">
-
-<p>平台：macOS</p>
-<p>价格：好像是¥50</p>
-<p>更新时间：2023-10-8</p>
-<p>图标很丑但很强大的一款翻译软件，官网<a target="_blank" rel="noopener" href="https://bobtranslate.com/">在这</a>。可以通过API Key连接到各式翻译网站，然后选择词句并按下Option+D就可以翻译（配合<a target="_blank" rel="noopener" href="https://www.popclip.app/">PopClip</a>食用更佳）。会出来如下界面：</p>
-<p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/eb502dd2-7a60-4c81-8030-b0b598dd48ce" alt="display"></p>
-<p>不难发现，它支持ChatGPT的翻译和润色功能，但是很遗憾，我的从某一天开始就不能用了……应该是ChatGPT那边的问题，不怪Bob。我还没有排查过原因。但是DeepL经常比ChatGPT更好用，所以我感觉DeepL能用就行。</p>
-<p>Bob的配置有点小麻烦，但是一旦配置好了就能一劳永逸。除了一般的翻译功能以外，它还能够截图进行OCR识别并翻译，非常好用。</p>
-<h1 id="OnyX"><a href="#OnyX" class="headerlink" title="OnyX"></a>OnyX</h1><p><img src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/bc42635d-c27d-4ec2-8781-21cfcbc14946" alt="onyxlogo"></p>
-<p>平台：macOS</p>
-<p>价格：¥0</p>
-<p>更新时间：2023-10-8</p>
-<p>官网<a target="_blank" rel="noopener" href="https://www.titanium-software.fr/en/onyx.html">在这</a>。系统清理软件，没啥好说的。免费，好用。</p>
-<p>之前用它，发生了一件神奇的事情。众所周知Mac的系统文件体积庞大，且无法清理，十分神秘。以前用过<a target="_blank" rel="noopener" href="https://lemon.qq.com/">腾讯柠檬</a>，没有效果。然后我试着下载了OnyX，系统文件突然大大减小了！但我仔细一看，才发现它只是被分成了两个类：一个是iPhone和iPad的本地备份，另一个是其他的系统文件。所以OnyX其实是无法清理很多系统文件的，只是给它重新分类了，但有这个功能也比没有好（？至少我知道占据空间的其实是备份文件，而不是其他的怪东西。</p>
-
-                            </div>
-
-                            
-                                <section class="post-copyright">
-                                    
-                                            
-                                                    
-                                                            
-
-                                </section>
-                                
-                                    <section class="post-tags">
-                                        <div>
-                                            <span>标签：</span>
-                                            <span class="tag">
-                                                
-                                                    
-                                                        <a href="/tags/%E5%B7%A5%E5%85%B7/"># 工具</a>
-                                                        
-                                                            
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <a href="javascript:window.history.back();">返回</a>
-                                            <span>· </span>
-                                            <a href="/">主页</a>
-                                        </div>
-                                    </section>
-                                    <section class="post-nav">
-                                        
-                                            <a class="prev" rel="prev" href="/2023/10/09/%E5%A1%94%E7%BD%97%E7%89%8C%E3%80%81%E7%94%9F%E5%91%BD%E7%81%B5%E6%95%B0%E3%80%81%E6%98%9F%E5%BA%A7%E5%92%8CMBTI/">塔罗牌、生命灵数、星座和MBTI</a>
-                                            
-                                                
-                                                    <a class="next" rel="next" href="/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/">博客搭建小记</a>
-                                                    
-                                    </section>
-
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function () {
-                                            function getGiscusTheme() {
-                                                const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-                                                return theme === 'dark' ? 'noborder_dark' : 'noborder_light';
-                                            }
-
-                                            function setGiscusTheme() {
-                                                function sendMessage(message) {
-                                                    const iframe = document.querySelector('iframe.giscus-frame');
-                                                    if (!iframe) return;
-                                                    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-                                                }
-                                                sendMessage({
-                                                    setConfig: {
-                                                        theme: getGiscusTheme(),
-                                                    },
-                                                });
-                                            }
-
-                                            function handleToggle() {
-                                                location.reload();
-                                            }
-
-                                            // Update giscus theme when theme switcher is clicked
-                                            const toggleDesktop = document.querySelector('label[for="switch_default"]');
-                                            const toggleMobile = document.querySelector('#mobile-toggle-theme');
-
-                                            if (toggleDesktop) {
-                                                toggleDesktop.addEventListener('click', function () {
-                                                    setGiscusTheme();
-                                                });
-                                            }
-
-                                            if (toggleMobile) {
-                                                toggleMobile.addEventListener('click', function () {
-                                                    setGiscusTheme();
-                                                });
-                                            }
-
-                                            // Wait for 1000ms (1 second) before loading the Giscus comments to ensure theme is set
-                                            setTimeout(() => {
-                                                const giscusAttributes = {
-                                                    "src": "https://giscus.app/client.js",
-                                                    "data-repo": "greendolphindance/greendolphindance.github.io",
-                                                    "data-repo-id": "R_kgDOKc-MwA",
-                                                    "data-category": "General",
-                                                    "data-category-id": "DIC_kwDOKc-MwM4CZ8oe",
-                                                    "data-mapping": "url",
-                                                    "data-strict": "0",
-                                                    "data-reactions-enabled": "1",
-                                                    "data-emit-metadata": "0",
-                                                    "data-input-position": "top",
-                                                    "data-theme": getGiscusTheme(),
-                                                    "data-lang": "zh-CN",
-                                                    "crossorigin": "anonymous",
-                                                };
-
-                                                // Dynamically create script tag
-                                                const giscusScript = document.createElement("script");
-                                                Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
-
-                                                // Append the script tag to the <article> element
-                                                document.querySelector('article').appendChild(giscusScript);
-                                            }, 1000);
-                                        });
-
-                                    </script>
-
-                                    <button id="tocButton" style="display: none;">
-                                        <svg t="1697879152903" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                            xmlns="http://www.w3.org/2000/svg" p-id="5387" width="32" height="32">
-                                            <path
-                                                d="M 863.113 0 H 160.887 A 161.064 161.064 0 0 0 0 160.887 v 702.225 a 161.064 161.064 0 0 0 160.887 160.887 h 702.225 a 161.064 161.064 0 0 0 160.887 -160.887 V 160.887 a 161.064 161.064 0 0 0 -160.887 -160.887 Z M 242.94 725.908 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 242.94 333.037 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 534.146 392.839 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 777.086 333.037 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z"
-                                                fill="#8a8a8a" p-id="5388"></path>
-                                    </button>
-
-                                    <div class="overlay" id="overlay" onclick="hideToc()"></div>
-
-                                    <script>
-                                        function hideToc() {
-                                            var toc = document.querySelector('.js-toc');
-                                            var overlay = document.getElementById('overlay');
-                                            var body = document.body;
-
-                                            toc.style.display = 'none'; // 隐藏目录
-                                            overlay.style.display = 'none'; // 隐藏遮罩层
-                                            body.style.overflow = ''; // 启用页面滚动
-                                        }
-                                        window.onload = function () {
-
-                                            var toc = document.querySelector('.js-toc');
-                                            var tocButton = document.getElementById('tocButton');
-                                            if (toc) {
-                                                // 根据 toc 内容的有无显示或隐藏目录按钮
-                                                tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
-                                            } else {
-                                                tocButton.style.display = 'none';
-                                            }
-                                        };
-
-                                        function checkWindowSize() {
-                                            var windowWidth = window.innerWidth;
-                                            var toc = document.querySelector('.js-toc');
-                                            var tocButton = document.getElementById('tocButton');
-
-                                            if (windowWidth > 1379 || toc.innerText.trim() === '') {
-                                                tocButton.style.display = 'none';
-                                            } else {
-                                                tocButton.style.display = 'block';
-                                            }
-                                        }
-
-
-                                        // 点击tocButton时执行的函数
-                                        document.getElementById('tocButton').addEventListener('click', function () {
-                                            var toc = document.querySelector('.js-toc');
-                                            var overlay = document.getElementById('overlay');
-                                            var body = document.body;
-
-                                            if (toc.style.display === 'none' || toc.style.display === '') {
-                                                toc.style.display = 'block'; // 显示目录
-                                                overlay.style.display = 'block'; // 显示遮罩层
-                                                body.style.overflow = 'hidden'; // 禁用页面滚动
-                                            } else {
-                                                hideToc();
-                                            }
-                                        });
-
-
-                                        // 窗口大小变化时检查窗口宽度
-                                        window.onresize = checkWindowSize;
-                                    </script>
-
-                        </article>
-
-</div>
-
-<style>
-    .dark-theme .post-content code {
-        background: none !important;
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var codeBlocks = document.querySelectorAll('article pre code');
-
-        codeBlocks.forEach(function (codeBlock) {
-            var copyButton = document.createElement('button');
-            copyButton.className = 'copy-button';
-            copyButton.innerText = 'Copy';
-
-            // Check if the code block is in the article content
-            if (codeBlock.closest('article')) {
-                codeBlock.parentNode.style.position = 'relative';
-                codeBlock.parentNode.appendChild(copyButton); // 将按钮添加到 codeBlock 的父节点内
-
-                var isCopying = false;
-
-                copyButton.addEventListener('click', function () {
-                    if (!isCopying) {
-                        var codeText = codeBlock.innerText;
-                        navigator.clipboard.writeText(codeText).then(function () {
-                            copyButton.innerText = 'Copied!';
-                            isCopying = true;
-                            setTimeout(function () {
-                                copyButton.innerText = 'Copy';
-                                isCopying = false;
-                            }, 1500);
-                        }).catch(function (err) {
-                            console.error('Copy failed', err);
-                        });
+                        {
+                            date: "2024-01-26",
+                            word_count: 150,
+                    link: "/2024/01/26/%E5%88%B6%E4%BD%9Chexo%E6%A0%87%E7%AD%BE%E5%A2%99%EF%BC%882%EF%BC%89/"
+        },
+    
+                        {
+                            date: "2024-01-22",
+                            word_count: 1800,
+                    link: "/2024/01/22/%E5%88%B6%E4%BD%9Chexo%E7%83%AD%E5%8A%9B%E5%9B%BE/"
+        },
+    
+                        {
+                            date: "2024-01-19",
+                            word_count: 478,
+                    link: "/2024/01/19/%E8%A7%A3%E5%86%B3%E2%80%9C%E8%87%B4%E5%91%BD%E9%94%99%E8%AF%AF%EF%BC%9A%E6%97%A0%E6%B3%95%E8%AF%BB%E5%8F%96%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E2%80%9D%E9%97%AE%E9%A2%98/"
+        },
+    
+                        {
+                            date: "2024-01-12",
+                            word_count: 3600,
+                    link: "/2024/01/12/%E9%95%BF%E6%B2%99%E4%BA%BA%E7%9A%84%E9%95%BF%E6%B2%99%E5%9B%9B%E6%97%A5%E6%B8%B8/"
+        },
+    
+                        {
+                            date: "2024-01-01",
+                            word_count: 1200,
+                    link: "/2024/01/01/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%884%EF%BC%89/"
+        },
+    
+                        {
+                            date: "2023-12-22",
+                            word_count: 2100,
+                    link: "/2023/12/22/%E5%88%B6%E4%BD%9CHexo%E6%A0%87%E7%AD%BE%E5%A2%99/"
+        },
+    
+                        {
+                            date: "2023-12-15",
+                            word_count: 2800,
+                    link: "/2023/12/15/2023%E5%B0%8F%E7%BB%93/"
+        },
+    
+                        {
+                            date: "2023-12-07",
+                            word_count: 1200,
+                    link: "/2023/12/07/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ASleeve%202%E3%80%81%E5%B7%B4%E5%88%AB%E5%A1%94%E5%9C%A3%E6%AD%8C%E3%80%81%E4%B8%80%E7%94%9F%E8%B6%B3%E8%BF%B9%E3%80%81Bark-%E7%9F%AD%E4%BF%A1%E8%BD%AC%E5%8F%91%E5%99%A8%E3%80%81Niagara-Launcher/"
+        },
+    
+                        {
+                            date: "2023-12-04",
+                            word_count: 1800,
+                    link: "/2023/12/04/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%883%EF%BC%89/"
+        },
+    
+                        {
+                            date: "2023-11-25",
+                            word_count: 1700,
+                    link: "/2023/11/25/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%882%EF%BC%89/"
+        },
+    
+                        {
+                            date: "2023-11-16",
+                            word_count: 2000,
+                    link: "/2023/11/16/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%881%EF%BC%89/"
+        },
+    
+                        {
+                            date: "2023-11-16",
+                            word_count: 550,
+                    link: "/2023/11/16/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AInput-Source-Pro%E3%80%81Maccy/"
+        },
+    
+                        {
+                            date: "2023-11-04",
+                            word_count: 415,
+                    link: "/2023/11/04/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AiBar/"
+        },
+    
+                        {
+                            date: "2023-10-24",
+                            word_count: 1100,
+                    link: "/2023/10/24/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AVisual-Studio-Code/"
+        },
+    
+                        {
+                            date: "2023-10-20",
+                            word_count: 2200,
+                    link: "/2023/10/20/%E5%8D%9A%E5%AE%A2%E5%B4%A9%E4%BA%86%E8%AE%B0%E5%BD%95/"
+        },
+    
+                        {
+                            date: "2023-10-17",
+                            word_count: 749,
+                    link: "/2023/10/17/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ATypewriter/"
+        },
+    
+                        {
+                            date: "2023-10-10",
+                            word_count: 662,
+                    link: "/2023/10/10/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AQSpace-Pro/"
+        },
+    
+                        {
+                            date: "2023-10-09",
+                            word_count: 2200,
+                    link: "/2023/10/09/%E5%A1%94%E7%BD%97%E7%89%8C%E3%80%81%E7%94%9F%E5%91%BD%E7%81%B5%E6%95%B0%E3%80%81%E6%98%9F%E5%BA%A7%E5%92%8CMBTI/"
+        },
+    
+                        {
+                            date: "2023-10-08",
+                            word_count: 968,
+                    link: "/2023/10/08/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F/"
+        },
+    
+                        {
+                            date: "2023-10-07",
+                            word_count: 22700,
+                    link: "/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/"
+        },
+    
+                        {
+                            date: "2023-10-06",
+                            word_count: 1200,
+                    link: "/2023/10/06/%E5%A1%94%E7%BD%97%E7%89%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E5%87%BA%E9%94%99/"
+        },
+    
+];
+
+
+            var margin = { top: 20, right: 20, bottom: 20, left: 20 };
+            var containerWidth = 600;
+            var cellSize = Math.min((containerWidth - margin.left - margin.right) / 45, (containerWidth - margin.top - margin.bottom) / 8);
+            var width = cellSize * 45;
+            var height = cellSize * 8;
+
+            var svg = d3
+                .select("#heatmap-container")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var xScale = d3.scaleBand().range([width, 0]).padding(0.1);
+            var yScale = d3.scaleBand().range([height, 0]).padding(0.1);
+
+            var exponent = 0.3; // Adjust the exponent as needed
+            var colorScale = d3.scaleSequential(d3.interpolate("lightblue", "#2d96bd"))
+                .domain([1, Math.pow(d3.max(data, function (d) { return d.word_count; }), exponent)]);
+
+            xScale.domain(d3.range(45));
+            yScale.domain(d3.range(8));
+
+            // 在渲染每个格子时设置渐变色的值
+            var cells = svg.selectAll(".cell")
+                .data(d3.cross(d3.range(8), d3.range(45)))
+                .enter().append("a")
+                .attr("href", function (d) {
+                    var currentDate = getDateBefore(d[0] * 45 + d[1]);
+                    var correspondingData = data.find(entry => entry.date === currentDate);
+                    return correspondingData ? correspondingData.link : "#"; // 设置链接，如果没有链接就是 "#"，即当前页面
+                })
+                .append("rect")
+                .attr("class", function (d) {
+                    var currentDate = getDateBefore(d[0] * 45 + d[1]);
+                    var correspondingData = data.find(entry => entry.date === currentDate);
+                    return "cell" + (correspondingData && correspondingData.word_count > 0 ? " blue" : "");
+                })
+
+
+                .attr("x", function (d) { return xScale(d[1]); })
+                .attr("y", function (d) { return yScale(d[0]); })
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .style("fill", function (d) {
+                    var currentDate = getDateBefore(d[0] * 45 + d[1]);
+                    var correspondingData = data.find(entry => entry.date === currentDate);
+                    return correspondingData ? colorScale(Math.pow(correspondingData.word_count, exponent)) : "#ccc";
+                })
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr("data-word_count", function (d) {
+                    var currentDate = getDateBefore(d[0] * 45 + d[1]);
+                    var correspondingData = data.find(entry => entry.date === currentDate);
+                    return correspondingData ? correspondingData.word_count : null;
+                })
+                .on("click", function (event, d) {
+                    var currentDate = getDateBefore(d[0] * 45 + d[1]);
+                    var correspondingData = data.find(entry => entry.date === currentDate);
+                    if (correspondingData && correspondingData.link) {
+                        window.location.href = correspondingData.link;
                     }
                 });
+
+
+            function updateCellStyles() {
+                var isDarkTheme = document.body.classList.contains("dark-theme");
+                cells.style("stroke", isDarkTheme ? "#292a2d" : "#fff")
+                    .style("stroke-width", "1px");
             }
+
+            updateCellStyles();
+
+            document.body.addEventListener("themechange", function () {
+                updateCellStyles();
+            });
         });
-    });
-</script>
+        </script>
 
-<style>
-    .copy-button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #2d96bd;
-        color: #fff;
-        border: none;
-        border-radius: 10%;
-        padding: 5px 10px;
-        cursor: pointer;
-    }
+        <style>
+            @media (max-width: 767px) {
+                #heatmap-container {
+                    display: none;
+                }
+            }
 
-    button,
-    input,
-    optgroup,
-    select,
-    textarea {
-        font-size: 75%;
-    }
-</style>
+            /* 在桌面端时隐藏 .avatar */
+            @media (min-width: 768px) {
+                .avatar {
+                    display: none;
+                }
+            }
 
-<div class="js-toc"></div>
-<div class="post-content"> <!-- 这里的class需要根据自身情况修改 -->
-<!-- 博客文章内容将在这里渲染 -->
+            .cell {
+                stroke: #fff !important;
+                stroke-width: 1px;
+                fill: #ccc;
+                cursor: default;
+                /* 添加这一行 */
+            }
+
+            .dark-theme .cell {
+                stroke: #292a2d !important;
+                stroke-width: 1px;
+                fill: #a9a9b3;
+                cursor: default;
+                /* 添加这一行 */
+            }
+
+            .blue {
+                cursor: pointer;
+            }
+
+            .dark-theme .blue {
+                cursor: pointer;
+            }
+        </style>
+
+
+        <div class="nickname">Green Dolphin Dance</div>
+        <div class="description"><p>Back to the rough ground!</p>
+</div>
+        <div class="links">
+            
+                
+                        
+        </div>
+    </div>
 </div>
 
             </div>
@@ -947,7 +866,7 @@
             show_runtime();
         </script>
         <span class="post-count">
-            52.6k
+            51.6k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
