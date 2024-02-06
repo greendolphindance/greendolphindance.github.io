@@ -2126,3 +2126,7 @@ li.toc-list-item {
 .post-content blockquote {
   display: none !important;
 }
+.driven-by {
+  font-size: 0.75rem;
+  display: inline;
+}
