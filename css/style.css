@@ -1000,6 +1000,9 @@ p.no-result {
   color: #eee;
   border-bottom: 2px solid #2bbc8a;
 }
+.search .form-search .input {
+  font-size: 11pt !important;
+}
 .profile-container {
   justify-content: center;
   align-items: center;
