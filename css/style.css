@@ -2151,6 +2151,10 @@ li.toc-list-item {
   font-size: 0.75rem;
   display: inline;
 }
+body {
+  width: 100vw; /* 设置页面宽度为视口宽度的百分比 */
+  overflow-x: hidden; /* 隐藏水平滚动条，防止页面宽度变化 */
+}
 .timeline {
   margin: 0 auto;
   padding: 20px;
