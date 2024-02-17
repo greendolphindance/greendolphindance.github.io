@@ -2156,7 +2156,7 @@ body {
   overflow-x: hidden; /* 隐藏水平滚动条，防止页面宽度变化 */
 }
 .copyright {
-  font-size: 10px;
+  font-size: 10px !important;
 }
 .timeline {
   margin: 0 auto;
