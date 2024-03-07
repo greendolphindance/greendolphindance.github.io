@@ -18,7 +18,7 @@
                                 
                                     <title>
                                         
-                                                    最近下载的小玩意：Visual Studio Code | 
+                                                    友链页面美化 | 
                                                             Green Dolphin Dance
                                     </title>
 
@@ -508,7 +508,7 @@
                         <article class="post-wrap">
                             <header class="post-header">
                                 <h1 class="post-title">
-                                    最近下载的小玩意：Visual Studio Code
+                                    友链页面美化
                                 </h1>
                                 
                                     <div class="post-meta">
@@ -518,13 +518,13 @@
                                                 
                                                     <span class="post-time">
 
-                                                        发表时间: <a href="#">2023-10-24&nbsp;&nbsp;14:15:45</a>
+                                                        发表时间: <a href="#">2024-03-07&nbsp;&nbsp;22:13:46</a>
                                                     </span>
                                                     
 
                                                         
                                                             <span class="updated-time">
-                                                                最后更新: <a href="#">2024-01-18&nbsp;&nbsp;17:57:11</a>
+                                                                最后更新: <a href="#">2024-03-07&nbsp;&nbsp;22:13:46</a>
                                                             </span>
                                                             
 
@@ -555,7 +555,7 @@
                                                                                 字数:
 
                                                                                 <a href="">
-                                                                                    1.1k
+                                                                                    787
                                                                                 </a>
 
                                                                             </span>
@@ -571,7 +571,7 @@
                                                                                         阅读时长:
 
                                                                                         <a href="">
-                                                                                            4min
+                                                                                            3min
                                                                                         </a>
 
                                                                                     </span>
@@ -583,38 +583,22 @@
                             </header>
 
                             <div class="post-content">
-                                <img width="100" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/4900959c-0d87-4978-a5c3-6d2e66b1ac5c">
+                                <p>好久没折腾了，都有些生疏了。这次想美化一下友链页面。原来就是一些带链接的文字堆在一起，现在想要改成每人一个方框，方框里面是博主的名字，鼠标悬停在方框上会显示博客的名字，点击博主名字在新窗口跳转到相应博客。</p>
+<p>其实还蛮简单的。分别需要修改/links/index.md、创建link.ejs和link.styl。</p>
+<h1 id="index-md"><a href="#index-md" class="headerlink" title="index.md"></a>index.md</h1><p>修改如下：</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: "- 友情链接 -"</span><br><span class="line">browser<span class="emphasis">_title: "友链"</span></span><br><span class="line"><span class="emphasis">date: 2023-10-07 12:09:32</span></span><br><span class="line"><span class="emphasis">type: "links"</span></span><br><span class="line"><span class="emphasis">layout: "link"</span></span><br><span class="line"><span class="emphasis">links:</span></span><br><span class="line"><span class="emphasis">  - name: "Hanlin"</span></span><br><span class="line"><span class="emphasis">    url: "http://r64.i11r.com"</span></span><br><span class="line"><span class="emphasis">    blogName: "蜈ｨ縺ｦ縺ゅ↑縺溘・謇轤ｺ縺ｧ縺吶・"</span></span><br><span class="line"><span class="emphasis">  - name: "Ayu"</span></span><br><span class="line"><span class="emphasis">    url: "https://ayu.land"</span></span><br><span class="line"><span class="emphasis">    blogName: "~ — Ayu"</span></span><br><span class="line"><span class="emphasis">  - name: "CosmoOri"</span></span><br><span class="line"><span class="emphasis">    url: "https://dkn16.github.io"</span></span><br><span class="line"><span class="emphasis">    blogName: "Kangning Diao"</span></span><br><span class="line"><span class="emphasis">  - name: "Mokou"</span></span><br><span class="line"><span class="emphasis">    url: "https://www.cnblogs.com/mokou/"</span></span><br><span class="line"><span class="emphasis">    blogName: "莫多心情小站"</span></span><br><span class="line"><span class="emphasis">  - name: "Origakid"</span></span><br><span class="line"><span class="emphasis">    url: "https://origakid.top"</span></span><br><span class="line"><span class="emphasis">    blogName: "抽象艺术大巴扎"</span></span><br><span class="line"><span class="emphasis">  - name: "茨月"</span></span><br><span class="line"><span class="emphasis">    url: "https://blog.zcy.moe"</span></span><br><span class="line"><span class="emphasis">    blogName: "Chris Zhang"</span></span><br><span class="line"><span class="emphasis">---</span></span><br></pre></td></tr></tbody></table></figure>
 
+<p>这里的要点：layout要改成link，和之后要创建的link.ejs的名字匹配。然后在links里面添加数据，注意缩进要正确。</p>
+<h1 id="link-ejs"><a href="#link-ejs" class="headerlink" title="link.ejs"></a>link.ejs</h1><p>代码如下：</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"post-wrap"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"post-title"</span>&gt;</span></span><br><span class="line">            &lt;%= page.title %&gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        &lt;% for (var i=0; i &lt; page.links.length; i++) { %&gt;</span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"friend-link"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;%= page.links[i].url %&gt;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">title</span>=<span class="string">"&lt;%= page.links[i].blogName %&gt;"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"friend-name"</span>&gt;</span></span><br><span class="line">                        &lt;%= page.links[i].name %&gt;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            &lt;% } %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p>平台：Windows、macOS、Linux</p>
-<p>价格：¥0</p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">官网</a></p>
-<hr>
-<p>终于，我还是用上了VS Code。这应该不算小玩意了吧……毕竟功能还挺多的。但是为了维持这个系列，还是叫它“小玩意”吧。</p>
-<p><a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/17/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ATypewriter/">上篇小玩意</a>说没有用VS Code的理由是已经有了Sublime Text和XCode，不想再下一个写代码的应用，但是今天一想，我所有的东西都在VS Code里写不就行了吗？这样岂不是能够把工具更精简。于是配置好VS Code之后，就卸载了Typewriter、Sublime Text和Skim（用来搭配Sublime Text进行预览的）。XCode没删，因为莫名感觉之后还会用到（？）。</p>
-<p>下面我分Markdown和LaTeX两方面来介绍VS Code的配置方法和使用体验。</p>
-<h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>我参考的是<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56943330">这个教程</a>。需要下载Markdown All in One和Markdown Preview Github Styling两个插件。下载好后，书写Markdown文档会有相应高亮，点击工作区右上角的这个图标：</p>
-<img width="19" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/a9272159-0c34-4151-8de4-4b08e9bf49fa">
+<p>很简单。在index.md里的links实际上创造了一个数组，这里遍历了数组里的全部元素，让它们一个个显示出来。“target=”_blank””的意思是在新标签页打开链接（而不是当前页面跳转）。title之后的是鼠标悬停时在旁边显示出来的东西。</p>
+<h1 id="link-styl"><a href="#link-styl" class="headerlink" title="link.styl"></a>link.styl</h1><p>代码如下：</p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="selector-class">.friend-link</span> {</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex; <span class="comment">/* 将默认显示方式更改为inline-flex */</span></span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>; <span class="comment">/* 最大宽度为100%，以适应内容 */</span></span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap; <span class="comment">/* 允许在需要时换行 */</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friend-name</span> {</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#777</span>;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">transition</span>: background-color <span class="number">0.3s</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">10px</span>; <span class="comment">/* 添加友人之间的间距 */</span></span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>; <span class="comment">/* 添加友人之间的间距 */</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friend-name</span><span class="selector-pseudo">:hover</span> {</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f0f0f0</span>; </span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friend-link</span> <span class="selector-tag">a</span> {</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-<p>可以显示预览。</p>
-<h2 id="和Typewriter对比"><a href="#和Typewriter对比" class="headerlink" title="和Typewriter对比"></a>和Typewriter对比</h2><p>虽然<a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/17/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ATypewriter/">上篇小玩意</a>里没写，但是我在使用过程中发现了Typewriter的一个最大缺点：工作区和预览的位置不同步。就是说，虽然预览区和工作区可以同步滚动，但是那个位置对应不是很精确，有时候工作区滚到的位置上的文字，在预览区甚至没有出现。所以我经常需要单独滚动预览区，以把位置对应好。VS Code在这一点上就做得好太多。</p>
-<p>VS Code还有一个优势，就是预览的渲染速度非常快，甚至和Typora不相上下。后者是所见即所得，更需要快速的渲染，所以对于VS Code能做到Typora的速度，我是很惊奇的。就感觉好用心的一款产品啊……相比之下Typewriter就慢得多。</p>
-<p>我在<a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/17/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ATypewriter/">上篇小玩意</a>里介绍了Typewriter的一些缺点，接下来我会逐一列举VS Code在这些方面的表现。</p>
-<p>首先，关于FrontMatter，VS Code显然不会出现任何错误，因为人家的预览里压根就不显示FrontMatter……其实我觉得还是显示了好一点，至少把标题写出来吧。</p>
-<p>然后，关于Typewriter把代码里的注释显示成标题格式的bug。首先复习一下Typewriter里的显示：</p>
-<img width="1221" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/39bbcb60-06c2-42f1-a73f-e63cea15548c">
-
-<p>可以看到注释“# scripts loaded in the end of the body”在工作区里显示的格式和下方的标题“# 订阅”相同。</p>
-<p>相反，VS Code仍然不会出现任何这样的问题，因为它的工作区压根就不会显示标题格式。它除了高亮以外啥也没有：</p>
-<img width="1310" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/38bd744b-f5b6-43cb-bf98-a9dab17839d8">
-
-<p>其实我觉得啥也没有挺好的，反正有高亮，而且格式啥的在预览区都会显示出来。不过这个见仁见智吧。</p>
-<p>关于目录，首先似乎需要装一个叫Markdown Preview Enhanced的插件，然后预览区右上角会显示一个目录图标，点击就可以展开目录。虽然不能固定在边栏，不如Typewriter直观，但也还行。</p>
-<h1 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h1><h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><p>参考的教程是<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/166523064">这个</a>。需要下载LaTeX Workshop这个插件。然后在JSON文件中加入配置代码。其中，我相较于教程做了一点修改，把自动编译改成了onSave。</p>
-<h2 id="和Sublime-Text对比"><a href="#和Sublime-Text对比" class="headerlink" title="和Sublime Text对比"></a>和Sublime Text对比</h2><p>一眼看去，二者最大的区别就是VS Code内置了预览功能，而Sublime Text的预览功能需要通过Skim等外部应用实现。这应该有利有弊，因为我看的教程里有教如果有需要的话，怎么从内部预览切换到外部预览。但看了一下，我大概用不到。</p>
-<p>另一个区别在于目录。Sublime Text的目录是直接显示出来的，而VS Code要点击最左边那一栏的“TeX”图标才能看到目录，稍微麻烦一点，不过我可以忍。</p>
-<p>此外，二者在语法检查上也有区别。在Sublime Text上，我使用了一个插件让我可以在内部使用Grammarly进行拼写检查。而在VS Code上，我根据<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139210056">这个教程</a>下载并配置了LaTeX插件。</p>
-<h1 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h1><p>因为刚开始学前端，写代码的机会还不多，所以没法写出VS Code和其他编辑器（比如XCode）的对比。不过我上的网课是Angela Yu的，她是Mac电脑，但推荐使用的是VS Code而不是XCode，所以可能是有她的道理吧。</p>
+<p>friend-link里的几项设定是为了让一行显示多个方框，并且自动换行。friend-name:hover是为了让鼠标悬停在方框上时，方框有一个变颜色的效果。</p>
+<p>这里有一个坑，好吧其实也不是这里的坑，但是和CSS有关。我在调试的时候发现无论博客是日间模式还是夜间模式，悬停时显示的title都是夜间模式的背景色。然后调试了很久也没有效果。最后我灵机一动，想它是不是并非根据博客的主题来的，而是根据浏览器/系统的主题来的。于是把系统切换成日间模式。果然！现在无论博客是什么主题，title的背景色都是日间模式的背景色了。所以这个东西好像是无法修改的……</p>
+<p>总之就是这样了，总体来讲还是比较简单的。</p>
 
                             </div>
 
@@ -633,7 +617,7 @@
                                             <span class="tag">
                                                 
                                                     
-                                                        <a href="/tags/%E5%B7%A5%E5%85%B7/"># 工具</a>
+                                                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
                                                         
                                                             
                                             </span>
@@ -646,10 +630,8 @@
                                     </section>
                                     <section class="post-nav">
                                         
-                                            <a class="prev" rel="prev" href="/2023/11/04/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9AiBar/">最近下载的小玩意：iBar</a>
-                                            
                                                 
-                                                    <a class="next" rel="next" href="/2023/10/20/%E5%8D%9A%E5%AE%A2%E5%B4%A9%E4%BA%86%E8%AE%B0%E5%BD%95/">博客崩了记录</a>
+                                                    <a class="next" rel="next" href="/2024/03/03/%E6%90%AC%E5%AE%B6%E4%B8%8E%E3%80%8AUnpacking%E3%80%8B/">搬家与《Unpacking》</a>
                                                     
                                     </section>
 
@@ -664,16 +646,16 @@
                 </h3>
                 <ul>
                     
+                        <li><a href="https://greendolphindance.github.io/2024/03/03/%E6%90%AC%E5%AE%B6%E4%B8%8E%E3%80%8AUnpacking%E3%80%8B/">
+                                搬家与《Unpacking》
+                            </a></li>
+                        
+                        <li><a href="https://greendolphindance.github.io/2024/02/28/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%886%EF%BC%89%EF%BC%9A%E5%AE%BF%E8%88%8D%E8%A3%85%E4%BF%AE%E7%AF%87/">
+                                购物分享（6）：宿舍装修篇
+                            </a></li>
+                        
                         <li><a href="https://greendolphindance.github.io/2024/02/19/Mac%E5%8D%8A%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%87%BASafari%E4%B9%A6%E7%AD%BE%E8%87%B3Chrome/">
                                 Mac半自动导出Safari书签至Chrome
-                            </a></li>
-                        
-                        <li><a href="https://greendolphindance.github.io/2024/02/09/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ARaycast/">
-                                最近下载的小玩意：Raycast
-                            </a></li>
-                        
-                        <li><a target="_blank" rel="noopener" href="https://blogs.kainy.cn/2010/03/加密QQ空间强行爆破工具V1.0/">
-                                加密QQ空间强行爆破工具V1.0
                             </a></li>
                         
                 </ul>
