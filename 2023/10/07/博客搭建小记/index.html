@@ -330,9 +330,9 @@
             }
         </style>
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 7.1.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-solarized-dark-atom.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -524,7 +524,7 @@
 
                                                         
                                                             <span class="updated-time">
-                                                                最后更新: <a href="#">2024-01-28&nbsp;&nbsp;1:23:16</a>
+                                                                最后更新: <a href="#">2024-05-03&nbsp;&nbsp;0:18:46</a>
                                                             </span>
                                                             
 
@@ -555,7 +555,7 @@
                                                                                 字数:
 
                                                                                 <a href="">
-                                                                                    23.7k
+                                                                                    23.8k
                                                                                 </a>
 
                                                                             </span>
@@ -876,6 +876,9 @@
 
 <p>  但在“分类”页面中，某些设备不显示省略号，不知何故。</p>
 <p>  （2023-12-7更新）知道是什么原因了。解决方法是微调参数。我将tag和archive页面的min-width改为768px，max-width改为767px，然后把大屏幕下的width改为600px，小屏幕下的width改为240px，问题解决。至于categories页面，我直接把所有屏幕尺寸的宽度调成了240px。</p>
+<p>  （2024-5-3更新）发现大屏幕上每一个category的子页面上，宽度仍然是240px，不美观。于是修改category.ejs代码如下：</p>
+  <figure class="highlight html"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">li</span> {</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">24.2px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">white-space</span>: nowrap;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-overflow</span>: ellipsis;</span></span><br><span class="line"><span class="language-css">    }</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">767px</span>) {</span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">li</span> {</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">240px</span>;</span></span><br><span class="line"><span class="language-css">        }</span></span><br><span class="line"><span class="language-css">    }</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">768px</span>) {</span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">li</span> {</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">60vw</span>;</span></span><br><span class="line"><span class="language-css">        }</span></span><br><span class="line"><span class="language-css">    }</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
 <h2 id="置顶"><a href="#置顶" class="headerlink" title="置顶"></a>置顶</h2><p>教程见上。但我发现教程缺少了一步，就是把主题文件夹下的_config.yml中“归档”按钮的跳转链接改掉：</p>
 <figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">nav:</span></span><br><span class="line">  <span class="string">归档:</span> <span class="string">/top</span> <span class="comment"># 本来是/archive</span></span><br></pre></td></tr></tbody></table></figure>
 
@@ -1088,9 +1091,9 @@
                                             <span class="tag">
                                                 
                                                     
-                                                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
-                                                        
                                                         <a href="/tags/%E7%BD%AE%E9%A1%B6/"># 置顶</a>
+                                                        
+                                                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
                                                         
                                                             
                                             </span>
@@ -1442,7 +1445,7 @@
             show_runtime();
         </script>
         <span class="post-count">
-            74.7k
+            74.8k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
