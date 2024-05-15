@@ -330,9 +330,9 @@
             }
         </style>
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 7.1.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-solarized-dark-atom.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -523,45 +523,40 @@
                         
         </div>
     </div>
+
+    <!-- 添加过长博文名省略 -->
+    <style>
+        li {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 80vw;
+            /* 设置宽度为视口宽度的80% */
+        }
+    </style>
             
 
                     <!-- 添加过长博文名省略 -->
-
                     <style>
-                        .archive-item a {
-                            width: 100%;
-                            /* 使a元素占满archive-item */
-                        }
-
-                        .archive-item a li {
-                            height: 24.2px;
+                        .item-title {
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
+                            width: 270px;
+                        }
+
+                        @media (max-width: 992px) {
+                            .item-title {
+                                width: 250px;
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            .item-title {
+                                width: 230px;
+                            }
                         }
                     </style>
-
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            function setLiWidth() {
-                                var archiveItems = document.querySelectorAll('.card-item');
-                                archiveItems.forEach(function (item) {
-                                    var link = item.querySelector('.archive-item-link li');
-                                    if (link) {
-                                        var newWidth;
-                                        newWidth = item.offsetWidth - 100; // 保持桌面端的宽度计算
-                                        link.style.width = newWidth + 'px';
-                                    }
-                                });
-                            }
-
-                            // Initial width setting
-                            setLiWidth();
-
-                            // Adjust width on window resize
-                            window.addEventListener('resize', setLiWidth);
-                        });
-                    </script>
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
@@ -657,7 +652,7 @@
             show_runtime();
         </script>
         <span class="post-count">
-            76.3k
+            76.9k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
