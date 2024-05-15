@@ -574,26 +574,42 @@
             
 
                     <!-- 添加过长博文名省略 -->
+
                     <style>
-                        li {
+                        .archive-item a {
+                            width: 100%;
+                            /* 使a元素占满archive-item */
+                        }
+
+                        .archive-item a li {
                             height: 24.2px;
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
                         }
-
-                        @media screen and (max-width: 767px) {
-                            li {
-                                width: 240px;
-                            }
-                        }
-
-                        @media screen and (min-width: 768px) {
-                            li {
-                                width: 60vw;
-                            }
-                        }
                     </style>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            function setLiWidth() {
+                                var archiveItems = document.querySelectorAll('.card-item');
+                                archiveItems.forEach(function (item) {
+                                    var link = item.querySelector('.archive-item-link li');
+                                    if (link) {
+                                        var newWidth;
+                                        newWidth = item.offsetWidth - 100; // 保持桌面端的宽度计算
+                                        link.style.width = newWidth + 'px';
+                                    }
+                                });
+                            }
+
+                            // Initial width setting
+                            setLiWidth();
+
+                            // Adjust width on window resize
+                            window.addEventListener('resize', setLiWidth);
+                        });
+                    </script>
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
