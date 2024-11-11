@@ -24,7 +24,7 @@
     "hexo-generator-index-pin-top": "^0.2.2",
     "hexo-generator-search": "^2.4.3",
     "hexo-generator-tag": "^2.0.0",
-    "hexo-pagination": "^3.0.0",
+    "hexo-pagination": "^4.0.0",
     "hexo-permalink-pinyin": "^1.1.0",
     "hexo-pinyin-plugin": "^1.0.0",
     "hexo-prism-plugin": "^2.3.0",
