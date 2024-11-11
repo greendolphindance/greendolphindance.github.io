@@ -1,8 +1,6 @@
 {
   "type": "service_account",
   "project_id": "intense-grove-413513",
-  "private_key_id": "[REDACTED]",
-  "private_key": "[REDACTED]",
   "client_email": "somethin-else@intense-grove-413513.iam.gserviceaccount.com",
   "client_id": "109301786673987248488",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
