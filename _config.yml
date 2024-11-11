@@ -1,0 +1,206 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Green Dolphin Dance
+subtitle: ''
+description: 'Back to the rough ground!'
+keywords:
+author: greendolphindance
+language: zh-CN
+timezone: ''
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: https://greendolphindance.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+data_dir: _data
+skip_render:
+
+# Writing
+new_post_name: :year/:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  hljs: false
+  enable: false
+  line_number: false
+  auto_detect: true
+  tab_replace: ''
+prismjs:
+  enable: false
+  preprocess: false
+  line_number: false
+  tab_replace: ''
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime'
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: Chic
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy: 
+  type: git
+  ignore_hidden: false
+  repo:
+    git: git@github.com:greendolphindance/greendolphindance.github.io.git
+  branch: master
+archive_generator:
+  per_page: 0
+  yearly: false
+  monthly: false
+  daily: false
+  
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: false
+  content_limit: false
+  content_limit_delim: " "
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
+
+# Extensions
+plugins:
+  hexo-generator-feed
+
+aplayer:
+  meting: true
+  asset_inject: false
+
+
+# search//please insert in the end of the body
+search:
+ enable: true
+ path: search.json
+ field: post
+ content: true
+
+githubEmojis:
+ enable: true
+ className: github-emoji
+ inject: true
+ styles:
+ customEmojis:
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'solarized-dark-atom'
+  line_number: true    # default false
+
+  marked:
+  gfm: true
+  tables: true
+  breaks: true
+  pedantic: true
+  sanitize: false
+  smartLists: true
+  smartypants: true
+  modifyAnchors: ''
+  autolink: true
+  renderer:
+    code: true
+
+top_generator:
+  per_page: 10
+
+extend:
+  helper: scripts/wordcount.js
+
+douban:
+  id: 177871779
+  builtin: true
+  item_per_page: 20
+  meta_max_line: 4
+  customize_layout: page
+  song:
+    path: songs/index.html
+    title: 音乐
+    option:
+  timeout: 10000
+
+recommended_posts:
+  server: https://api.truelaurel.com #后端推荐服务器地址
+  timeoutInMillis: 10000 #服务时长，超过此时长，则使用离线推荐模式
+  internalLinks: 2 #内部文章数量
+  externalLinks: 1 #外部文章数量
+  autoDisplay: false #自动在文章底部显示推荐文章
+  excludePattern: []
+  fixedNumber: false # 控制是否返回固定数量的推荐文章
+  titleHtml: 
+
+permalink_pinyin:
+  enable: false
+  separator: '_' # default: '-'
+  style: separate
+
+helpers:
+  - hexo-yaml-helper

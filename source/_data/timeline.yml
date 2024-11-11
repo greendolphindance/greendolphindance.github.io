@@ -1,0 +1,152 @@
+timeline:
+  - date: "2024-11-4"
+    type: blog_renovation
+    description: “动态”页面现在可以添加图片了。
+  - date: "2024-11-4"
+    type: personal_status
+    description: 图片测试。
+    image: "https://greendolphindance.github.io/picx-images-hosting/10961730655413_.pic.58hdovd5f3.jpg"
+  - date: "2024-11-3"
+    type: blog_post
+    description: 发布了《购物分享（10）》。
+    link: "https://greendolphindance.com/2024/11/03/购物分享（10）/"
+  - date: "2024-10-17"
+    type: blog_post
+    description: 发布了《中学生日记》。
+    link: "https://greendolphindance.com/2024/10/17/中学生日记/"
+  - date: "2024-08-27"
+    type: blog_post
+    description: 发布了《八月碎碎念》。
+    link: "https://greendolphindance.com/2024/08/27/八月碎碎念/"
+  - date: "2024-07-25"
+    type: blog_post
+    description: 发布了《七月碎碎念》。
+    link: "https://greendolphindance.com/2024/01/22/%E5%88%B6%E4%BD%9Chexo%E7%83%AD%E5%8A%9B%E5%9B%BE/"
+  - date: "2024-07-17"
+    type: blog_post
+    description: 修改了《制作hexo热力图》。
+    link: "https://greendolphindance.com/2024/01/22/%E5%88%B6%E4%BD%9Chexo%E7%83%AD%E5%8A%9B%E5%9B%BE/"
+  - date: "2024-07-16"
+    type: blog_post
+    description: 发布了《购物分享（9）》。
+    link: https://greendolphindance.com/2024/07/16/购物分享（9）/
+  - date: "2024-06-27"
+    type: blog_post
+    description: 发布了《购物分享（8）》。
+    link: https://greendolphindance.com/2024/06/27/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%888%EF%BC%89/
+  - date: "2024-06-23"
+    type: blog_post
+    description: 发布了《成都两日游》。
+    link: https://greendolphindance.com/2024/06/23/%E6%88%90%E9%83%BD%E4%B8%A4%E6%97%A5%E6%B8%B8/
+  - date: "2024-06-23"
+    type: personal_status
+    description: 到达广元。
+  - date: "2024-06-21"
+    type: personal_status
+    description: 到达成都。
+  - date: "2024-06-13"
+    type: personal_status
+    description: 上完最后一堂课。学期结束！
+  - date: "2024-05-15"
+    type: blog_post 
+    description: 调整了Category页面过长博文名的显示，并发布了《Category页面过长博文名省略》。
+    link: "http://greendolphindance.com/2024/05/15/Category页面过长博文名省略/"
+  - date: "2024-05-14"
+    type: blog_renovation
+    description: 更改了博客favicon。
+  - date: "2024-05-14"
+    type: blog_post 
+    description: 发布了《最近听了啥：<Thelonious Monk 1962-1968>》。
+    link: "http://greendolphindance.com/2024/05/14/最近听了啥：《Thelonious-Monk-1962-1968》/"
+  - date: "2024-05-03"
+    type: blog_post 
+    description: 修改了大屏幕下Category子页面博文名最长宽度，并更新了《博客搭建小记》。
+    link: "https://greendolphindance.com/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/"
+  - date: "2024-05-02"
+    type: blog_renovation
+    description: 将备用站点从Gitee迁移到Vercel。
+  - date: "2024-04-24"
+    type: blog_post 
+    description: 发布了《接崔见闻》。
+    link: "https://greendolphindance.com/2024/04/23/%E6%8E%A5%E5%B4%94%E8%A7%81%E9%97%BB/"
+  - date: "2024-04-10"
+    type: blog_renovation
+    description: 修改了“关于”页面部分措辞。
+  - date: "2024-04-09"
+    type: blog_renovation
+    description: 更换了移动端首页照片。
+  - date: "2024-04-02"
+    type: blog_post 
+    description: 发布了《购物分享（7）》。
+    link: "https://greendolphindance.com/2024/04/02/购物分享（7）/"
+  - date: "2024-03-08"
+    type: blog_renovation
+    description: 美化了“关于”页面。
+  - date: "2024-03-26"
+    type: personal_status
+    description: 因为想听的专辑只在MD/CD媒介，闲鱼购入了MD和CD播放机。期待！
+  - date: "2024-03-18"
+    type: blog_post
+    description: 发布了《我的文身》。
+    link: "https://greendolphindance.com/2024/03/18/我的文身/"
+  - date: "2024-03-17"
+    type: personal_status
+    description: 又文身咯！
+  - date: "2024-03-13"
+    type: blog_post
+    description: 修改了《Mac运行仅支持Windows的Steam游戏》，添加了重新使用VMWare的经历。
+    link: "https://greendolphindance.com/2024/02/05/Mac运行仅支持Windows的Steam游戏/"
+  - date: "2024-03-09"
+    type: blog_post
+    description: 修改了《友链页面美化》，添加了友人随机排序，并且重新进入友链页面时打乱排序的功能。
+    link: "https://greendolphindance.com/2024/03/07/友链页面美化/"
+  - date: "2024-03-08"
+    type: blog_renovation
+    description: 将各个页面标题左右的“-”去除。
+  - date: "2024-03-07"
+    type: blog_post
+    description: 发布了《友链页面美化》。
+    link: "https://greendolphindance.com/2024/03/07/友链页面美化/"
+  - date: "2024-03-07"
+    type: blog_renovation
+    description: 美化了“友链”页面。
+  - date: "2024-03-06"
+    type: personal_status
+    description: 喜提新车。是迪卡侬的Elops 120，粉色。
+  - date: "2024-03-03"
+    type: blog_post
+    description: 发布了《搬家与<Unpacking>》。
+    link: "https://greendolphindance.com/2024/03/03/搬家与《Unpacking》/"
+  - date: "2024-03-03"
+    type: personal_status
+    description: 报名了拳击课。跟教练扯了半天，硬说要350块一节，最后原价488/节的私教课，我以380/节的价格成交，再加赠两节私教课和十节团课，折算下来私教课大概356/节，再加十节团课。之前做了一点功课，这个价格在北京似乎算是还可以的。但是事后马上就去剪了一个很丑的发型，侧面还行，但是正面巨显脸大。
+  - date: "2024-02-28"
+    type: blog_post
+    description: 发布了《购物分享（6）：宿舍装修篇》。
+    link: "https://greendolphindance.com/2024/02/28/购物分享（6）：宿舍装修篇/"
+  - date: "2024-02-24"
+    type: personal_status
+    description: 回到学校并收拾好了新宿舍。
+  - date: "2024-02-19"
+    type: blog_post
+    description: 发布了《Mac半自动导出Safari书签至Chrome》。
+    link: "https://greendolphindance.com/2024/02/19/Mac半自动导出Safari书签至Chrome/"
+  - date: "2024-02-18"
+    type: personal_status
+    description: 今天和两个同学聚会，去小神闲茶馆喝了奶茶，晚上吃了一家叫“宏辣椒”的浏阳菜馆，异常地便宜，包菜只要9块钱。又是同学付钱，白嫖的快乐战胜了我的羞耻之情。
+  - date: "2024-02-17"
+    type: personal_status
+    description: 今天和三个同学聚会，吃了一家叫“煮男冬冬”的私房菜，小贵，但是好好吃！聊了一些八卦。最后一个已婚同学的老公付了钱，感觉蛮不好意思的。
+  - date: "2024-02-17"
+    type: blog_renovation
+    description: 修复了（再次出现的）点击链接时页面横向晃动的问题；重新添加了代码复制按钮；微调了copyright字体大小。
+  - date: "2024-02-16"
+    type: blog_post
+    description: "发布了《制作hexo时间轴》。"
+    link: "https://greendolphindance.com/2024/02/16/制作hexo时间轴/"
+  - date: "2024-02-16"
+    type: blog_renovation
+    description: 添加了“动态（timeline）”页面。
+  - date: "2024-02-15"
+    type: personal_status
+    description: 过完年从老家回来了，好累啊！

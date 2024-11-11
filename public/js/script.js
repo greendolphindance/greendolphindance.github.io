@@ -28,7 +28,6 @@
     };
 })();
 
-
 document.ready(
     // toggleTheme function.
     // this script shouldn't be changed.
@@ -59,11 +58,17 @@ document.ready(
             document.getElementsByClassName('toggleBtn')[0].addEventListener('click', () => {
                 if (pagebody.classList.contains('dark-theme')) {
                     pagebody.classList.remove('dark-theme');
+                    // Dispatch the custom 'themechange' event
+                    var event = new Event('themechange');
+                    document.body.dispatchEvent(event);
                 } else {
                     pagebody.classList.add('dark-theme');
+                    // Dispatch the custom 'themechange' event
+                    var event = new Event('themechange');
+                    document.body.dispatchEvent(event);
                 }
                 window.localStorage &&
-                window.localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light',)
+                    window.localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light',)
             })
             // moblie
             document.getElementById('mobile-toggle-theme').addEventListener('click', () => {
@@ -71,18 +76,22 @@ document.ready(
                     pagebody.classList.remove('dark-theme');
                     // mobile
                     document.getElementById("mobile-toggle-theme").innerText = "· Light"
-
+                    // Dispatch the custom 'themechange' event
+                    var event = new Event('themechange');
+                    document.body.dispatchEvent(event);
                 } else {
                     pagebody.classList.add('dark-theme');
                     // mobile
                     document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+                    // Dispatch the custom 'themechange' event
+                    var event = new Event('themechange');
+                    document.body.dispatchEvent(event);
                 }
                 window.localStorage &&
-                window.localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light',)
+                    window.localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light',)
             })
         };
         _Blog.toggleTheme();
         // ready function.
     }
 );
-

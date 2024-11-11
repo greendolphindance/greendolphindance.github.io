@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
 <meta name="google-site-verification" content="zn35ZLEP0On5fOgBn4JhRUUvkwCf7aHCy5sF7KY_ztQ" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="baidu-site-verification" content="codeva-zj1hmU1TBt" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta name="author" content="greendolphindance">
@@ -23,7 +24,7 @@
 
                                     
                                         
-                                            <link rel="icon" href="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/e66871c0-be6e-4fc7-8fa6-ceae6932cbaf">
+                                            <link rel="icon" href="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/c65c5411-e5b5-4b25-b756-1a3121e22467">
                                             
 
                                                 
@@ -48,6 +49,9 @@
                                                                                 
                                                                                 <script
                                                                                     src="/js/jquery.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/clipboard.min.js"></script>
                                                                                 
                                                                                     
                                                                                         
@@ -109,7 +113,7 @@
 
     function searchToggle() {
         const width = $(document.body).width()
-        if(width > 479) {
+        if (width > 900) {
             return;
         }
         const search = $('.search');
@@ -117,7 +121,7 @@
         const menuToggle = $('.menu-toggle');
         const title = $('.navbar-header-title ');
 
-        if(!search.hasClass("mobile-search")) {
+        if (!search.hasClass("mobile-search")) {
             search.addClass("mobile-search");
             menuToggle.addClass("open-search")
             title.addClass("mobile-title-hidden")
@@ -133,10 +137,10 @@
 
     function search(searchInputEl, formEl, flag) {
         const path = "/" + "search.json"; // 可以在public 下查看这个search.json
-        $(formEl).submit(function(e){
+        $(formEl).submit(function (e) {
             e.preventDefault();
             let target = null
-            if(searchInputEl == null) {
+            if (searchInputEl == null) {
                 const screenWidth = $(document.body).width();
                 target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
                 console.log(target);
@@ -144,11 +148,11 @@
                 target = $(searchInputEl)
             }
 
-            if(!flag && target.val() === '') {
-                return ;
+            if (!flag && target.val() === '') {
+                return;
             }
 
-            $("#u-search").fadeIn(500, function() {
+            $("#u-search").fadeIn(500, function () {
                 $("body > .wrapper").addClass("modal-active");
 
                 $.ajax({
@@ -159,11 +163,11 @@
                         $(".form-input").val($input);
                         const loadingBar = $('.search-loading-bar')
                         loadingBar.css({
-                            width:'100%',
+                            width: '100%',
                             display: 'block'
                         });
                     },
-                    success: function( datas ) {
+                    success: function (datas) {
                         console.log(datas);
                         const $resultPanel = $(".modal-body")[0];
                         let str = `<ul class="modal-results">`;
@@ -244,20 +248,20 @@
                             }
                         });
                         str += "</ul>";
-                        if(hasResult) {
+                        if (hasResult) {
                             $resultPanel.innerHTML = str;
                         } else {
                             $resultPanel.innerHTML = text;
                         }
 
                     },
-                    complete: function() {
+                    complete: function () {
                         setTimeout(() => {
-                                const loadingBar = $('.search-loading-bar')
-                                loadingBar.css({
-                                    width:'0%',
-                                    display: 'none'
-                                });
+                            const loadingBar = $('.search-loading-bar')
+                            loadingBar.css({
+                                width: '0%',
+                                display: 'none'
+                            });
                         }, 300)
                     }
                 });
@@ -266,13 +270,13 @@
         });
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.modal-close').click(function () {
             $("#u-search").fadeOut();
             $("body > .wrapper").removeClass("modal-active")
         })
 
-        $('.modal-overlay').click(function() {
+        $('.modal-overlay').click(function () {
             $("#u-search").fadeOut();
             $("body > .wrapper").removeClass("modal-active")
         })
@@ -280,7 +284,6 @@
         search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
     })
 </script>
-
                                                                                                                                                 
 
                                                                                                                                                     <script
@@ -327,7 +330,7 @@
             }
         </style>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 7.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-solarized-dark-atom.css" type="text/css">
@@ -367,6 +370,10 @@
             }
         </style>
                         
+                            <a class="menu-item" href="/timeline">
+                                动态
+                            </a>
+                            
                             <a class="menu-item" href="/archives">
                                 归档
                             </a>
@@ -439,6 +446,10 @@
 
                     <div class="menu" id="mobile-menu">
                         
+                            <a class="menu-item" href="/timeline">
+                                动态
+                            </a>
+                            
                             <a class="menu-item" href="/archives">
                                 归档
                             </a>
@@ -491,6 +502,7 @@
             <div class="main">
                 
 
+
     
         
     <div class="container">
@@ -503,9 +515,33 @@
                 
                     
                         <article class="archive-item">
+                            <a class="archive-item-link" href="/2024/08/27/%E5%85%AB%E6%9C%88%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                                <li class="tag-page-post">
+                                    八月碎碎念
+                                </li>
+                            </a>
+                        </article>
+                        
+                        <article class="archive-item">
+                            <a class="archive-item-link" href="/2024/11/03/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%8810%EF%BC%89/">
+                                <li class="tag-page-post">
+                                    购物分享（10）
+                                </li>
+                            </a>
+                        </article>
+                        
+                        <article class="archive-item">
                             <a class="archive-item-link" href="/2023/12/04/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%883%EF%BC%89/">
                                 <li class="tag-page-post">
                                     购物分享（3）
+                                </li>
+                            </a>
+                        </article>
+                        
+                        <article class="archive-item">
+                            <a class="archive-item-link" href="/2024/04/02/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%887%EF%BC%89/">
+                                <li class="tag-page-post">
+                                    购物分享（7）
                                 </li>
                             </a>
                         </article>
@@ -548,221 +584,73 @@
     </style>
             
 
-                        <!--
-                        <style>
-                            :root {
-                                --tag-border-color: #ddd;
-                                --tag-text-color: #ddd;
-                                /* 标签文本颜色 */
+                    <style>
+                        .tags-page span {
+                            margin-right: 5px;
+                            /* 调整这个值来改变标签之间的间距 */
+                        }
+                    </style>
+
+                    <script>
+                        // Function to shuffle an array randomly
+                        function shuffleArray(array) {
+                            for (let i = array.length - 1; i > 0; i--) {
+                                const j = Math.floor(Math.random() * (i + 1));
+                                [array[i], array[j]] = [array[j], array[i]];
                             }
+                            return array;
+                        }
 
-                            body.dark-theme {
-                                --tag-border-color: #a9a9b3;
-                                /* 夜间模式下的边框颜色 */
-                                --tag-text-color: #a9a9b3;
-                            }
-
-                            .tag {
-                                display: inline-block;
-                                margin: 0 10px;
-                                padding: 5px 10px;
-                                border: 1px solid var(--tag-border-color);
-                                transition: opacity 0.3s;
-                            }
-
-                            .tag:hover {
-                                cursor: pointer;
-                                opacity: 1;
-                                /* 鼠标悬停时，标签不会减淡 */
-                            }
-
-                            .dimmed {
-                                opacity: 0.3;
-                                /* 减淡显示的样式 */
-                            }
-
-                            #tag-group-name {
-                                display: none;
-                                /* 默认不显示 */
-                                position: fixed;
-                                left: 50%;
-                                bottom: 40% !important;
-                                /* 或根据需要调整 */
-                                transform: translateX(-50%);
-                                font-size: 3em;
-                                /* 大字号，根据需要调整 */
-                                z-index: 9999;
-                                /* 确保它在页面内容之上 */
-                                color: var(--tag-border-color);
-                                /* 使用同样的颜色 */
-                                padding: 0.5em 1em;
-                                /* 内边距，根据需要调整 */
-                                border-radius: 10px;
-                                /* 圆角边框 */
-                                transition: opacity 0.3s, bottom 0.3s;
-                                /* 平滑过渡效果 */
-                                opacity: 0;
-                                pointer-events: none;
-                                /* 确保鼠标事件可以透过它传递 */
-                            }
-
-                            @media (prefers-color-scheme: dark),
-                            .dark-theme {
-                                #tag-group-name {
-                                    color: var(--tag-text-color);
-                                }
-                            }
-                        </style>
-
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var tags = document.querySelectorAll('.tag-cloud-tags a');
-                                var groupNameDisplay = document.getElementById('tag-group-name');
-
-                                tags.forEach(function (tag) {
-                                    tag.addEventListener('mouseover', function () {
-                                        var group = this.getAttribute('data-tag-group');
-                                        groupNameDisplay.textContent = group; // 设置分类名称文本
-                                        groupNameDisplay.style.display = 'block'; // 显示分类名称
-                                        groupNameDisplay.style.opacity = 1; // 使其可见
-                                        groupNameDisplay.style.bottom = '20%'; // 提高位置使其更可见
-
-                                        tags.forEach(function (otherTag) {
-                                            if (otherTag.getAttribute('data-tag-group') !== group) {
-                                                otherTag.classList.add('dimmed');
-                                            }
-                                        });
-                                    });
-
-                                    tag.addEventListener('mouseout', function () {
-                                        groupNameDisplay.style.opacity = 0; // 使其透明
-                                        groupNameDisplay.style.bottom = '10%'; // 降低位置
-                                        groupNameDisplay.style.display = 'none'; // 再次隐藏
-
-                                        tags.forEach(function (otherTag) {
-                                            otherTag.classList.remove('dimmed');
-                                        });
-                                    });
-                                });
-                            });
-
-                        </script>
-
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var tags = document.querySelectorAll('.tag-cloud-tags a');
-                                var groupNameDisplay = document.getElementById('tag-group-name');
-                                var currentlySelectedTag = null;
-
-                                function applyDimEffect(tagToHighlight) {
-                                    var group = tagToHighlight.getAttribute('data-tag-group');
-                                    groupNameDisplay.textContent = group;
-                                    groupNameDisplay.style.display = 'block';
-
-                                    tags.forEach(function (tag) {
-                                        if (tag !== tagToHighlight && tag.getAttribute('data-tag-group') !== group) {
-                                            tag.classList.add('dimmed');
-                                        }
-                                    });
-                                }
-
-                                function clearDimEffect() {
-                                    groupNameDisplay.style.display = 'none';
-                                    tags.forEach(function (tag) {
-                                        tag.classList.remove('dimmed');
-                                    });
-                                }
-
-                                tags.forEach(function (tag) {
-                                    // 鼠标悬停效果（桌面端）
-                                    tag.addEventListener('mouseover', function () {
-                                        applyDimEffect(this);
-                                    });
-
-                                    tag.addEventListener('mouseout', clearDimEffect);
-
-                                    // 移动端点击效果
-                                    tag.addEventListener('click', function (event) {
-                                        if (currentlySelectedTag !== this) {
-                                            // 阻止默认行为并应用减淡效果
-                                            event.preventDefault();
-                                            clearDimEffect();
-                                            applyDimEffect(this);
-                                            currentlySelectedTag = this;
-                                        } else {
-                                            // 允许默认行为，跳转链接
-                                            currentlySelectedTag = null;
-                                        }
-                                    });
-                                });
-
-                                // 在移动端，点击页面其他部分移除减淡效果
-                                document.addEventListener('click', function (event) {
-                                    if (event.target.closest('.tag-cloud-tags a') === null) {
-                                        clearDimEffect();
-                                        currentlySelectedTag = null;
-                                    }
-                                });
-                            });
-                        </script>
-
-                        <style>
-                            .tag-cloud-tags {
-                                display: flex;
-                                flex-wrap: wrap;
-                                justify-content: center;
-                                align-items: center;
-                            }
-
-                            .tag {
-                                margin: 5px;
-                            }
-                        </style>
-
-                    -->
+                        // Shuffle the tags array randomly
+                        var tagsContainer = document.getElementById('tag-cloud');
+                        var tags = Array.from(tagsContainer.children);
+                        shuffleArray(tags);
+                        tags.forEach(tag => tagsContainer.appendChild(tag));
+                    </script>
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
         <!-- <img style="height:16px!important; margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
                 <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
                 <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"> -->
-        <svg xmlns="http://www.w3.org/2000/svg"
-            style="height:14px; width:14px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
-            class="cc-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
-            width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
-            xml:space="preserve">
-            <g>
-                <circle fill="none" cx="37.785" cy="28.501" r="28.836" />
-                <path
-                    d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314   c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143   c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429   c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2   c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657   c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913   c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971   c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344   c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187   l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657   c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2   c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629   c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686   C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2   c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113   c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686   c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313   c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z" />
-            </g>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg"
-            style="height:14px; width:14px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
-            class="att-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
-            width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
-            xml:space="preserve">
-            <g>
-                <circle fill="none" cx="37.637" cy="28.806" r="28.276" />
+        <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="cc-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
                 <g>
+                    <circle fill="none" cx="37.785" cy="28.501" r="28.836" />
                     <path
-                        d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456    C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5    c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657    c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771    c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571    C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557    c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6    C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514    c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z" />
+                        d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314   c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143   c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429   c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2   c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657   c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913   c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971   c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344   c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187   l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657   c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2   c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629   c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686   C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2   c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113   c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686   c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313   c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z" />
                 </g>
-            </g>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg"
-            style="height:14px; width:14px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
-            class="non-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
-            width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
-            xml:space="preserve">
-            <g>
-                <circle fill="none" cx="37.47" cy="28.736" r="29.471" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="att-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
                 <g>
-                    <path
-                        d="M37.442-3.5c8.99,0,16.571,3.085,22.743,9.256C66.393,11.928,69.5,19.509,69.5,28.5c0,8.992-3.048,16.476-9.145,22.458    C53.88,57.32,46.241,60.5,37.442,60.5c-8.686,0-16.19-3.162-22.513-9.485C8.644,44.728,5.5,37.225,5.5,28.5    c0-8.762,3.144-16.343,9.429-22.743C21.1-0.414,28.604-3.5,37.442-3.5z M12.7,19.872c-0.952,2.628-1.429,5.505-1.429,8.629    c0,7.086,2.59,13.22,7.77,18.4c5.219,5.144,11.391,7.715,18.514,7.715c7.201,0,13.409-2.608,18.63-7.829    c1.867-1.79,3.332-3.657,4.398-5.602l-12.056-5.371c-0.421,2.02-1.439,3.667-3.057,4.942c-1.622,1.276-3.535,2.011-5.744,2.2    v4.915h-3.714v-4.915c-3.543-0.036-6.782-1.312-9.714-3.827l4.4-4.457c2.094,1.942,4.476,2.913,7.143,2.913    c1.104,0,2.048-0.246,2.83-0.743c0.78-0.494,1.172-1.312,1.172-2.457c0-0.801-0.287-1.448-0.858-1.943l-3.085-1.315l-3.771-1.715    l-5.086-2.229L12.7,19.872z M37.557,2.214c-7.276,0-13.428,2.571-18.457,7.714c-1.258,1.258-2.439,2.686-3.543,4.287L27.786,19.7    c0.533-1.676,1.542-3.019,3.029-4.028c1.484-1.009,3.218-1.571,5.2-1.686V9.071h3.715v4.915c2.934,0.153,5.6,1.143,8,2.971    l-4.172,4.286c-1.793-1.257-3.619-1.885-5.486-1.885c-0.991,0-1.876,0.191-2.656,0.571c-0.781,0.381-1.172,1.029-1.172,1.943    c0,0.267,0.095,0.533,0.285,0.8l4.057,1.83l2.8,1.257l5.144,2.285l16.397,7.314c0.535-2.248,0.801-4.533,0.801-6.857    c0-7.353-2.552-13.543-7.656-18.573C51.005,4.785,44.831,2.214,37.557,2.214z" />
+                    <circle fill="none" cx="37.637" cy="28.806" r="28.276" />
+                    <g>
+                        <path
+                            d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456    C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5    c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657    c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771    c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571    C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557    c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6    C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514    c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z" />
+                    </g>
                 </g>
-            </g>
-        </svg>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="non-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.47" cy="28.736" r="29.471" />
+                    <g>
+                        <path
+                            d="M37.442-3.5c8.99,0,16.571,3.085,22.743,9.256C66.393,11.928,69.5,19.509,69.5,28.5c0,8.992-3.048,16.476-9.145,22.458    C53.88,57.32,46.241,60.5,37.442,60.5c-8.686,0-16.19-3.162-22.513-9.485C8.644,44.728,5.5,37.225,5.5,28.5    c0-8.762,3.144-16.343,9.429-22.743C21.1-0.414,28.604-3.5,37.442-3.5z M12.7,19.872c-0.952,2.628-1.429,5.505-1.429,8.629    c0,7.086,2.59,13.22,7.77,18.4c5.219,5.144,11.391,7.715,18.514,7.715c7.201,0,13.409-2.608,18.63-7.829    c1.867-1.79,3.332-3.657,4.398-5.602l-12.056-5.371c-0.421,2.02-1.439,3.667-3.057,4.942c-1.622,1.276-3.535,2.011-5.744,2.2    v4.915h-3.714v-4.915c-3.543-0.036-6.782-1.312-9.714-3.827l4.4-4.457c2.094,1.942,4.476,2.913,7.143,2.913    c1.104,0,2.048-0.246,2.83-0.743c0.78-0.494,1.172-1.312,1.172-2.457c0-0.801-0.287-1.448-0.858-1.943l-3.085-1.315l-3.771-1.715    l-5.086-2.229L12.7,19.872z M37.557,2.214c-7.276,0-13.428,2.571-18.457,7.714c-1.258,1.258-2.439,2.686-3.543,4.287L27.786,19.7    c0.533-1.676,1.542-3.019,3.029-4.028c1.484-1.009,3.218-1.571,5.2-1.686V9.071h3.715v4.915c2.934,0.153,5.6,1.143,8,2.971    l-4.172,4.286c-1.793-1.257-3.619-1.885-5.486-1.885c-0.991,0-1.876,0.191-2.656,0.571c-0.781,0.381-1.172,1.029-1.172,1.943    c0,0.267,0.095,0.533,0.285,0.8l4.057,1.83l2.8,1.257l5.144,2.285l16.397,7.314c0.535-2.248,0.801-4.533,0.801-6.857    c0-7.353-2.552-13.543-7.656-18.573C51.005,4.785,44.831,2.214,37.557,2.214z" />
+                    </g>
+                </g>
+            </svg>
         </a>
         由 <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic"
             target="_blank">Chic</a> <span id="qudong">驱动</span>
@@ -771,18 +659,18 @@
         <!-- Add the SVG logo wrapped in a link -->
         <a href="https://www.travellings.cn/go.html" target="_blank" style="display:inline-block;">
             <svg xmlns="http://www.w3.org/2000/svg" class="kaiwang" height="16" width="14" viewBox="0 0 448 512"
-                style="height:14px; width:14px; ;vertical-align: middle; position: relative; top: -0.5px;">
+                style="height:12px; width:12px; ;vertical-align: middle; position: relative; top: -0.5px;">
                 <!-- SVG Path -->
                 <path
                     d="M96 0C43 0 0 43 0 96V352c0 48 35.2 87.7 81.1 94.9l-46 46C28.1 499.9 33.1 512 43 512H82.7c8.5 0 16.6-3.4 22.6-9.4L160 448H288l54.6 54.6c6 6 14.1 9.4 22.6 9.4H405c10 0 15-12.1 7.9-19.1l-46-46c46-7.1 81.1-46.9 81.1-94.9V96c0-53-43-96-96-96H96zM64 128c0-17.7 14.3-32 32-32h80c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM272 96h80c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H272c-17.7 0-32-14.3-32-32V128c0-17.7 14.3-32 32-32zM64 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm288-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
             </svg>
         </a>
         <a href="https://icp.gov.moe/?keyword=20230468" target="_blank"><span id="moe-text">萌ICP备20230468号</span></a>
-        <a href="https://travel.moe/go.html" title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！ target=" _blank"
-            style="display:inline-block;">
+        <a href="https://travel.moe/go.html" title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" style=" display:inline-block;"
+            target=" _blank">
             <svg t="1702427100869" class="moe-icon" viewBox="0 0 1024 1024" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" p-id="1841"
-                style="height:16px; width:16px; vertical-align: middle; position: relative; top: -1px;">
+                style="height:14px; width:14px; vertical-align: middle; position: relative; top: -1px;">
                 <path d="M598.1 392.7m-56.8 0a56.8 56.8 0 1 0 113.6 0 56.8 56.8 0 1 0-113.6 0Z" p-id="1842"></path>
                 <path d="M434.6 392.7m-33.8 0a33.8 33.8 0 1 0 67.6 0 33.8 33.8 0 1 0-67.6 0Z" p-id="1843"></path>
                 <path
@@ -814,7 +702,7 @@
             show_runtime();
         </script>
         <span class="post-count">
-            51k
+            96.8k
         </span>
         <span>
             <!-- Existing Creative Commons images and links -->
@@ -1047,6 +935,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>

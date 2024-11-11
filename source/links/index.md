@@ -1,0 +1,26 @@
+---
+title: "友情链接"
+browser_title: "友链"
+date: 2023-10-07 12:09:32
+type: "links"
+layout: "link"
+links:
+  - name: "Hanlin"
+    url: "http://r64.i11r.com"
+    blogName: "蜈ｨ縺ｦ縺ゅ↑縺溘・謇轤ｺ縺ｧ縺吶・"
+  - name: "Ayu"
+    url: "https://ayu.land"
+    blogName: "~ — Ayu"
+  - name: "CosmoOri"
+    url: "https://dkn16.github.io"
+    blogName: "Kangning Diao"
+  - name: "Mokou"
+    url: "https://www.cnblogs.com/mokou/"
+    blogName: "莫多心情小站"
+  - name: "Origakid"
+    url: "https://origakid.top"
+    blogName: "抽象艺术大巴扎"
+  - name: "茨月"
+    url: "https://blog.zcy.moe"
+    blogName: "Chris Zhang"
+---
