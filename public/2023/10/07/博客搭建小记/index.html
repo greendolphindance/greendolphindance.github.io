@@ -330,9 +330,9 @@
             }
         </style>
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 7.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-solarized-dark-atom.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -698,6 +698,7 @@
 </blockquote>
 <p>所以其实只是等一下就好了吗！我折腾了这么久，结果不知道起作用的究竟是我的折腾还是我的等待。因为太麻烦了，我也不想去测试，所以就这样吧。暂时没有很强的求知精神。</p>
 <p>刚发现换了新域名之后评论全都消失了！冷静下来瞬间发现了问题出在哪里。把GitHub的Discussion相应标题里的“greendolphindance.github.io“改成”greendolphindance.com“就好了。</p>
+<p>（2024-11-11更新）今天写了一篇博文，结果发现直接Page not Found.</p>
 <h1 id="博文整理"><a href="#博文整理" class="headerlink" title="博文整理"></a>博文整理</h1><p>今天（2023-10-10）一早起来，突发奇想想把本地的所有博文放在一个以年份命名的文件夹里。但是这好像会改变文章的URL，再次导致评论消失，怎么办呢？</p>
 <p>答案在<a target="_blank" rel="noopener" href="https://prinsss.github.io/hexo-posts-in-subfolder/">这里</a>。只需要看文章的开头就可以了，开头是此文评论区提到的简便方法，其余的都是作者在瞎折腾。方法很简单，只需要在根目录下的_config.yml中搜索“new_post_name“，在相应位置改成<code>new_post_name: :year/:title.md</code>就可以了，其他地方不用改，也就是保持permalink那一行为<code>permalink: :name/ </code>。</p>
 <p>这样，就可以在不改变文章URL的前提下，把本地的博文按年份分类啦。</p>
