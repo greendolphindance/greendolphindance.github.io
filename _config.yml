@@ -130,7 +130,8 @@ feed:
 
 # Extensions
 plugins:
-  hexo-generator-feed
+  - hexo-generator-feed
+plugins_dir: node_modules
 
 aplayer:
   meting: true
