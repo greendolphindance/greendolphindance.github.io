@@ -1,0 +1,31 @@
+<%# single category page%>
+    <div class="container">
+        <div class="post-wrap categories">
+            <h2 class="post-title">-&nbsp;<i class="iconfont icon-fenlei"
+                    style="font-size: 1em;"></i>分类&nbsp;·&nbsp;<%-page.category%>-</h2>
+
+            <% var posts=site.categories.findOne({name: page.category}).posts %>
+                <!-- 按title字母顺序排序 -->
+                <% posts.data.sort((a, b)=> a.title.toLowerCase().localeCompare(b.title.toLowerCase())) %>
+                    <% posts.each(function (post) { %>
+                        <article class="archive-item">
+                            <a class="archive-item-link" href="<%- url_for(post.path) %>">
+                                <li class="category-page-post">
+                                    <%= post.title %>
+                                </li>
+                            </a>
+                        </article>
+                        <% }) %>
+        </div>
+    </div>
+
+    <!-- 添加过长博文名省略 -->
+    <style>
+        li {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 80vw;
+            /* 设置宽度为视口宽度的80% */
+        }
+    </style>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Doplhin Dance</title>
+<style>
+    .comment-box {
+        width: 100%;
+        max-width: 780px; /* 适用于桌面和横屏 iPad */
+        margin: auto; /* 居中显示 */
+    }
+
+    /* 适用于屏幕宽度小于 767px 的所有设备，无论横屏还是竖屏 */
+    @media (max-width: 767px) {
+        .comment-box {
+            width: 92.5%; /* 相对于设备宽度的 92.5% */
+            margin: auto; /* 居中显示 */
+        }
+    }
+</style>
+</head>
+
+<body>
+<div class="comment-box">
+    <script src="https://giscus.app/client.js"
+            data-repo="greendolphindance/greendolphindance.github.io"
+            data-repo-id="R_kgDOKc-MwA"
+            data-category="General"
+            data-category-id="DIC_kwDOKc-MwM4CZ8oe"
+            data-mapping="url"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="noborder_light"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+    </script>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function changeGiscusTheme() {
+        const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme === 'dark' ? 'noborder_dark' : 'noborder_light'
+            }
+        });
+    }
+
+    // Initialize the theme when the page loads
+    changeGiscusTheme();
+
+    // Create a mutation observer to watch for changes to the body's class list
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+                changeGiscusTheme();
+            }
+        });
+    });
+
+    // Start observing the body for changes to the class attribute
+    observer.observe(document.body, { attributes: true });
+});
+</script>
+
+
+</body>
+</html>
+

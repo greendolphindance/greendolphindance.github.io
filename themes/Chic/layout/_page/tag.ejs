@@ -1,0 +1,46 @@
+<%# single tag page %>
+    <div class="container">
+        <div class="post-wrap tags">
+            <h2 class="post-title">-&nbsp;<i class="iconfont icon-biaoqian"
+                    style="font-size: 1em;"></i>标签&nbsp;·&nbsp;<%-page.tag%>-</h2>
+
+            <% var posts=site.tags.findOne({name: page.tag}).posts %>
+                <!-- 按title字母顺序排序 -->
+                <% posts.data.sort((a, b)=> a.title.toLowerCase().localeCompare(b.title.toLowerCase())) %>
+                    <% posts.each(function (post) { %>
+                        <article class="archive-item">
+                            <a class="archive-item-link" href="<%- url_for(post.path) %>">
+                                <li class="tag-page-post">
+                                    <%= post.title %>
+                                </li>
+                            </a>
+                        </article>
+                        <% }) %>
+        </div>
+    </div>
+
+    <!-- Style for handling ellipsis in post titles -->
+    <style>
+        /* Existing desktop styles */
+        @media screen and (min-width: 768px) {
+            li {
+                width: 600px;
+                height: 29.5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* Mobile styles */
+        @media screen and (max-width: 767px) {
+            li {
+                width: 285px;
+                /* Adjust the width for mobile */
+                height: 29.5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    </style>

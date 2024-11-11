@@ -1,0 +1,137 @@
+# Header
+navname: Green Dolphin Dance
+
+# navigatior items
+nav:
+  动态: /timeline
+  归档: /archives
+  分类: /categories
+  标签: /tags
+  音乐: /songs
+  留言板: /guestbook
+  关于: /about
+  友链: /links
+
+# favicon
+favicon: https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/c65c5411-e5b5-4b25-b756-1a3121e22467
+# Profile
+nickname: Green Dolphin Dance
+
+### this variable is MarkDown form.
+description: Back to the rough ground!
+avatar: https://greendolphindance.github.io/picx-images-hosting/7331712653717_.pic_hd.7p3du2tv99.webp
+# main menu navigation
+## links key words should not be changed.
+## Complete url after key words.
+## Unused key can be commented out.
+links:
+  # Blog: /archives
+  # Category:
+  # Tags: 
+  # Link:
+  # Resume:
+  # Publish:
+  # Trophy:
+  # Gallery:
+  # RSS: 
+  # AliPay:
+  # ZhiHu: https://www.zhihu.com/people/sirice
+  # LinkedIn:
+  # FaceBook:
+  # Twitter:
+  # Skype:
+  # CodeSandBox:
+  # CodePen:
+  # Sketch:
+  # Gitlab:
+  # Dribbble:
+  # Instagram:
+  # Reddit:
+  # YouTube:
+  # QQ:
+  # Weibo:
+  # WeChat:
+  # Github: https://github.com/Siricee
+  rss: https://greendolphindance.github.io/atom.xml
+
+# how links show: you have 2 choice--text or icon.
+links_text_enable: false
+links_icon_enable: true
+
+# Post page
+## Post_meta
+post_meta_enable: true
+
+post_author_enable: false
+post_date_enable: true
+post_category_enable: true
+## Post copyright
+post_copyright_enable: true
+
+post_copyright_author_enable: false
+post_copyright_permalink_enable: false
+post_copyright_license_enable: false
+post_copyright_license_text: Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE
+post_copyright_slogan_enable: false
+post_copyright_slogan_text: Do you believe in <strong>DESTINY</strong>?
+## toc
+post_toc_enable: false
+
+# Page
+page_title_enable: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: H:mm:ss
+
+# stylesheets loaded in the <head>
+stylesheets:
+  - /css/style.css
+
+# scripts loaded in the end of the body
+scripts:
+  - /js/echarts.js
+  - /js/script.js
+  - /js/tocbot.min.js
+#  - /js/totop.js
+  - /js/jquery.js
+  - /js/clipboard.min.js
+
+    # tscanlin/tocbot: Build a table of contents from headings in an HTML document.
+    # https://github.com/tscanlin/tocbot
+
+
+# plugin functions
+## Mathjax: Math Formula Support
+## https://www.mathjax.org
+mathjax:
+  enable: true
+  import: demand # global or demand
+  ## global: all pages will load mathjax,this will degrade performance and some grammers may be parsed wrong.
+  ## demand: Recommend option,if your post need fomula, you can declare 'mathjax: true' in Front-matter
+
+# Inject the css and script (aplayer/meting)
+aplayerInject:
+  enable: true
+  per_page: true
+  
+inject:
+  head:
+  bottom:
+    -  <div class="aplayer no-destroy" data-id="8793002560" data-server="netease" data-type="playlist" data-mini="true"
+        data-fixed="true" data-autoplay="false" data-order="random" data-lrctype="-1"> </div>
+
+# 文章字数和阅读时长
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+ item_text: true
+ wordcount: true # 单篇 字数统计
+ min2read: true # 单篇 阅读时长
+ totalcount: true # 网站 字数统计
+post_wordcount_enable: true # 字数统计
+post_min2read_enable: true # 阅读时长
+
