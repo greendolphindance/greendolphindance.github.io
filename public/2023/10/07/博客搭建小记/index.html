@@ -883,7 +883,7 @@
 <h2 id="置顶"><a href="#置顶" class="headerlink" title="置顶"></a>置顶</h2><p>教程见上。但我发现教程缺少了一步，就是把主题文件夹下的_config.yml中“归档”按钮的跳转链接改掉：</p>
 <figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">nav:</span></span><br><span class="line">  <span class="string">归档:</span> <span class="string">/top</span> <span class="comment"># 本来是/archive</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p>但是这样一来，归档页面的链接就会变成<span><a href="https://greendolphindance.com/top/">https://greendolphindance.com/top/</a></span>了，有点不爽。解决方法如下。首先top.js的内容改成：</p>
+<p>但是这样一来，归档页面的链接就会变成<span><a target="_blank" rel="noopener" href="https://greendolphindance.com/top/">https://greendolphindance.com/top/</a></span>了，有点不爽。解决方法如下。首先top.js的内容改成：</p>
 <figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> pagination = <span class="built_in">require</span>(<span class="string">'hexo-pagination'</span>);</span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">generator</span>.<span class="title function_">register</span>(<span class="string">'top'</span>, <span class="keyword">function</span> (<span class="params">locals</span>) {</span><br><span class="line">    <span class="keyword">let</span> allPost = locals.<span class="property">posts</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">pagination</span>(<span class="string">'/archives'</span>, allPost, { <span class="comment">//这里改成/archives</span></span><br><span class="line">        <span class="attr">perPage</span>: <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">top_generator</span>.<span class="property">per_page</span>,</span><br><span class="line">        <span class="attr">layout</span>: [<span class="string">'top'</span>, <span class="string">'archive'</span>, <span class="string">'index'</span>],</span><br><span class="line">        <span class="attr">format</span>: <span class="string">'page'</span> + <span class="string">'/%d/'</span>,</span><br><span class="line">        <span class="attr">data</span>: {</span><br><span class="line">            <span class="attr">__index</span>: <span class="literal">true</span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
 
 <p>然后用top.ejs里的内容替换掉archive.ejs里的内容，并在“pagination”位置作如下修改：</p>
@@ -1125,16 +1125,16 @@
                 </h3>
                 <ul>
                     
-                        <li><a href="https://greendolphindance.com/2023/10/09/%E5%A1%94%E7%BD%97%E7%89%8C%E3%80%81%E7%94%9F%E5%91%BD%E7%81%B5%E6%95%B0%E3%80%81%E6%98%9F%E5%BA%A7%E5%92%8CMBTI/">
-                                塔罗牌、生命灵数、星座和MBTI
+                        <li><a href="https://greendolphindance.github.io/2024/02/16/%E5%88%B6%E4%BD%9Chexo%E6%97%B6%E9%97%B4%E8%BD%B4/">
+                                制作hexo时间轴
                             </a></li>
                         
-                        <li><a href="https://greendolphindance.com/2023/10/08/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F/">
-                                最近下载的小玩意
+                        <li><a href="https://greendolphindance.github.io/2024/01/26/%E5%88%B6%E4%BD%9Chexo%E6%A0%87%E7%AD%BE%E5%A2%99%EF%BC%882%EF%BC%89/">
+                                制作hexo标签墙（2）
                             </a></li>
                         
-                        <li><a href="https://greendolphindance.com/2023/10/06/%E5%A1%94%E7%BD%97%E7%89%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E5%87%BA%E9%94%99/">
-                                塔罗牌为什么不会出错
+                        <li><a target="_blank" rel="noopener" href="https://blog.xlab.app/p/56b1cfe7/">
+                                Hexo使用模板
                             </a></li>
                         
                 </ul>
