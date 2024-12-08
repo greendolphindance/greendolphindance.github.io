@@ -23,4 +23,7 @@ links:
   - name: "茨月"
     url: "https://blog.zcy.moe"
     blogName: "Chris Zhang"
+  - name: "North Area"
+    url: "https://www.northarea.tech/"
+    blogName: "North Area"
 ---
