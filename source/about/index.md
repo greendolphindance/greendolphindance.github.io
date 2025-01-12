@@ -20,10 +20,10 @@ layout: about
 
 # 最近在
 
-- 看《迷宫饭》
-- 玩大逆转裁判
-- 打雀魂活动
-- 混吃等死
+- 写手帐
+- 翻译*Life and Action*引言
+- 听CD和磁带
+- 猛猛攀岩
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">   
 

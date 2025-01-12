@@ -5,9 +5,6 @@ date: 2023-10-07 12:09:32
 type: "links"
 layout: "link"
 links:
-  - name: "Hanlin"
-    url: "http://r64.i11r.com"
-    blogName: "蜈ｨ縺ｦ縺ゅ↑縺溘・謇轤ｺ縺ｧ縺吶・"
   - name: "Ayu"
     url: "https://ayu.land"
     blogName: "~ — Ayu"
