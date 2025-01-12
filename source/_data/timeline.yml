@@ -1,4 +1,12 @@
 timeline:
+  - date: "2025-1-12"
+    type: blog_post
+    description: 发布了《2024小结》。
+    link: "https://greendolphindance.com/2025/01/12/2024小结/"
+  - date: "2024-12-8"
+    type: blog_post
+    description: 发布了《最近》。
+    link: "https://greendolphindance.com/2024/12/08/最近/"
   - date: "2024-11-10"
     type: blog_post
     description: 发布了《“其实你是想离开的”》。
