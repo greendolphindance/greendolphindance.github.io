@@ -1,4 +1,8 @@
 timeline:
+  - date: "2025-6-29"
+    type: blog_post
+    description: 发布了《六月？》。
+    link: "https://greendolphindance.com/2025/06/29/六月？/"
   - date: "2025-4-27"
     type: blog_post
     description: 发布了《进军（？）自由爵士》。
