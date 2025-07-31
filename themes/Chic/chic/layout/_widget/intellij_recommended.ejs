@@ -1,0 +1,18 @@
+<div class="widget">
+    <% var post_list=recommended_posts(page, site); %>
+        <% if(post_list.length> 0) { %>
+            <div class="recommended_posts">
+                <h3>
+                    可能相关的文章<span class="driven-by">（由 <a
+                            href="https://github.com/huiwang/hexo-recommended-posts">跨博客文章推荐插件</a> 驱动）</span>
+                </h3>
+                <ul>
+                    <% post_list.forEach(function(link) { %>
+                        <li><a href="<%= link.permalink %>">
+                                <%= link.title %>
+                            </a></li>
+                        <% }) %>
+                </ul>
+            </div>
+            <% } %>
+</div>

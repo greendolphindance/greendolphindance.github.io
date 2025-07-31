@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="post-wrap">
+        <h1 class="post-title">
+            <%= page.title %>
+        </h1>
+        <div id="friend-links">
+            <% for (var i=0; i < page.links.length; i++) { %>
+                <div class="friend-link" id="friend<%= i %>">
+                    <a href="<%= page.links[i].url %>" target="_blank" title="<%= page.links[i].blogName %>">
+                        <div class="friend-name">
+                            <%= page.links[i].name %>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+    function shuffleLinks() {
+        var friendLinks = document.getElementById('friend-links');
+        var links = Array.from(friendLinks.children);
+        links.sort(() => Math.random() - 0.5);
+        for (var i = 0; i < links.length; i++) {
+            friendLinks.appendChild(links[i]);
+        }
+    }
+
+    // 初始页面加载时打乱一次顺序
+    shuffleLinks();
+
+    // 每隔10分钟打乱一次顺序
+    setInterval(function () {
+        shuffleLinks();
+    }, 600000); // 10分钟 = 600000毫秒
+</script>

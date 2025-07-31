@@ -1,0 +1,111 @@
+<%# single top page%>
+
+  <div class="container top">
+    <div class="post-wrap tags top">
+      <h2 class="post-title top">文章</h2>
+      <br>
+      <!-- <div class="tag-cloud-tags top">
+                <%site.tags.forEach(item=>{%>
+                    <a href="<%-url_for(item.path)%>"><%- item.name%><small>(<%-item.length%>)</small></a>
+                <%})%>
+            </div> -->
+      <!-- 2022年3月29日 添加置顶功能 -->
+      <div class="post top">
+        <hr />
+        <h3>置顶</h3>
+        <!-- 判断有没有 置顶 这个标签的文章 -->
+        <%site.tags.forEach(item=>{%>
+          <% if(item.name=="置顶" ){ %>
+            <% item.posts.each(function (post) { %>
+              <!-- 有的情况判断有没有top数值，按top从大到小排列，当然也可以用时间，目前单独写了个top -->
+              <% if(post.top){ %>
+                <article class="top-item">
+                  <a class="top-item-link" href="<%- url_for(post.path) %>">
+                    <li>
+                      <%= post.title %>
+                        <span class="top-item-date"><%- date(post.date, theme.date_format) %></span>
+                    </li>
+                  </a>
+
+                </article>
+                <% ;} %>
+                  <% }) %>
+                    <% ;} %>
+                      <% }) %>
+                        <hr />
+      </div>
+      <!-- 2022年3月29日 添加置顶功能为上 -->
+
+      <!-- 2022年3月31日 添加每页文章数如下 -->
+      <!-- 2022年3月30日 每页条数 -->
+      <% var perPage=config.top_generator.per_page %>
+        <% var currentPage=url.match(/page\/(.*)\//) ? url.match(/page\/(.*)\//)[1] : 1 %>
+          <% var last_year='' ; %>
+            <% var posts=site.posts %>
+              <!-- 按date逆序排序 -->
+              <% posts.data=posts.data.sort((a, b)=> b.date - a.date) %>
+                <% posts.slice((currentPage - 1) * perPage, currentPage * perPage ).each(function (post) { %>
+                  <% var cur_year=post.date.year(); %>
+                    <% if(last_year !==cur_year){ %>
+                      <h3><%- cur_year %></h3>
+                      <% last_year=cur_year; } %>
+                        <article class="archive-item">
+
+                          <a class="archive-item-link" href="<%- url_for(post.path) %>">
+                            <li class="title">
+                              <%= post.title %>
+                            </li>
+                          </a>
+
+                          <span class="archive-item-date"><%- date(post.date, theme.date_format) %></span>
+                        </article>
+                        <% }) %>
+
+                          <% if(Math.ceil(posts.length / perPage)> 1) { %>
+                            <nav class="pagination">
+                              <%- paginator({ prev_next: false, end_size: 1, mid_size: 2, format: 'page/%d/' , total:
+                                Math.ceil(posts.length / perPage) }) %>
+                            </nav>
+                            <% } %>
+                              <!-- 2022年3月31日 添加每页文章数如上 -->
+    </div>
+  </div>
+
+
+
+  <style>
+    @media (min-width: 769px) {
+      .title {
+        width: 650px;
+        height: 29.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .title {
+        width: 60vw !important;
+        /* Adjust the width for mobile */
+        /* Retain other properties or adjust as needed */
+        height: 29.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .top-item-date {
+      float: right;
+      text-align: right;
+      color: #a9a9b3;
+    }
+
+    .top-item {
+      margin-left: 2rem;
+      line-height: 2em;
+      margin-bottom: 10px;
+    }
+  </style>
