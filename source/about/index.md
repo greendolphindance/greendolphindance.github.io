@@ -6,95 +6,32 @@ type: about
 layout: about
 ---
 
-# 自我介绍
+# 我
 
-女大学生，长期坚持的爱好基本上只有听音乐和折腾电子设备（最近增加了用ChatGPT写代码）。喜欢摇滚乐和爵士乐，很偶尔听古典。虽然没有什么电脑知识，但很爱折腾，喜欢下载各种新奇的小工具偷偷把玩。最近在进行一些迷信活动。
+女大学生，长期坚持的爱好基本上只有听音乐和折腾电子设备。喜欢摇滚乐（尤其是progressive rock）和爵士乐（尤其是bebop，最近新增free），很偶尔听古典。虽然没有什么电脑知识，但很爱折腾，喜欢下载各种新奇的小工具偷偷把玩。
 
-站名“Green Dolphin Dance”来源于爵士标准曲*On Green Dolphin Street*和*Dolphin Dance*。
-[主站](https://greendolphindance.com)  
-[备用站点](https://greendolphindance.gitee.io)
+目前是黄毛。
 
-联系我：greendolphindance@outlook.com。
 
-屏幕左下方是一个歌单。感谢[竹子](https://music.163.com/#/artist?id=35945528)和[Mon](https://music.163.com/#/artist?id=34327004)贡献他们的作品！
+站名“Green Dolphin Dance”来源于爵士标准曲*On Green Dolphin Street*和*Dolphin Dance*。此外，Prince亦有一首名为*Dolphin*的作品。三首歌曲均在页面左下角的歌单中收录。
+
+<div class="primary-link-container">
+  <a href="https://greendolphindance.com" class="primary-link pink" target="_blank">主站</a>
+  <a href="https://greendolphindance-github-io.vercel.app" class="primary-link pink" target="_blank">备用站点</a>
+</div>
+
+联系我：<a href="mailto:greendolphindance@outlook.com" class="pink">greendolphindance@outlook.com</a>。
+
+屏幕左下方是一个歌单。感谢<a href="https://music.163.com/#/artist?id=35945528" class="pink">竹子</a>和<a href="https://music.163.com/#/artist?id=34327004" class="pink">Mon</a>允许我添加他们的作品。
 
 # 最近在
 
-- 写手帐
-- 翻译*Life and Action*引言
-- 听CD和磁带
-- 猛猛攀岩
+- 反复受伤（嘴、肩、踝、脚趾）
+- 但是攀岩
+- 但是打拳
+- 试图开展系统前摇研究
+- 艰难写论文
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">   
+# 即将
 
-<style>
-body {
-}
-/* Light mode styles (default) */
-body {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-
-/* Dark mode styles */
-body.dark-theme {
-    background-color: #292a2d;
-    color: #ffffff;
-}
-
-/* APlayer styles for light mode */
-body .aplayer-body,
-body .aplayer-info,
-body .aplayer-notice,
-body .aplayer-list {
-    background-color: #ffffff;
-}
-
-/* APlayer styles for dark mode */
-body.dark-theme .aplayer-body,
-body.dark-theme .aplayer-info,
-body.dark-theme .aplayer-notice,
-body.dark-theme .aplayer-list {
-    background-color: #292a2d;
-
-}
-
-body.dark-theme .aplayer .aplayer-list .aplayer-list-light {
-    background-color: #505254 !important; 
-}
-
-body.dark-theme .aplayer .aplayer-list ol li:hover {
-    background: #414345; /* 或者你想要的其他颜色 */
-}
-
-body.dark-theme .aplayer .aplayer-list ol li {
-    border-top: 1px solid #414345; /* 或者你想要的其他颜色 */
-}
-
-body.dark-theme .aplayer-lrc::before,
-body.dark-theme .aplayer-lrc::after {
-    background: linear-gradient(to bottom, #292a2d, #292a2d); /* 使用和背景相同的颜色 */
-}
-
-body.dark-theme .aplayer-list-cur {
-    background-color: #aaaaaa !important;
-}
-
-body.dark-theme .aplayer .aplayer-icon:hover path {
-    fill: #eeeeee !important;
-}
-
-body.dark-theme  .aplayer-info {
-    border-bottom: none !important;
-}
-
-body.dark-theme .aplayer {
-    box-shadow: 0 2px 4px 0 rgba(170, 170, 170, 0.2), 0 3px 10px 0 rgba(170, 170, 170, 0.19) !important;
-}
-</style>
-
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>   
-<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>   
-
-
+- 上海旅攀

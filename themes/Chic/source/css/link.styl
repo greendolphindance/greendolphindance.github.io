@@ -1,25 +1,24 @@
-.friend-link {
-  margin-bottom: 10px;
-  display: inline-flex; /* 将默认显示方式更改为inline-flex */
-  max-width: 100%; /* 最大宽度为100%，以适应内容 */
-  flex-wrap: wrap; /* 允许在需要时换行 */
-}
+.friend-link
+  margin-bottom: 10px
+  display: inline-flex
+  max-width: 100%
+  flex-wrap: wrap
 
-.friend-name {
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: #777;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  margin-right: 10px; /* 添加友人之间的间距 */
-  margin-bottom: 10px; /* 添加友人之间的间距 */
-}
+  a
+    text-decoration: none
+    color: #777
+    &:hover
+      color: #777
 
-.friend-name:hover {
-  background-color: #f0f0f0; 
-}
+.friend-name
+  padding: 5px 10px
+  border: 1px solid #ccc
+  border-radius: 5px
+  color: #777
+  text-decoration: none
+  transition: background-color 0.3s
+  margin-right: 10px
+  margin-bottom: 10px
 
-.friend-link a {
-  text-decoration: none;
-}
+.friend-name:hover
+  background-color: #f0f0f0

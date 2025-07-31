@@ -23,4 +23,7 @@ links:
   - name: "North Area"
     url: "https://www.northarea.tech/"
     blogName: "North Area"
+  - name: "夏穂"
+    url: "https://fujiwaranatsuho.github.io/"
+    blogName: "鸭川飞石"
 ---

@@ -1,4 +1,15 @@
 timeline:
+  - date: "2025-7-31"
+    type: blog_post
+    description: 发布了《上海旅攀》。
+    link: "https://greendolphindance.com/2025/04/27/上海旅攀/"
+  - date: "2025-6-30"
+    type: blog_renovation
+    description: 更改博客favicon和avatar为Yes乐队《90125》专辑封面（改色版）。
+  - date: "2025-6-30"
+    type: blog_post 
+    description: 更新了《博客搭建小记》。
+    link: "https://greendolphindance.com/2023/10/07/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%B0%8F%E8%AE%B0/"
   - date: "2025-6-29"
     type: blog_post
     description: 发布了《六月？》。
