@@ -1,4 +1,8 @@
 timeline:
+  - date: "2025-9-24"
+    type: blog_post
+    description: 发布了《Yes相关流水账》。
+    link: "https://greendolphindance.com/2025/09/19/Yes相关流水账/"
   - date: "2025-7-31"
     type: blog_post
     description: 发布了《上海旅攀》。
