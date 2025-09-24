@@ -104,8 +104,7 @@ theme: chic
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy: 
   type: git
-  repo:
-    git: git@github.com:greendolphindance/greendolphindance.github.io.git
+  repo: git@github.com:greendolphindance/greendolphindance.github.io.git
   branch: master
 archive_generator:
   per_page: 0
