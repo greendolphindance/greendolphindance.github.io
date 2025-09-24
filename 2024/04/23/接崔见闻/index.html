@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="google-site-verification" content="zn35ZLEP0On5fOgBn4JhRUUvkwCf7aHCy5sF7KY_ztQ" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="baidu-site-verification" content="codeva-zj1hmU1TBt" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="greendolphindance">
+    
+        
+                
+                    <meta name="description" content="Back to the rough ground!">
+                    
+                        
+                                
+                                    <title>
+                                        
+                                                    接崔见闻 | 
+                                                            Green Dolphin Dance
+                                    </title>
+
+                                    
+                                        
+                                            <link rel="icon" href="https://greendolphindance.github.io/picx-images-hosting/CttE_blue.45i19n1xse.webp">
+                                            
+
+                                                
+                                                    
+                                                        <!-- stylesheets list from _config.yml -->
+                                                        
+                                                            <link rel="stylesheet" href="/css/style.css">
+                                                            
+                                                                
+                                                                    
+                                                                        
+                                                                            <!-- scripts list from _config.yml -->
+                                                                            
+                                                                                <script
+                                                                                    src="/js/echarts.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/script.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/tocbot.min.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/jquery.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/clipboard.min.js"></script>
+                                                                                
+                                                                                    
+                                                                                        
+                                                                                            
+                                                                                                
+                                                                                                    
+                                                                                                                
+                                                                                                                            
+                                                                                                                                
+
+
+
+                                                                                                                                    <script>
+                                                                                                                                        document.addEventListener('DOMContentLoaded', function () {
+                                                                                                                                            function changeGiscusTheme() {
+                                                                                                                                                const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+
+                                                                                                                                                function sendMessage(message) {
+                                                                                                                                                    const iframe = document.querySelector('iframe.giscus-frame');
+                                                                                                                                                    if (!iframe) return;
+                                                                                                                                                    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                                                                                                                                                }
+
+                                                                                                                                                sendMessage({
+                                                                                                                                                    setConfig: {
+                                                                                                                                                        theme: theme === 'dark' ? 'noborder_dark' : 'noborder_light'
+                                                                                                                                                    }
+                                                                                                                                                });
+                                                                                                                                            }
+
+                                                                                                                                            // 等待Giscus加载，然后尝试更改主题
+                                                                                                                                            setTimeout(changeGiscusTheme, 1200); // 等待1200毫秒
+
+                                                                                                                                            // 如果你有一个主题切换按钮或链接，你可以在这里添加事件监听器
+                                                                                                                                            // 例如：
+                                                                                                                                            // document.getElementById('your-theme-switch-button-id').addEventListener('click', changeGiscusTheme);
+                                                                                                                                        });
+                                                                                                                                    </script>
+
+                                                                                                                                    <!-- 搜索的部分 -->
+                                                                                                                                    
+
+                                                                                                                                        
+                                                                                                                                            <script>
+    // function searchToggle() {
+    //     const width = $(document.body).width()
+    //     if(width > 479) {
+    //         return;
+    //     }
+    //     const search = $('.search');
+    //     const searchForm = $('.form-search')
+
+    //     if(!search.hasClass("mobile-search")) {
+    //         search.addClass("mobile-search");
+    //     } else {
+    //         search.removeClass("mobile-search");
+    //     }
+    // }
+
+    function searchToggle() {
+        const width = $(document.body).width()
+        if (width > 900) {
+            return;
+        }
+        const search = $('.search');
+        const searchForm = $('.form-search');
+        const menuToggle = $('.menu-toggle');
+        const title = $('.navbar-header-title ');
+
+        if (!search.hasClass("mobile-search")) {
+            search.addClass("mobile-search");
+            menuToggle.addClass("open-search")
+            title.addClass("mobile-title-hidden")
+        } else {
+            search.removeClass("mobile-search");
+            menuToggle.removeClass("open-search")
+            // title.css({visibility: 'visible'})
+            title.removeClass("mobile-title-hidden")
+        }
+    }
+
+
+
+    function search(searchInputEl, formEl, flag) {
+        const path = "/" + "search.json"; // 可以在public 下查看这个search.json
+        $(formEl).submit(function (e) {
+            e.preventDefault();
+            let target = null
+            if (searchInputEl == null) {
+                const screenWidth = $(document.body).width();
+                target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
+                console.log(target);
+            } else {
+                target = $(searchInputEl)
+            }
+
+            if (!flag && target.val() === '') {
+                return;
+            }
+
+            $("#u-search").fadeIn(500, function () {
+                $("body > .wrapper").addClass("modal-active");
+
+                $.ajax({
+                    url: path,
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        $input = target.val();
+                        $(".form-input").val($input);
+                        const loadingBar = $('.search-loading-bar')
+                        loadingBar.css({
+                            width: '100%',
+                            display: 'block'
+                        });
+                    },
+                    success: function (datas) {
+                        console.log(datas);
+                        const $resultPanel = $(".modal-body")[0];
+                        let str = `<ul class="modal-results">`;
+                        var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
+                        $resultPanel.innerHTML = "";
+                        let hasResult = false
+                        let text = `<div class="no-result">找不到与关键词相关的内容....</div>`;
+
+                        if ($(".form-input").val().trim().length <= 0) {
+                            // 没有结果
+                            $resultPanel.innerHTML = text;
+                            return;
+                        }
+                        datas.forEach(function (data, index) {
+                            var isMatch = true;
+                            if (!data.title || data.title.trim() === '') {
+                                data.title = "Untitled";
+                            }
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content && data.content.trim().replace(/<[^>]+>/g, "").toLowerCase() || '';
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty contents
+                            if (data_content !== '') {
+                                keywords.forEach(function (keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        hasResult = true
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            } else {
+                                isMatch = false;
+                            }
+                            // show search results
+                            if (isMatch) {
+                                str += `<li class='result-item'><a href='${data_url}' class='result-item-detail'> <span class="title">${data_title}</span>`;
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 200 characters
+                                    var start = first_occur - 40;
+                                    var end = first_occur + 160;
+
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+
+                                    if (start == 0) {
+                                        end = 200;
+                                    }
+
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+
+                                    var match_content = content.substring(start, end);
+
+                                    // highlight all keywords
+                                    keywords.forEach(function (keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, `<em class="search-keyword">${keyword}</em>`);
+                                    });
+
+                                    str += `<span class="content"> ${match_content} ...</span></a>`;
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        if (hasResult) {
+                            $resultPanel.innerHTML = str;
+                        } else {
+                            $resultPanel.innerHTML = text;
+                        }
+
+                    },
+                    complete: function () {
+                        setTimeout(() => {
+                            const loadingBar = $('.search-loading-bar')
+                            loadingBar.css({
+                                width: '0%',
+                                display: 'none'
+                            });
+                        }, 300)
+                    }
+                });
+            })
+
+        });
+    }
+
+    $(document).ready(function () {
+        $('.modal-close').click(function () {
+            $("#u-search").fadeOut();
+            $("body > .wrapper").removeClass("modal-active")
+        })
+
+        $('.modal-overlay').click(function () {
+            $("#u-search").fadeOut();
+            $("body > .wrapper").removeClass("modal-active")
+        })
+        search(null, ".form-search", false)
+        search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
+    })
+</script>
+                                                                                                                                                
+
+                                                                                                                                                    <script
+                                                                                                                                                        async
+                                                                                                                                                        src="https://us.umami.is/script.js"
+                                                                                                                                                        data-website-id="38f19c51-0534-4438-abae-315f586a457d"></script>
+
+                                                                                                                                                    <script
+                                                                                                                                                        type="text/javascript"
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+        <style>
+            body.hide-content * {
+                visibility: hidden;
+            }
+        </style>
+        <script>
+            (function () {
+                document.body.classList.add('hide-content');
+
+                const savedTheme = localStorage.getItem('theme');
+                const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                let useDarkMode;
+                if (savedTheme === 'dark' || savedTheme === 'light') {
+                    useDarkMode = savedTheme === 'dark';
+                } else {
+                    useDarkMode = userPrefersDark;
+                }
+                document.body.classList.toggle('dark-theme', useDarkMode);
+                document.body.classList.remove('hide-content');
+            })();
+        </script>
+        <style>
+            #tocButton svg {
+                position: fixed;
+                bottom: 20px;
+                /* 调整到你想要的位置 */
+                right: 5vw;
+            }
+
+            #totop {
+                position: fixed;
+                bottom: 20px+2rem;
+                /* 调整到你想要的位置 */
+                right: 5vw;
+            }
+        </style>
+
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-solarized-dark-atom.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">
+                    Green Dolphin Dance
+                </a></div>
+            <div class="menu navbar-right">
+                <!-- 这里表示的是pc端搜索框 -->
+                
+                    
+    <div class="search ">
+        <div class="search-btn" onClick="searchToggle()">
+            <svg t="1703126001771" class="search-btn-img" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4319" width="200" height="200">
+                <path
+                    d="M1004.8 915.2l-243.2-243.2c0 0-6.4-6.4-6.4-6.4C800 595.2 832 505.6 832 416 832 185.6 646.4 0 416 0S0 185.6 0 416 185.6 832 416 832c89.6 0 179.2-32 243.2-83.2 0 6.4 6.4 6.4 6.4 6.4l243.2 243.2c25.6 25.6 70.4 25.6 96 6.4C1030.4 979.2 1030.4 940.8 1004.8 915.2zM64 416C64 224 224 64 416 64S768 224 768 416 608 768 416 768 64 608 64 416z"
+                    fill="#161209" p-id="4320"></path>
+            </svg>
+        </div>
+        <form class="form-search">
+            <input class="input" placeholder="点此搜索" autocomplete="off" id="pc-search-input" />
+        </form>
+    </div>
+    
+
+        <style>
+            body.dark-theme .search-btn-img path {
+                fill: #a9a9b3;
+                /* 淡灰色 */
+            }
+        </style>
+                        
+                            <a class="menu-item" href="/timeline">
+                                动态
+                            </a>
+                            
+                            <a class="menu-item" href="/archives">
+                                归档
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                分类
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                标签
+                            </a>
+                            
+                            <a class="menu-item" href="/songs">
+                                音乐
+                            </a>
+                            
+                            <a class="menu-item" href="/guestbook">
+                                留言板
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                关于
+                            </a>
+                            
+                            <a class="menu-item" href="/links">
+                                友链
+                            </a>
+                            
+                                <input id="switch_default" type="checkbox" class="switch_default">
+                                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+        <nav class="navbar-mobile" id="nav-mobile">
+            <div class="container">
+                <div class="navbar-header">
+                    <div>
+                        <a href="/">
+                            Green Dolphin Dance
+                        </a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    </div>
+                    <div class="navbar-mobile-right">
+                        
+                            
+    <div class="search ">
+        <div class="search-btn" onClick="searchToggle()">
+            <svg t="1703126001771" class="search-btn-img" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4319" width="200" height="200">
+                <path
+                    d="M1004.8 915.2l-243.2-243.2c0 0-6.4-6.4-6.4-6.4C800 595.2 832 505.6 832 416 832 185.6 646.4 0 416 0S0 185.6 0 416 185.6 832 416 832c89.6 0 179.2-32 243.2-83.2 0 6.4 6.4 6.4 6.4 6.4l243.2 243.2c25.6 25.6 70.4 25.6 96 6.4C1030.4 979.2 1030.4 940.8 1004.8 915.2zM64 416C64 224 224 64 416 64S768 224 768 416 608 768 416 768 64 608 64 416z"
+                    fill="#161209" p-id="4320"></path>
+            </svg>
+        </div>
+        <form class="form-search">
+            <input class="input" placeholder="点此搜索" autocomplete="off" id="mobile-search-input" />
+        </form>
+    </div>
+    
+
+        <style>
+            body.dark-theme .search-btn-img path {
+                fill: #a9a9b3;
+                /* 淡灰色 */
+            }
+        </style>
+                                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 目录</div>
+                    </div>
+
+                    <div class="menu" id="mobile-menu">
+                        
+                            <a class="menu-item" href="/timeline">
+                                动态
+                            </a>
+                            
+                            <a class="menu-item" href="/archives">
+                                归档
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                分类
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                标签
+                            </a>
+                            
+                            <a class="menu-item" href="/songs">
+                                音乐
+                            </a>
+                            
+                            <a class="menu-item" href="/guestbook">
+                                留言板
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                关于
+                            </a>
+                            
+                            <a class="menu-item" href="/links">
+                                友链
+                            </a>
+                            
+                    </div>
+                </div>
+        </nav>
+
+
+
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+        
+
+                    
+                        <article class="post-wrap">
+                            <header class="post-header">
+                                <h1 class="post-title">
+                                    接崔见闻
+                                </h1>
+                                
+                                    <div class="post-meta">
+
+                                        
+
+                                                
+                                                    <span class="post-time">
+
+                                                        发表时间: <a href="#">2024-04-23&nbsp;&nbsp;22:17:40</a>
+                                                    </span>
+                                                    
+
+                                                        
+                                                            <span class="updated-time">
+                                                                最后更新: <a href="#">2024-04-25&nbsp;&nbsp;15:13:00</a>
+                                                            </span>
+                                                            
+
+
+
+                                                                
+
+                                                                    <span class="post-category">
+
+                                                                        分类:
+
+                                                                        
+
+                                                                            <a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+
+                                                                            
+
+                                                                    </span>
+
+                                                                    
+
+
+
+                                                                        
+
+                                                                            <span class="post-count">
+
+                                                                                字数:
+
+                                                                                <a href="">
+                                                                                    3.8k
+                                                                                </a>
+
+                                                                            </span>
+
+                                                                            
+
+
+
+                                                                                
+
+                                                                                    <span class="post-count">
+
+                                                                                        阅读时长:
+
+                                                                                        <a href="">
+                                                                                            12min
+                                                                                        </a>
+
+                                                                                    </span>
+
+                                                                                    
+
+                                    </div>
+                                    
+                            </header>
+
+                            <div class="post-content">
+                                <p>最近都没有出现，一是分手了，有些破事需要整理，二就是帮我导师接待了一位来华子教课的外国教授。教授是个八十多岁的老头，没头发但有很大一把胡子，步履蹒跚但目光炯炯，感觉很有智慧。我们一般叫他崔，因为他姓里有个“Tra”，现在的译法是“特拉”，原来译成“崔”，我们感觉“崔”比较简洁，就这么叫他了。</p>
+<p>其实五年前我就见过崔，当时他来华子访问。当时我带他和他妻子从甲所走到新斋，有两条平行的路，一条大马路，一条那种林荫小道，导航给我导了小道，我就往上面冲。崔妻说我们怎么不走上面呢？上次走的是上面。我才发现他们根本不需要我带路，我是这里唯一不认路的。</p>
+<p>跑题了，这篇文章其实是想记录一下这次接待崔的经历。有非常多需要吐槽的事情。</p>
+<h1 id="机场接崔"><a href="#机场接崔" class="headerlink" title="机场接崔"></a>机场接崔</h1><p>第一个任务当然是去机场接他。这件事情的困难主要在于无法联系到他，他没有中国电话卡，也貌似不会连wifi的样子，所以只能站在出口举一个写着“Prof. Cxxx Txxx”的牌子，然后盯着人出来的地方，不放过任何一个白胡子老头。</p>
+<p>我在这件事情上犯的错误是偷懒没有把牌子打印成一张纸，而是用iPad做了一页PPT然后举着。我导本来叫我打印一张纸，我还觉得他不懂科技的便利，事实证明问题还是在我。我举了一个多小时的iPad，差点没给我累死，而且如果用纸打印，可以带一点胶布，把纸贴在出口旁边的玻璃外侧，然后人站在旁边，这样就可以放心玩手机（吗）。</p>
+<p>但是我有做得很好的非常得意的一点，就是带了两瓶水！虽然在机场崔没喝，但是跟我导汇合之后给了他俩一人一瓶，当然我导那瓶他最后也给崔了。这让我感觉自己很专业，是国际级的领导助理（其实也不是啦）。</p>
+<p>说回机场的事。旁边有个大哥也在接人，但他比我聪明，举的是一张纸。飞机降落一个小时后，我们还在那等着，结果国际航班出口里面出来的都是亚裔，貌似是一班新加坡来的飞机，这个现象持续了很久。大哥终于站不住了，问我接的是哪班飞机，我告诉他，结果发现我们俩接的是同一班。我跟大哥说我无法联系我接的人，大哥说他也是，于是我们惺惺相惜了起来，开始聊闲天。又聊了快半个小时，终于发现了白胡子老头，我尖声大叫，用酸痛的双臂挥舞iPad，老头终于回头看我了，然后走来。我说我们先出去吧，然后率先往前走，他非常奇怪，问我旁边这个人不一起吗？我只好解释他是路人。走之前祝福了大哥早点接到该接的人。</p>
+<p>然后就是去打车，我为了不迷路，提前去看了打车的地方，所以这部分很顺利。回程路上崔给我讲了好多广东话，事后才知道他第一任妻子是广东人。</p>
+<h1 id="去崔公寓"><a href="#去崔公寓" class="headerlink" title="去崔公寓"></a>去崔公寓</h1><p>在崔公寓所在的小区门口下车，我导站在马路对面挥手。看到他我终于松了一口气，这种社交实在太高强度了。之后基本上都是导在跟他说怎么刷门禁、按密码锁、介绍房间设施等等，我就在旁边游移，插空递了那两瓶水给他们。然后来了一个公寓的管理员女士，给崔咔咔拍了张照，我才知道外国人来是要给警察局报备的。管理员女士会说一点英文，再加上同学跟我说另一位外籍教授，赫，也要住这个小区，我就发现这个小区还是蛮国际化的。</p>
+<p>但是如此国际化的公寓里，微波炉上居然没有英文说明。空调遥控器也全是中文。我看了忧心忡忡。好像我跟崔说了一声看不懂可以找我，又好像没说，我不记得了。</p>
+<p>弄了一通去吃晚饭。旁边有一个食堂，但是只开放给学校家属，居然学生老师的卡都不能刷。好在二楼有一个小咖啡厅可以吃饭。崔是半个素食主义者，不吃哺乳动物和禽类。换句话说就是只能吃鱼虾海鲜这类的。结果偌大一个菜单，只有三个饭他能吃。点了老半天，终于决定吃一个沙拉碗，但是最后也没吃完（虽然他说味道不错）。</p>
+<p>吃完导说要和崔去旁边超市买点生活用品，我要回去搞心理咨询，赶紧先溜了。明天还要带他吃午饭、办电话卡。导连声道谢，我怪不好意思的。</p>
+<p>这天的第二个错误是穿了一条裙子，不太迈得开腿的那种。导致我无法骑车回去，走了半个小时，不过也还好。</p>
+<h1 id="办电话卡"><a href="#办电话卡" class="headerlink" title="办电话卡"></a>办电话卡</h1><p>第二天起了个大早去找崔，敲了半天门似乎没听见，给他发Skype消息也没看，想直接拿门禁卡刷进去，结果他把门反锁了。最后他不知怎么发现了我，开门放我进去了。</p>
+<p>我前一天晚上给了他三个选项：（1）还是去那个咖啡厅；（2）点外卖；（3）去营业厅附近吃。他毫不犹豫排除了1，说23都行，来了再商量。我于是比约定的时间早了一些过去，还提前在大众点评看了营业厅附近的餐厅，做足了功课，问他要不要吃蒸汽海鲜，他说要吃。结果发现蒸汽海鲜是投放的广告，实际上离营业厅有4.6公里……</p>
+<p>最后去吃了鲅鱼饺子，但没点鲅鱼。点的是皮皮虾蒸饺和麻辣小龙虾饺子，还有两个粥。前台摆了一大堆罐装饮料，他立刻认出是啤酒（但上面根本没用英文写），说要喝，我说你选一个吧，这些都差不多。他直接拿了罐大乌苏，问有没有cold的。我说这就是cold的呀，但应该有iced的。他说不要iced的，就要cold的，我这个不是cold的。我不明其意。结果他直接从冷柜里拿了一瓶，说这是cold的。我才知道cold和iced是有区别的！前者没有可见冰，而后者有。</p>
+<p>饺子上来了，我吃了一口，立刻发现有猪肉，于是慌了手脚。崔也咬了一口，我强作镇定，结果他啧啧称赞，好像并没有发现里面有猪肉。我决定永远保守这个秘密……</p>
+<p>吃完饭就去了营业厅。我打电话问过很多家营业厅，发现步行距离以内的都无法用护照办理电话卡。华子里面有一家，地图APP上没有电话，我就提前去踩了下点，结果发现周末不开门，只好作罢。当天去的那家稍微远点，是打车去的。店面很小，大众点评上很多差评都是说找不到。我跟着人家的攻略，绕到建筑的北边，顺利找到。</p>
+<p>办业务的人没几个，但还是排了一会队。崔可能走累了，没有主动挑起话题。我就指给他看旁边的智能家居展示墙，并表明我的观点，我认为智能家居就是傻b（不是原话）。过了一会又没话聊了，我就指着另一边的积分抽奖台，说这是lottery，他说能抽中多少钱？我说能抽洗衣液。我还忘记洗衣液英语怎么说了，一时尬住。</p>
+<p>终于到崔了，办得很顺利，无非就是看护照、填表（我填）、拍照、签名等等，具体顺序和步骤我已经忘了。反正弄了一会，卡就好了，装到手机里充好话费就能上网。多亏导跟我说有19块的套餐，业务员给我推荐的都是六七十的，我说我要19的，她问你是以前办过吗？这么熟。我嘿嘿一笑。</p>
+<p>垫了228块。事后导说估计不能报销，虽然228最终也不是我出，但是怎么能这样啊？办个电话卡也不给报销？我去档案馆打工的时候老师叫我贴发票，贴的可都是话费的发票啊！</p>
+<p>回家纠结晚上怎么吃。最后想来想去，点了安妮外卖。崔晚饭好像吃不下，就点了一个素的前菜，是芝士焗茄子和西红柿，再加上我强烈推荐的苹果派。本来我准备溜了，仔细一想，崔和骑手无法沟通，底下有门禁，我得等到外卖来。于是留下了。我说再给您弄点啤酒吧，他一想，没有开瓶器，于是又点了个超市外卖，买了开瓶器和啤酒。结果最后两个骑手都跟着人溜进来，送到门口了……我白等了！</p>
+<p>但是期间给他弄了个备用的VPN，然后用手机号开通了微信。尝试用外国信用卡绑定微信支付，但需要外国银行的验证，崔又忘记了他的什么contract number，后来找到了但是又有个什么弄不了，最后只好放弃。等办了银行卡再说吧。</p>
+<p>外卖到了，崔很善良地给我拿了筷子，我就吃了点茄子西红柿，很好吃！不愧是安妮。然后跟他一起享用了啤酒。之后我就跑了，之后也没问他觉得苹果派怎么样，希望他吃得开心。</p>
+<h1 id="办校园卡"><a href="#办校园卡" class="headerlink" title="办校园卡"></a>办校园卡</h1><p>今天崔要上课，我去接他，导建议我们先打车去李兆基楼办校园卡。我很担心来不及，因为崔有点老了，老忘事，还磨磨蹭蹭的。果然下了电梯我问他护照带没带，他说忘了，又上去拿。幸好问了！</p>
+<p>但还是赶上了，校园卡很快，没啥好讲的。还顺带开通了info账号，本意是想我们可以帮他充校园卡。不过后来发现最大的功能是让他能够登进去充值小程序，这样他自己也可以充。不会的话我们帮他用小程序充就好了，反正经常需要见面。</p>
+<h1 id="办银行卡"><a href="#办银行卡" class="headerlink" title="办银行卡"></a>办银行卡</h1><p>下完课去办银行卡。路过拾年咖啡，崔说他来过这里，这里不错。我就说要不要上去喝点啥，他说看我，我说看你。于是就上去了，坐在二楼露台上，点了一壶铁观音。好喝！</p>
+<p>但是好景不长，突然下起了小雨。我问导怎么办，他说他只有一把伞。我说人文楼保安有没有呢？他借到了。但同时我问了拾年咖啡，他们也有伞，押金50。我就借了两把。这样就不用导跑过来。</p>
+<p>但是现在已经五点了，银行六点半关门。天上打雷了，感觉雨可能变大。我又问导，导回我一句废话：要么你们赶快走，在雨变大之前到银行；要么再等等。我想了一下说走吧！于是撑伞走了。这是我这几天做的最错误的决定。</p>
+<p>走了大概一百米，雨突然变得巨大。我问崔要不要回去，他说都行。他总是说都行！感觉他有点害羞，有啥要求都不好意思提。这让我很难办。但是我狠下心，咬咬牙，说继续走吧。结果两个人的裤子都湿了。雨真的很大，所以不止裤脚湿了，整条裤子都湿了。晚上吃饭时我想问他有没有风湿之类的，但英语不会说，就问他淋了雨腿会不会痛。他说不会，我松了一口气。</p>
+<p>终于到了银行，开始办业务。好像是去了一个VIP房间，没有等待。但是整个过程非常漫长，对我和崔都是一种折磨。基本上是柜员在里面操作，我们两个干等，十分钟起步。偶尔让崔签个名，或者让我填表。填崔的纳税人识别号的时候，他写的那个5很像6，导致柜员搞错了，喊了他的前辈来看，看了很久决定让崔出示他的葡萄牙身份证，才发现5填成6了。由于这个错误，又是好一阵等。我和崔最后聊无可聊，只好大眼瞪小眼，沉默。</p>
+<p>终于办好了，但是接下来就是出去让另一个柜员（就是那个前辈）给绑定微信等。她首先点了微信，失败，然后说先激活一下京东。我说为什么激活京东啊，你们是不是有什么指标？她说没有，但是必须先激活一个，才能激活微信。好吧，什么鬼！于是弄了京东、支付宝和微信。期间崔设置和输入了无数次密码。我让崔把所有密码设成一样的，他采纳。</p>
+<p>办完之后银行刚好下班。所以我又有点不确定立刻从拾年咖啡出发的决定是否正确。感觉是刚刚好赶上的程度。</p>
+<p>之后导过来，一起去澜园吃饭，勉强赶上。我第一次去澜园，感觉还不错。吃饭时教了他充饭卡和微信支付的方法，但是第二天他就忘了。</p>
+<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>国内对外国人的不友好令人发指。办这些东西，要是没有中国人的帮助，一个外国人要怎么办啊！不过仔细一想，如果我在外国，不会当地的语言，我也不知道该怎么办。所以大概是平等的。但是英语是通用语言，国内的这些东西连个英文指示都没有，这说不过去吧。而且华子也没有提供任何指导或帮助。我愤愤不平。</p>
+<p>但是今天，当我看到崔的工资时，我释然了（？）。</p>
+<p>跟老年人相处就像带小孩，需要反复教学，要求足够的耐心。但是比起小孩，我更喜欢跟老年人待在一起，因为他们至少智识是成熟的，只是缺乏行动力。崔是个很和善且很有智慧的人。所以帮他办事我非常乐意，况且我从中也学到了很多。我不是个很细致的人，并且经常判断失误，感觉很不好意思。但经此一役，我成长了！</p>
+
+                            </div>
+
+                            
+                                <section class="post-copyright">
+                                    
+                                            
+                                                    
+                                                            
+
+                                </section>
+                                
+                                    <section class="post-tags">
+                                        <div>
+                                            <span>标签：</span>
+                                            <span class="tag">
+                                                
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <a href="javascript:window.history.back();">返回</a>
+                                            <span>· </span>
+                                            <a href="/">主页</a>
+                                        </div>
+                                    </section>
+                                    <section class="post-nav">
+                                        
+                                            <a class="prev" rel="prev" href="/2024/05/14/%E6%9C%80%E8%BF%91%E5%90%AC%E4%BA%86%E5%95%A5%EF%BC%9A%E3%80%8AThelonious-Monk-1962-1968%E3%80%8B/">最近听了啥：《Thelonious Monk 1962-1968》</a>
+                                            
+                                                
+                                                    <a class="next" rel="next" href="/2024/04/02/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%887%EF%BC%89/">购物分享（7）</a>
+                                                    
+                                    </section>
+
+                                    <section style="margin-top: 100px" class="row">
+                                        <div class="widget">
+    
+        
+            <div class="recommended_posts">
+                <h3>
+                    可能相关的文章<span class="driven-by">（由 <a
+                            target="_blank" rel="noopener" href="https://github.com/huiwang/hexo-recommended-posts">跨博客文章推荐插件</a> 驱动）</span>
+                </h3>
+                <ul>
+                    
+                        <li><a href="https://greendolphindance.github.io/2024/05/14/%E6%9C%80%E8%BF%91%E5%90%AC%E4%BA%86%E5%95%A5%EF%BC%9A%E3%80%8AThelonious-Monk-1962-1968%E3%80%8B/">
+                                最近听了啥：《Thelonious Monk 1962-1968》
+                            </a></li>
+                        
+                        <li><a href="https://greendolphindance.github.io/2024/04/02/%E8%B4%AD%E7%89%A9%E5%88%86%E4%BA%AB%EF%BC%887%EF%BC%89/">
+                                购物分享（7）
+                            </a></li>
+                        
+                        <li><a href="https://greendolphindance.github.io/2024/03/18/%E6%88%91%E7%9A%84%E6%96%87%E8%BA%AB/">
+                                我的文身
+                            </a></li>
+                        
+                </ul>
+            </div>
+            
+</div>
+                                    </section>
+
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            function getGiscusTheme() {
+                                                const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+                                                return theme === 'dark' ? 'noborder_dark' : 'noborder_light';
+                                            }
+
+                                            function setGiscusTheme() {
+                                                function sendMessage(message) {
+                                                    const iframe = document.querySelector('iframe.giscus-frame');
+                                                    if (!iframe) return;
+                                                    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                                                }
+                                                sendMessage({
+                                                    setConfig: {
+                                                        theme: getGiscusTheme(),
+                                                    },
+                                                });
+                                            }
+
+                                            function handleToggle() {
+                                                location.reload();
+                                            }
+
+                                            // Update giscus theme when theme switcher is clicked
+                                            const toggleDesktop = document.querySelector('label[for="switch_default"]');
+                                            const toggleMobile = document.querySelector('#mobile-toggle-theme');
+
+                                            if (toggleDesktop) {
+                                                toggleDesktop.addEventListener('click', function () {
+                                                    setGiscusTheme();
+                                                });
+                                            }
+
+                                            if (toggleMobile) {
+                                                toggleMobile.addEventListener('click', function () {
+                                                    setGiscusTheme();
+                                                });
+                                            }
+
+                                            // Wait for 1000ms (1 second) before loading the Giscus comments to ensure theme is set
+                                            setTimeout(() => {
+                                                const giscusAttributes = {
+                                                    "src": "https://giscus.app/client.js",
+                                                    "data-repo": "greendolphindance/greendolphindance.github.io",
+                                                    "data-repo-id": "R_kgDOKc-MwA",
+                                                    "data-category": "General",
+                                                    "data-category-id": "DIC_kwDOKc-MwM4CZ8oe",
+                                                    "data-mapping": "url",
+                                                    "data-strict": "0",
+                                                    "data-reactions-enabled": "1",
+                                                    "data-emit-metadata": "0",
+                                                    "data-input-position": "top",
+                                                    "data-theme": getGiscusTheme(),
+                                                    "data-lang": "zh-CN",
+                                                    "crossorigin": "anonymous",
+                                                };
+
+                                                // Dynamically create script tag
+                                                const giscusScript = document.createElement("script");
+                                                Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+
+                                                // Append the script tag to the <article> element
+                                                document.querySelector('article').appendChild(giscusScript);
+                                            }, 1000);
+                                        });
+
+                                    </script>
+
+                                    <button id="tocButton" style="display: none;">
+                                        <svg t="1697879152903" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg" p-id="5387" width="32" height="32">
+                                            <path
+                                                d="M 863.113 0 H 160.887 A 161.064 161.064 0 0 0 0 160.887 v 702.225 a 161.064 161.064 0 0 0 160.887 160.887 h 702.225 a 161.064 161.064 0 0 0 160.887 -160.887 V 160.887 a 161.064 161.064 0 0 0 -160.887 -160.887 Z M 242.94 725.908 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 242.94 333.037 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 534.146 392.839 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 777.086 333.037 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z"
+                                                fill="#8a8a8a" p-id="5388"></path>
+                                    </button>
+
+                                    <div class="overlay" id="overlay" onclick="hideToc()"></div>
+
+                                    <script>
+                                        function hideToc() {
+                                            var toc = document.querySelector('.js-toc');
+                                            var overlay = document.getElementById('overlay');
+                                            var body = document.body;
+
+                                            toc.style.display = 'none'; // 隐藏目录
+                                            overlay.style.display = 'none'; // 隐藏遮罩层
+                                            body.style.overflow = ''; // 启用页面滚动
+                                        }
+                                        window.onload = function () {
+
+                                            var toc = document.querySelector('.js-toc');
+                                            var tocButton = document.getElementById('tocButton');
+                                            if (toc) {
+                                                // 根据 toc 内容的有无显示或隐藏目录按钮
+                                                tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
+                                            } else {
+                                                tocButton.style.display = 'none';
+                                            }
+                                        };
+
+                                        function checkWindowSize() {
+                                            var windowWidth = window.innerWidth;
+                                            var toc = document.querySelector('.js-toc');
+                                            var tocButton = document.getElementById('tocButton');
+
+                                            if (windowWidth > 1379 || toc.innerText.trim() === '') {
+                                                tocButton.style.display = 'none';
+                                            } else {
+                                                tocButton.style.display = 'block';
+                                            }
+                                        }
+
+
+                                        // 点击tocButton时执行的函数
+                                        document.getElementById('tocButton').addEventListener('click', function () {
+                                            var toc = document.querySelector('.js-toc');
+                                            var overlay = document.getElementById('overlay');
+                                            var body = document.body;
+
+                                            if (toc.style.display === 'none' || toc.style.display === '') {
+                                                toc.style.display = 'block'; // 显示目录
+                                                overlay.style.display = 'block'; // 显示遮罩层
+                                                body.style.overflow = 'hidden'; // 禁用页面滚动
+                                            } else {
+                                                hideToc();
+                                            }
+                                        });
+
+
+                                        // 窗口大小变化时检查窗口宽度
+                                        window.onresize = checkWindowSize;
+                                    </script>
+
+                        </article>
+
+</div>
+
+<style>
+    .dark-theme .post-content code {
+        background: none !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var codeBlocks = document.querySelectorAll('article pre');
+
+        codeBlocks.forEach(function (codeBlock) {
+            var copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.innerText = 'Copy';
+
+            // Check if the code block is in the article content
+            if (codeBlock.closest('article')) {
+                codeBlock.parentNode.parentNode.style.position = 'relative'; // Update this line to select parent of span (pre)
+                codeBlock.parentNode.parentNode.appendChild(copyButton); // Update this line to select parent of span (pre) 
+
+                var isCopying = false;
+
+                copyButton.addEventListener('click', function () {
+                    if (!isCopying) {
+                        var codeText = codeBlock.innerText;
+                        navigator.clipboard.writeText(codeText).then(function () {
+                            copyButton.innerText = 'Copied!';
+                            isCopying = true;
+                            setTimeout(function () {
+                                copyButton.innerText = 'Copy';
+                                isCopying = false;
+                            }, 1500);
+                        }).catch(function (err) {
+                            console.error('Copy failed', err);
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<style>
+    .copy-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #2d96bd;
+        color: #fff;
+        border: none;
+        border-radius: 10%;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        font-size: 75%;
+    }
+</style>
+
+    <div class="js-toc"></div>
+    <div class="post-content"> <!-- 这里的class需要根据自身情况修改 -->
+        <!-- 博客文章内容将在这里渲染 -->
+    </div>
+    <!-- recommended posts -->
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <!-- <img style="height:16px!important; margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"> -->
+        <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="cc-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.785" cy="28.501" r="28.836" />
+                    <path
+                        d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314   c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143   c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429   c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2   c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657   c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913   c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971   c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344   c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187   l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657   c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2   c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629   c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686   C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2   c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113   c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686   c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313   c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z" />
+                </g>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="att-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.637" cy="28.806" r="28.276" />
+                    <g>
+                        <path
+                            d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456    C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5    c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657    c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771    c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571    C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557    c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6    C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514    c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z" />
+                    </g>
+                </g>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="non-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.47" cy="28.736" r="29.471" />
+                    <g>
+                        <path
+                            d="M37.442-3.5c8.99,0,16.571,3.085,22.743,9.256C66.393,11.928,69.5,19.509,69.5,28.5c0,8.992-3.048,16.476-9.145,22.458    C53.88,57.32,46.241,60.5,37.442,60.5c-8.686,0-16.19-3.162-22.513-9.485C8.644,44.728,5.5,37.225,5.5,28.5    c0-8.762,3.144-16.343,9.429-22.743C21.1-0.414,28.604-3.5,37.442-3.5z M12.7,19.872c-0.952,2.628-1.429,5.505-1.429,8.629    c0,7.086,2.59,13.22,7.77,18.4c5.219,5.144,11.391,7.715,18.514,7.715c7.201,0,13.409-2.608,18.63-7.829    c1.867-1.79,3.332-3.657,4.398-5.602l-12.056-5.371c-0.421,2.02-1.439,3.667-3.057,4.942c-1.622,1.276-3.535,2.011-5.744,2.2    v4.915h-3.714v-4.915c-3.543-0.036-6.782-1.312-9.714-3.827l4.4-4.457c2.094,1.942,4.476,2.913,7.143,2.913    c1.104,0,2.048-0.246,2.83-0.743c0.78-0.494,1.172-1.312,1.172-2.457c0-0.801-0.287-1.448-0.858-1.943l-3.085-1.315l-3.771-1.715    l-5.086-2.229L12.7,19.872z M37.557,2.214c-7.276,0-13.428,2.571-18.457,7.714c-1.258,1.258-2.439,2.686-3.543,4.287L27.786,19.7    c0.533-1.676,1.542-3.019,3.029-4.028c1.484-1.009,3.218-1.571,5.2-1.686V9.071h3.715v4.915c2.934,0.153,5.6,1.143,8,2.971    l-4.172,4.286c-1.793-1.257-3.619-1.885-5.486-1.885c-0.991,0-1.876,0.191-2.656,0.571c-0.781,0.381-1.172,1.029-1.172,1.943    c0,0.267,0.095,0.533,0.285,0.8l4.057,1.83l2.8,1.257l5.144,2.285l16.397,7.314c0.535-2.248,0.801-4.533,0.801-6.857    c0-7.353-2.552-13.543-7.656-18.573C51.005,4.785,44.831,2.214,37.557,2.214z" />
+                    </g>
+                </g>
+            </svg>
+        </a>
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic"
+            target="_blank">Chic</a> <span id="qudong">驱动</span>
+        </span>
+        <br>
+        <!-- Add the SVG logo wrapped in a link -->
+        <a href="https://www.travellings.cn/go.html" target="_blank" style="display:inline-block;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="kaiwang" height="16" width="14" viewBox="0 0 448 512"
+                style="height:12px; width:12px; ;vertical-align: middle; position: relative; top: -0.5px;">
+                <!-- SVG Path -->
+                <path
+                    d="M96 0C43 0 0 43 0 96V352c0 48 35.2 87.7 81.1 94.9l-46 46C28.1 499.9 33.1 512 43 512H82.7c8.5 0 16.6-3.4 22.6-9.4L160 448H288l54.6 54.6c6 6 14.1 9.4 22.6 9.4H405c10 0 15-12.1 7.9-19.1l-46-46c46-7.1 81.1-46.9 81.1-94.9V96c0-53-43-96-96-96H96zM64 128c0-17.7 14.3-32 32-32h80c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM272 96h80c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H272c-17.7 0-32-14.3-32-32V128c0-17.7 14.3-32 32-32zM64 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm288-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+            </svg>
+        </a>
+        <a href="https://icp.gov.moe/?keyword=20230468" target="_blank"><span id="moe-text">萌ICP备20230468号</span></a>
+        <a href="https://travel.moe/go.html" title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" style=" display:inline-block;"
+            target=" _blank">
+            <svg t="1702427100869" class="moe-icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="1841"
+                style="height:14px; width:14px; vertical-align: middle; position: relative; top: -1px;">
+                <path d="M598.1 392.7m-56.8 0a56.8 56.8 0 1 0 113.6 0 56.8 56.8 0 1 0-113.6 0Z" p-id="1842"></path>
+                <path d="M434.6 392.7m-33.8 0a33.8 33.8 0 1 0 67.6 0 33.8 33.8 0 1 0-67.6 0Z" p-id="1843"></path>
+                <path
+                    d="M236.6 828.1c-68.7 0-123.9-20.2-152.4-67.5-37.3-62-14.6-148.9 63.9-244.8 4.6-5.4 19.2-21.7 37-30 22.4-10.5 49-0.8 59.5 21.6 10.4 22.4 0.8 49-21.6 59.5-0.7 0.6-4.7 4.6-6 6.2-59.9 73.2-67.7 122-56 141.3 28.6 47.6 208 33.8 423.7-96.2 99.8-60.2 184-131.7 237-201.2 41.8-54.9 59.9-105.4 45.9-128.6-12.7-21.1-57.8-29.5-117.6-22-12.1 1.5-25 3.7-38.1 6.5-24.3 5.1-47.9-10.4-53-34.6-5.1-24.2 10.4-47.9 34.6-53 15.6-3.3 30.8-5.8 45.4-7.7 127.9-16.1 182.3 26.3 205.4 64.7 35.1 58.2 16.8 139.6-51.4 229-59.7 78.3-152.8 157.6-262.1 223.5-129.9 78.3-280.7 133.3-394.2 133.3z"
+                    p-id="1844"></path>
+                <path
+                    d="M529.8 874.7c-200.4 0-363.5-163.1-363.5-363.5s163.1-363.5 363.5-363.5 363.5 163.1 363.5 363.5-163 363.5-363.5 363.5z m0-637.5c-151.1 0-274 122.9-274 274s122.9 274 274 274 274-122.9 274-274-122.9-274-274-274z"
+                    p-id="1845"></path>
+            </svg></a>
+        <br>
+        <i class="ri-time-line"></i>
+        <span id="runtime_span"></span>
+        <script type="text/javascript">
+            function show_runtime() {
+                window.setTimeout("show_runtime()", 1000);
+                X = new Date("10/06/2023 12:34:50");
+                Y = new Date();
+                T = (Y.getTime() - X.getTime());
+                M = 24 * 60 * 60 * 1000;
+                a = T / M;
+                A = Math.floor(a);
+                b = (a - A) * 24;
+                B = Math.floor(b);
+                c = (b - B) * 60;
+                C = Math.floor((b - B) * 60);
+                D = Math.floor((c - C) * 60);
+                runtime_span.innerHTML = "已运行 " + A + "天" + B + "小时" + C + "分" + D + "秒"
+            }
+            show_runtime();
+        </script>
+        <span class="post-count">
+            132.9k
+        </span>
+        <span>
+            <!-- Existing Creative Commons images and links -->
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span
+                id="busuanzi_value_site_uv"></span>
+            <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank"
+                rel="license noopener noreferrer" style="display:inline-block;">
+    </div>
+
+    <style>
+        @media screen and (max-width: 767px) {
+            .footer {
+                margin-bottom: 1.5rem;
+                /* 将页脚上移1rem */
+            }
+        }
+
+        .dark-theme .kaiwang {
+            fill: #a9a9b2;
+        }
+
+        /* Default color (black) for day mode for moe-icon */
+        .moe-icon {
+            fill: black;
+        }
+
+        /* Color (#A9A9B2) for dark theme for moe-icon */
+        .dark-theme .moe-icon {
+            fill: #A9A9B2;
+        }
+
+        /* Apply fill color based on currentColor for all logos */
+        .cc-logo path,
+        .att-logo path,
+        .non-logo path {
+            fill: currentColor;
+        }
+
+        /* Default color (black) for day mode for all logos */
+        .cc-logo path,
+        .att-logo path,
+        .non-logo path {
+            color: black;
+        }
+
+        /* Color (#A9A9B2) for dark theme for all logos */
+        .dark-theme .cc-logo path,
+        .dark-theme .att-logo path,
+        .dark-theme .non-logo path {
+            color: #A9A9B2;
+        }
+
+        #footer .footer {
+            font-size: 12px !important;
+        }
+
+        /* 页脚的基本样式 */
+        .footer {
+            font-size: 12px;
+        }
+
+        /* 桌面端样式 */
+        @media screen and (min-width: 768px) {
+            .footer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .footer>div>span,
+            .footer>div>a,
+            .footer>div>i {
+                display: inline-block;
+            }
+
+            .footer>div>br {
+                display: none;
+                /* 隐藏换行符 */
+            }
+
+            .footer>div>script {
+                display: none;
+                /* 隐藏 script 标签 */
+            }
+        }
+
+        /* 移动端样式，无需特别处理 */
+
+        .non-logo,
+        #busuanzi_value_site_uv,
+        #qudong,
+        .kaiwang,
+        #moe-text,
+        .moe-icon,
+        #runtime_span,
+        .post-count {
+            margin-right: 5px;
+        }
+    </style>
+
+    <div id="totop" style="bottom:60px;cursor: pointer;">
+    <a title="返回顶部">
+        <svg t="1697771647324" class="icon back-top-svg" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2324" width="32px" height="32px">
+            <path d="M946.494 754.216c19.445-19.445 19.445-51.265 0-70.711L547.355 284.368c-19.445-19.445-51.265-19.445-70.711 0L77.506 683.506c-19.445 19.445-19.445 51.265 0 70.711" p-id="2325" fill="#8a8a8a"></path>
+        </svg>
+    </a>
+</div>
+
+
+
+
+        <script src="/js/totop.js"></script>
+
+        <!-- require APlayer -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+        <!-- require MetingJS -->
+        <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+        <div class="aplayer no-destroy" style="display: block; text-align: left" data-id="8793002560"
+            data-server="netease" data-type="playlist" data-mini="true" data-fixed="true" data-autoplay="false"
+            data-order="random" data-lrctype="-1"> </div>
+
+        <style>
+            body.dark-theme .aplayer-list {
+                border-color: #414345 !important;
+            }
+
+            body.dark-theme .aplayer-info {
+                border-color: #414345 !important;
+            }
+
+            body.dark-theme .aplayer-miniswitcher {
+                background: #414345;
+                border-color: #414345;
+            }
+
+            body.dark-theme .aplayer-body {
+                background: #292a2d !important;
+            }
+
+            body.dark-theme .aplayer {
+                box-shadow: none !important;
+            }
+
+            body.dark-theme .aplayer-list ol li:first-child {
+                border-top: none;
+            }
+        </style>
+</footer>
+    </div>
+    </script>
+
+    <!-- 搜索功能 -->
+    <!-- Chic/layout.ejs -->
+    <div id="u-search">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="container">
+                    <form id="u-search-modal-form" class="u-search-modal-form">
+                        <button type="submit" class="form-submit-btn">
+                            <img src="/" class="search-btn-img" />
+                        </button>
+                        <input placeholder="搜索内容..." class="form-input" id="modal-form-input">
+                    </form>
+                    <a class="modal-close">x</a>
+                </div>
+                <div class="search-loading">
+                    <div class="search-loading-bar"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+        <div class="modal-overlay"></div>
+    </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            tocbot.init({
+                tocSelector: '.js-toc',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4',
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme: ", savedTheme); // 输出保存的主题
+
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            console.log("User prefers dark theme: ", userPrefersDark); // 输出用户的系统偏好
+
+            let useDarkMode;
+            if (savedTheme === 'dark' || savedTheme === 'light') { // 当有明确的保存主题时
+                useDarkMode = savedTheme === 'dark';
+            } else {
+                useDarkMode = userPrefersDark; // 默认使用系统偏好
+            }
+
+            console.log("Using dark theme: ", useDarkMode); // 输出是否使用暗主题
+
+            document.body.classList.toggle('dark-theme', useDarkMode); // 应用或移除 dark-theme 类
+
+            const themeToggleCheckbox = document.getElementById('switch_default');
+            if (themeToggleCheckbox) {
+                themeToggleCheckbox.checked = useDarkMode;
+            }
+
+            themeToggleCheckbox.addEventListener('change', function () {
+                const isChecked = themeToggleCheckbox.checked;
+                console.log("Checkbox is checked: ", isChecked); // 输出复选框的状态
+
+                document.body.classList.toggle('dark-theme', isChecked);
+                localStorage.setItem('theme', isChecked ? 'dark' : 'light');
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelector('.js-toc').addEventListener('scroll', function (e) {
+            var tocList = document.querySelector('.toc-list');
+            var maxHeight = tocList.scrollHeight - this.clientHeight + 20; // 计算最大可滚动高度
+            if (this.scrollTop >= maxHeight) {
+                this.scrollTop = maxHeight; // 如果滚动超过最大高度，则设置滚动位置为最大高度
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+
+    <meting-js server="netease" type="playlist" id="8793002560" fixed="true" mini="true" autoplay="false"
+        theme="#2980b9" loop="all" order="random" preload="auto" volume="0.7" lrctype="0" />
+</body>
+
+</html>

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="google-site-verification" content="zn35ZLEP0On5fOgBn4JhRUUvkwCf7aHCy5sF7KY_ztQ" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="baidu-site-verification" content="codeva-zj1hmU1TBt" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="greendolphindance">
+    
+        
+                
+                    <meta name="description" content="Back to the rough ground!">
+                    
+                        
+                                
+                                    <title>
+                                        
+                                                    最近下载的小玩意：QSpace Pro | 
+                                                            Green Dolphin Dance
+                                    </title>
+
+                                    
+                                        
+                                            <link rel="icon" href="https://greendolphindance.github.io/picx-images-hosting/CttE_blue.45i19n1xse.webp">
+                                            
+
+                                                
+                                                    
+                                                        <!-- stylesheets list from _config.yml -->
+                                                        
+                                                            <link rel="stylesheet" href="/css/style.css">
+                                                            
+                                                                
+                                                                    
+                                                                        
+                                                                            <!-- scripts list from _config.yml -->
+                                                                            
+                                                                                <script
+                                                                                    src="/js/echarts.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/script.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/tocbot.min.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/jquery.js"></script>
+                                                                                
+                                                                                <script
+                                                                                    src="/js/clipboard.min.js"></script>
+                                                                                
+                                                                                    
+                                                                                        
+                                                                                            
+                                                                                                
+                                                                                                    
+                                                                                                                
+                                                                                                                            
+                                                                                                                                
+
+
+
+                                                                                                                                    <script>
+                                                                                                                                        document.addEventListener('DOMContentLoaded', function () {
+                                                                                                                                            function changeGiscusTheme() {
+                                                                                                                                                const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+
+                                                                                                                                                function sendMessage(message) {
+                                                                                                                                                    const iframe = document.querySelector('iframe.giscus-frame');
+                                                                                                                                                    if (!iframe) return;
+                                                                                                                                                    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                                                                                                                                                }
+
+                                                                                                                                                sendMessage({
+                                                                                                                                                    setConfig: {
+                                                                                                                                                        theme: theme === 'dark' ? 'noborder_dark' : 'noborder_light'
+                                                                                                                                                    }
+                                                                                                                                                });
+                                                                                                                                            }
+
+                                                                                                                                            // 等待Giscus加载，然后尝试更改主题
+                                                                                                                                            setTimeout(changeGiscusTheme, 1200); // 等待1200毫秒
+
+                                                                                                                                            // 如果你有一个主题切换按钮或链接，你可以在这里添加事件监听器
+                                                                                                                                            // 例如：
+                                                                                                                                            // document.getElementById('your-theme-switch-button-id').addEventListener('click', changeGiscusTheme);
+                                                                                                                                        });
+                                                                                                                                    </script>
+
+                                                                                                                                    <!-- 搜索的部分 -->
+                                                                                                                                    
+
+                                                                                                                                        
+                                                                                                                                            <script>
+    // function searchToggle() {
+    //     const width = $(document.body).width()
+    //     if(width > 479) {
+    //         return;
+    //     }
+    //     const search = $('.search');
+    //     const searchForm = $('.form-search')
+
+    //     if(!search.hasClass("mobile-search")) {
+    //         search.addClass("mobile-search");
+    //     } else {
+    //         search.removeClass("mobile-search");
+    //     }
+    // }
+
+    function searchToggle() {
+        const width = $(document.body).width()
+        if (width > 900) {
+            return;
+        }
+        const search = $('.search');
+        const searchForm = $('.form-search');
+        const menuToggle = $('.menu-toggle');
+        const title = $('.navbar-header-title ');
+
+        if (!search.hasClass("mobile-search")) {
+            search.addClass("mobile-search");
+            menuToggle.addClass("open-search")
+            title.addClass("mobile-title-hidden")
+        } else {
+            search.removeClass("mobile-search");
+            menuToggle.removeClass("open-search")
+            // title.css({visibility: 'visible'})
+            title.removeClass("mobile-title-hidden")
+        }
+    }
+
+
+
+    function search(searchInputEl, formEl, flag) {
+        const path = "/" + "search.json"; // 可以在public 下查看这个search.json
+        $(formEl).submit(function (e) {
+            e.preventDefault();
+            let target = null
+            if (searchInputEl == null) {
+                const screenWidth = $(document.body).width();
+                target = screenWidth > 479 ? $('#pc-search-input') : $('#mobile-search-input');
+                console.log(target);
+            } else {
+                target = $(searchInputEl)
+            }
+
+            if (!flag && target.val() === '') {
+                return;
+            }
+
+            $("#u-search").fadeIn(500, function () {
+                $("body > .wrapper").addClass("modal-active");
+
+                $.ajax({
+                    url: path,
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        $input = target.val();
+                        $(".form-input").val($input);
+                        const loadingBar = $('.search-loading-bar')
+                        loadingBar.css({
+                            width: '100%',
+                            display: 'block'
+                        });
+                    },
+                    success: function (datas) {
+                        console.log(datas);
+                        const $resultPanel = $(".modal-body")[0];
+                        let str = `<ul class="modal-results">`;
+                        var keywords = $(".form-input").val().trim().toLowerCase().split(/[\s\-]+/);
+                        $resultPanel.innerHTML = "";
+                        let hasResult = false
+                        let text = `<div class="no-result">找不到与关键词相关的内容....</div>`;
+
+                        if ($(".form-input").val().trim().length <= 0) {
+                            // 没有结果
+                            $resultPanel.innerHTML = text;
+                            return;
+                        }
+                        datas.forEach(function (data, index) {
+                            var isMatch = true;
+                            if (!data.title || data.title.trim() === '') {
+                                data.title = "Untitled";
+                            }
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content && data.content.trim().replace(/<[^>]+>/g, "").toLowerCase() || '';
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty contents
+                            if (data_content !== '') {
+                                keywords.forEach(function (keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        hasResult = true
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            } else {
+                                isMatch = false;
+                            }
+                            // show search results
+                            if (isMatch) {
+                                str += `<li class='result-item'><a href='${data_url}' class='result-item-detail'> <span class="title">${data_title}</span>`;
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 200 characters
+                                    var start = first_occur - 40;
+                                    var end = first_occur + 160;
+
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+
+                                    if (start == 0) {
+                                        end = 200;
+                                    }
+
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+
+                                    var match_content = content.substring(start, end);
+
+                                    // highlight all keywords
+                                    keywords.forEach(function (keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, `<em class="search-keyword">${keyword}</em>`);
+                                    });
+
+                                    str += `<span class="content"> ${match_content} ...</span></a>`;
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        if (hasResult) {
+                            $resultPanel.innerHTML = str;
+                        } else {
+                            $resultPanel.innerHTML = text;
+                        }
+
+                    },
+                    complete: function () {
+                        setTimeout(() => {
+                            const loadingBar = $('.search-loading-bar')
+                            loadingBar.css({
+                                width: '0%',
+                                display: 'none'
+                            });
+                        }, 300)
+                    }
+                });
+            })
+
+        });
+    }
+
+    $(document).ready(function () {
+        $('.modal-close').click(function () {
+            $("#u-search").fadeOut();
+            $("body > .wrapper").removeClass("modal-active")
+        })
+
+        $('.modal-overlay').click(function () {
+            $("#u-search").fadeOut();
+            $("body > .wrapper").removeClass("modal-active")
+        })
+        search(null, ".form-search", false)
+        search("#u-search-modal-form .form-input", ".u-search-modal-form", true)
+    })
+</script>
+                                                                                                                                                
+
+                                                                                                                                                    <script
+                                                                                                                                                        async
+                                                                                                                                                        src="https://us.umami.is/script.js"
+                                                                                                                                                        data-website-id="38f19c51-0534-4438-abae-315f586a457d"></script>
+
+                                                                                                                                                    <script
+                                                                                                                                                        type="text/javascript"
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+        <style>
+            body.hide-content * {
+                visibility: hidden;
+            }
+        </style>
+        <script>
+            (function () {
+                document.body.classList.add('hide-content');
+
+                const savedTheme = localStorage.getItem('theme');
+                const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                let useDarkMode;
+                if (savedTheme === 'dark' || savedTheme === 'light') {
+                    useDarkMode = savedTheme === 'dark';
+                } else {
+                    useDarkMode = userPrefersDark;
+                }
+                document.body.classList.toggle('dark-theme', useDarkMode);
+                document.body.classList.remove('hide-content');
+            })();
+        </script>
+        <style>
+            #tocButton svg {
+                position: fixed;
+                bottom: 20px;
+                /* 调整到你想要的位置 */
+                right: 5vw;
+            }
+
+            #totop {
+                position: fixed;
+                bottom: 20px+2rem;
+                /* 调整到你想要的位置 */
+                right: 5vw;
+            }
+        </style>
+
+<meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Green Dolphin Dance" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-solarized-dark-atom.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">
+                    Green Dolphin Dance
+                </a></div>
+            <div class="menu navbar-right">
+                <!-- 这里表示的是pc端搜索框 -->
+                
+                    
+    <div class="search ">
+        <div class="search-btn" onClick="searchToggle()">
+            <svg t="1703126001771" class="search-btn-img" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4319" width="200" height="200">
+                <path
+                    d="M1004.8 915.2l-243.2-243.2c0 0-6.4-6.4-6.4-6.4C800 595.2 832 505.6 832 416 832 185.6 646.4 0 416 0S0 185.6 0 416 185.6 832 416 832c89.6 0 179.2-32 243.2-83.2 0 6.4 6.4 6.4 6.4 6.4l243.2 243.2c25.6 25.6 70.4 25.6 96 6.4C1030.4 979.2 1030.4 940.8 1004.8 915.2zM64 416C64 224 224 64 416 64S768 224 768 416 608 768 416 768 64 608 64 416z"
+                    fill="#161209" p-id="4320"></path>
+            </svg>
+        </div>
+        <form class="form-search">
+            <input class="input" placeholder="点此搜索" autocomplete="off" id="pc-search-input" />
+        </form>
+    </div>
+    
+
+        <style>
+            body.dark-theme .search-btn-img path {
+                fill: #a9a9b3;
+                /* 淡灰色 */
+            }
+        </style>
+                        
+                            <a class="menu-item" href="/timeline">
+                                动态
+                            </a>
+                            
+                            <a class="menu-item" href="/archives">
+                                归档
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                分类
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                标签
+                            </a>
+                            
+                            <a class="menu-item" href="/songs">
+                                音乐
+                            </a>
+                            
+                            <a class="menu-item" href="/guestbook">
+                                留言板
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                关于
+                            </a>
+                            
+                            <a class="menu-item" href="/links">
+                                友链
+                            </a>
+                            
+                                <input id="switch_default" type="checkbox" class="switch_default">
+                                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+        <nav class="navbar-mobile" id="nav-mobile">
+            <div class="container">
+                <div class="navbar-header">
+                    <div>
+                        <a href="/">
+                            Green Dolphin Dance
+                        </a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    </div>
+                    <div class="navbar-mobile-right">
+                        
+                            
+    <div class="search ">
+        <div class="search-btn" onClick="searchToggle()">
+            <svg t="1703126001771" class="search-btn-img" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4319" width="200" height="200">
+                <path
+                    d="M1004.8 915.2l-243.2-243.2c0 0-6.4-6.4-6.4-6.4C800 595.2 832 505.6 832 416 832 185.6 646.4 0 416 0S0 185.6 0 416 185.6 832 416 832c89.6 0 179.2-32 243.2-83.2 0 6.4 6.4 6.4 6.4 6.4l243.2 243.2c25.6 25.6 70.4 25.6 96 6.4C1030.4 979.2 1030.4 940.8 1004.8 915.2zM64 416C64 224 224 64 416 64S768 224 768 416 608 768 416 768 64 608 64 416z"
+                    fill="#161209" p-id="4320"></path>
+            </svg>
+        </div>
+        <form class="form-search">
+            <input class="input" placeholder="点此搜索" autocomplete="off" id="mobile-search-input" />
+        </form>
+    </div>
+    
+
+        <style>
+            body.dark-theme .search-btn-img path {
+                fill: #a9a9b3;
+                /* 淡灰色 */
+            }
+        </style>
+                                <div class="menu-toggle" onclick="mobileBtn()">&#9776; 目录</div>
+                    </div>
+
+                    <div class="menu" id="mobile-menu">
+                        
+                            <a class="menu-item" href="/timeline">
+                                动态
+                            </a>
+                            
+                            <a class="menu-item" href="/archives">
+                                归档
+                            </a>
+                            
+                            <a class="menu-item" href="/categories">
+                                分类
+                            </a>
+                            
+                            <a class="menu-item" href="/tags">
+                                标签
+                            </a>
+                            
+                            <a class="menu-item" href="/songs">
+                                音乐
+                            </a>
+                            
+                            <a class="menu-item" href="/guestbook">
+                                留言板
+                            </a>
+                            
+                            <a class="menu-item" href="/about">
+                                关于
+                            </a>
+                            
+                            <a class="menu-item" href="/links">
+                                友链
+                            </a>
+                            
+                    </div>
+                </div>
+        </nav>
+
+
+
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+        
+
+                    
+                        <article class="post-wrap">
+                            <header class="post-header">
+                                <h1 class="post-title">
+                                    最近下载的小玩意：QSpace Pro
+                                </h1>
+                                
+                                    <div class="post-meta">
+
+                                        
+
+                                                
+                                                    <span class="post-time">
+
+                                                        发表时间: <a href="#">2023-10-10&nbsp;&nbsp;12:22:08</a>
+                                                    </span>
+                                                    
+
+                                                        
+                                                            <span class="updated-time">
+                                                                最后更新: <a href="#">2023-11-17&nbsp;&nbsp;3:59:53</a>
+                                                            </span>
+                                                            
+
+
+
+                                                                
+
+                                                                    <span class="post-category">
+
+                                                                        分类:
+
+                                                                        
+
+                                                                            <a href="/categories/%E6%8A%98%E8%85%BE/">折腾</a>
+
+                                                                            
+
+                                                                    </span>
+
+                                                                    
+
+
+
+                                                                        
+
+                                                                            <span class="post-count">
+
+                                                                                字数:
+
+                                                                                <a href="">
+                                                                                    662
+                                                                                </a>
+
+                                                                            </span>
+
+                                                                            
+
+
+
+                                                                                
+
+                                                                                    <span class="post-count">
+
+                                                                                        阅读时长:
+
+                                                                                        <a href="">
+                                                                                            2min
+                                                                                        </a>
+
+                                                                                    </span>
+
+                                                                                    
+
+                                    </div>
+                                    
+                            </header>
+
+                            <div class="post-content">
+                                <img width="100" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/43f93acf-2cda-4f5a-b44c-80220a455b5f">
+
+<p>平台：macOS</p>
+<p>价格：¥79（官网下载，APP内购买，网上找了个邀请码便宜10块）</p>
+<hr>
+<p>想找<a target="_blank" rel="noopener" href="https://greendolphindance.com/2023/10/08/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F/">之前的文章</a>提过的TotalFinder的替代品了，一来想支持正版，二来Apple似乎在给它设置重重险阻，感觉该APP的未来不容乐观。</p>
+<p>一开始还不太想放弃，于是点进TotalFinder官网的“Support”页面看看它还在不在维护。发现其实四月份的时候还是更新了的，但我又在评论区看到了这样一条：</p>
+<img width="787" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/69ad0ba1-7ef6-4d10-a2ff-5e7736e068a4">
+
+<p>里面推荐了QSpace Pro，也就是本文的主角。我立刻就去下载了，并开启了30天的试用。</p>
+<p>QSpace Pro和TotalFinder最大的不同是，前者是一个单独的APP，而后者类似于访达的一个插件。所以使用QSpace Pro时，最好使其在程序坞中保留。（然后我就不想用原生的访达了，但是不知道怎么把它隐藏掉，难受。）</p>
+<p>在使用上，QSpace Pro和TotalFinder也有区别。QSpace Pro没有tabs，只有双栏或多栏显示，但这对我来说已经够用。下图为四栏显示，如需调整栏数和排列方式，只需点击窗口右上角的“田”字，再选择需要的显示方式。</p>
+<img width="1224" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/031a9d8a-ba94-4de5-bed5-a4cdf1982efb">
+
+<p>还有一个我看中的功能，就是新建文件。Windows用户看到这里可能一头雾水，这不是很基础一功能吗？可是，是的，访达没有这个功能……这也是我从Windows转Mac遇到的众多不适应的地方之一。现在，我终于能解决这个问题了！只需点击右键，选择“新建文件”，就能拥有和在Windows上一样的丝滑体验！</p>
+<p>在默认情况下，点击“新建文件”会建立一个txt文档。但你可以在QSpace Pro的设置里添加，让它能够生成docx文档等：</p>
+<img width="915" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/1e4b298c-f8bb-4571-9ad7-ca38d1b2e1bb">
+
+<p>添加后效果如下：</p>
+<img width="277" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/d3f10a5d-aaee-4706-88d8-3fc3283e558a">
+
+<p>我还想提到一个功能，就是分组。QSpace Pro可以以不同的方式将文件夹的内容进行分组。我比较喜欢的是按类型分组，效果如下：</p>
+<img width="503" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/50c4e981-6386-4985-b34b-d1a29b327a80">
+
+<p>这个作用一看就知道吧！我就不介绍了。</p>
+<p>“设置”里还可以根据个人习惯进行一些设置。比如回车、删除键等对应什么功能。我使用了“Windows模式”：</p>
+<img width="766" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/224c34c8-e688-49d9-a779-3e9cf8eeb703">
+
+<p>还有一些小细节，比如排序的快捷键（QSpace Pro点选排序方式有点麻烦，所以有快捷键是极好的）：</p>
+<img width="638" alt="image" src="https://github.com/greendolphindance/greendolphindance.github.io/assets/87912044/8b90f59e-72ec-45c2-8d66-a4d1bc2e4ebc">
+
+<p>到目前为止，这个APP还没有什么令我不满意的地方，所以果断地买断了。以后如果有新的心得，会在这里更新。</p>
+
+                            </div>
+
+                            
+                                <section class="post-copyright">
+                                    
+                                            
+                                                    
+                                                            
+
+                                </section>
+                                
+                                    <section class="post-tags">
+                                        <div>
+                                            <span>标签：</span>
+                                            <span class="tag">
+                                                
+                                                    
+                                                        <a href="/tags/%E5%B7%A5%E5%85%B7/"># 工具</a>
+                                                        
+                                                            
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <a href="javascript:window.history.back();">返回</a>
+                                            <span>· </span>
+                                            <a href="/">主页</a>
+                                        </div>
+                                    </section>
+                                    <section class="post-nav">
+                                        
+                                            <a class="prev" rel="prev" href="/2023/10/17/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ATypewriter/">最近下载的小玩意：Typewriter</a>
+                                            
+                                                
+                                                    <a class="next" rel="next" href="/2023/10/09/%E5%A1%94%E7%BD%97%E7%89%8C%E3%80%81%E7%94%9F%E5%91%BD%E7%81%B5%E6%95%B0%E3%80%81%E6%98%9F%E5%BA%A7%E5%92%8CMBTI/">塔罗牌、生命灵数、星座和MBTI</a>
+                                                    
+                                    </section>
+
+                                    <section style="margin-top: 100px" class="row">
+                                        <div class="widget">
+    
+        
+            <div class="recommended_posts">
+                <h3>
+                    可能相关的文章<span class="driven-by">（由 <a
+                            target="_blank" rel="noopener" href="https://github.com/huiwang/hexo-recommended-posts">跨博客文章推荐插件</a> 驱动）</span>
+                </h3>
+                <ul>
+                    
+                        <li><a href="https://greendolphindance.github.io/2024/02/19/Mac%E5%8D%8A%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%87%BASafari%E4%B9%A6%E7%AD%BE%E8%87%B3Chrome/">
+                                Mac半自动导出Safari书签至Chrome
+                            </a></li>
+                        
+                        <li><a href="https://greendolphindance.github.io/2024/02/09/%E6%9C%80%E8%BF%91%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%EF%BC%9ARaycast/">
+                                最近下载的小玩意：Raycast
+                            </a></li>
+                        
+                        <li><a target="_blank" rel="noopener" href="https://blogs.kainy.cn/2010/03/加密QQ空间强行爆破工具V1.0/">
+                                加密QQ空间强行爆破工具V1.0
+                            </a></li>
+                        
+                </ul>
+            </div>
+            
+</div>
+                                    </section>
+
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            function getGiscusTheme() {
+                                                const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+                                                return theme === 'dark' ? 'noborder_dark' : 'noborder_light';
+                                            }
+
+                                            function setGiscusTheme() {
+                                                function sendMessage(message) {
+                                                    const iframe = document.querySelector('iframe.giscus-frame');
+                                                    if (!iframe) return;
+                                                    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                                                }
+                                                sendMessage({
+                                                    setConfig: {
+                                                        theme: getGiscusTheme(),
+                                                    },
+                                                });
+                                            }
+
+                                            function handleToggle() {
+                                                location.reload();
+                                            }
+
+                                            // Update giscus theme when theme switcher is clicked
+                                            const toggleDesktop = document.querySelector('label[for="switch_default"]');
+                                            const toggleMobile = document.querySelector('#mobile-toggle-theme');
+
+                                            if (toggleDesktop) {
+                                                toggleDesktop.addEventListener('click', function () {
+                                                    setGiscusTheme();
+                                                });
+                                            }
+
+                                            if (toggleMobile) {
+                                                toggleMobile.addEventListener('click', function () {
+                                                    setGiscusTheme();
+                                                });
+                                            }
+
+                                            // Wait for 1000ms (1 second) before loading the Giscus comments to ensure theme is set
+                                            setTimeout(() => {
+                                                const giscusAttributes = {
+                                                    "src": "https://giscus.app/client.js",
+                                                    "data-repo": "greendolphindance/greendolphindance.github.io",
+                                                    "data-repo-id": "R_kgDOKc-MwA",
+                                                    "data-category": "General",
+                                                    "data-category-id": "DIC_kwDOKc-MwM4CZ8oe",
+                                                    "data-mapping": "url",
+                                                    "data-strict": "0",
+                                                    "data-reactions-enabled": "1",
+                                                    "data-emit-metadata": "0",
+                                                    "data-input-position": "top",
+                                                    "data-theme": getGiscusTheme(),
+                                                    "data-lang": "zh-CN",
+                                                    "crossorigin": "anonymous",
+                                                };
+
+                                                // Dynamically create script tag
+                                                const giscusScript = document.createElement("script");
+                                                Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+
+                                                // Append the script tag to the <article> element
+                                                document.querySelector('article').appendChild(giscusScript);
+                                            }, 1000);
+                                        });
+
+                                    </script>
+
+                                    <button id="tocButton" style="display: none;">
+                                        <svg t="1697879152903" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg" p-id="5387" width="32" height="32">
+                                            <path
+                                                d="M 863.113 0 H 160.887 A 161.064 161.064 0 0 0 0 160.887 v 702.225 a 161.064 161.064 0 0 0 160.887 160.887 h 702.225 a 161.064 161.064 0 0 0 160.887 -160.887 V 160.887 a 161.064 161.064 0 0 0 -160.887 -160.887 Z M 242.94 725.908 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 242.94 333.037 h -6.06545 a 24.1331 24.1331 0 0 1 0 -48.2662 H 242.94 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 534.146 392.839 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z m 0 -193.58 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z M 777.086 333.037 H 416.087 a 24.1331 24.1331 0 0 1 0 -48.2662 h 360.854 a 24.1331 24.1331 0 0 1 0 48.2662 Z"
+                                                fill="#8a8a8a" p-id="5388"></path>
+                                    </button>
+
+                                    <div class="overlay" id="overlay" onclick="hideToc()"></div>
+
+                                    <script>
+                                        function hideToc() {
+                                            var toc = document.querySelector('.js-toc');
+                                            var overlay = document.getElementById('overlay');
+                                            var body = document.body;
+
+                                            toc.style.display = 'none'; // 隐藏目录
+                                            overlay.style.display = 'none'; // 隐藏遮罩层
+                                            body.style.overflow = ''; // 启用页面滚动
+                                        }
+                                        window.onload = function () {
+
+                                            var toc = document.querySelector('.js-toc');
+                                            var tocButton = document.getElementById('tocButton');
+                                            if (toc) {
+                                                // 根据 toc 内容的有无显示或隐藏目录按钮
+                                                tocButton.style.display = toc.innerText.trim() === '' ? 'none' : 'block';
+                                            } else {
+                                                tocButton.style.display = 'none';
+                                            }
+                                        };
+
+                                        function checkWindowSize() {
+                                            var windowWidth = window.innerWidth;
+                                            var toc = document.querySelector('.js-toc');
+                                            var tocButton = document.getElementById('tocButton');
+
+                                            if (windowWidth > 1379 || toc.innerText.trim() === '') {
+                                                tocButton.style.display = 'none';
+                                            } else {
+                                                tocButton.style.display = 'block';
+                                            }
+                                        }
+
+
+                                        // 点击tocButton时执行的函数
+                                        document.getElementById('tocButton').addEventListener('click', function () {
+                                            var toc = document.querySelector('.js-toc');
+                                            var overlay = document.getElementById('overlay');
+                                            var body = document.body;
+
+                                            if (toc.style.display === 'none' || toc.style.display === '') {
+                                                toc.style.display = 'block'; // 显示目录
+                                                overlay.style.display = 'block'; // 显示遮罩层
+                                                body.style.overflow = 'hidden'; // 禁用页面滚动
+                                            } else {
+                                                hideToc();
+                                            }
+                                        });
+
+
+                                        // 窗口大小变化时检查窗口宽度
+                                        window.onresize = checkWindowSize;
+                                    </script>
+
+                        </article>
+
+</div>
+
+<style>
+    .dark-theme .post-content code {
+        background: none !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var codeBlocks = document.querySelectorAll('article pre');
+
+        codeBlocks.forEach(function (codeBlock) {
+            var copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.innerText = 'Copy';
+
+            // Check if the code block is in the article content
+            if (codeBlock.closest('article')) {
+                codeBlock.parentNode.parentNode.style.position = 'relative'; // Update this line to select parent of span (pre)
+                codeBlock.parentNode.parentNode.appendChild(copyButton); // Update this line to select parent of span (pre) 
+
+                var isCopying = false;
+
+                copyButton.addEventListener('click', function () {
+                    if (!isCopying) {
+                        var codeText = codeBlock.innerText;
+                        navigator.clipboard.writeText(codeText).then(function () {
+                            copyButton.innerText = 'Copied!';
+                            isCopying = true;
+                            setTimeout(function () {
+                                copyButton.innerText = 'Copy';
+                                isCopying = false;
+                            }, 1500);
+                        }).catch(function (err) {
+                            console.error('Copy failed', err);
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<style>
+    .copy-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #2d96bd;
+        color: #fff;
+        border: none;
+        border-radius: 10%;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        font-size: 75%;
+    }
+</style>
+
+    <div class="js-toc"></div>
+    <div class="post-content"> <!-- 这里的class需要根据自身情况修改 -->
+        <!-- 博客文章内容将在这里渲染 -->
+    </div>
+    <!-- recommended posts -->
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <!-- <img style="height:16px!important; margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+                <img style="height:16px!important;margin-left:1px;vertical-align: middle; position: relative; top: -1px;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"> -->
+        <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="cc-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.785" cy="28.501" r="28.836" />
+                    <path
+                        d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314   c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143   c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429   c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2   c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657   c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913   c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971   c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344   c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187   l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657   c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2   c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629   c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686   C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2   c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113   c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686   c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313   c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z" />
+                </g>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="att-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.637" cy="28.806" r="28.276" />
+                    <g>
+                        <path
+                            d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456    C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5    c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657    c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771    c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571    C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557    c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6    C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514    c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z" />
+                    </g>
+                </g>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                style="height:12px; width:12px; margin-left:0.5px;vertical-align: middle; position: relative; top: -0.5px;"
+                class="non-logo" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" x="0px" y="0px"
+                width="64px" height="64px" viewBox="5.5 -3.5 64 64" enable-background="new 5.5 -3.5 64 64"
+                xml:space="preserve">
+                <g>
+                    <circle fill="none" cx="37.47" cy="28.736" r="29.471" />
+                    <g>
+                        <path
+                            d="M37.442-3.5c8.99,0,16.571,3.085,22.743,9.256C66.393,11.928,69.5,19.509,69.5,28.5c0,8.992-3.048,16.476-9.145,22.458    C53.88,57.32,46.241,60.5,37.442,60.5c-8.686,0-16.19-3.162-22.513-9.485C8.644,44.728,5.5,37.225,5.5,28.5    c0-8.762,3.144-16.343,9.429-22.743C21.1-0.414,28.604-3.5,37.442-3.5z M12.7,19.872c-0.952,2.628-1.429,5.505-1.429,8.629    c0,7.086,2.59,13.22,7.77,18.4c5.219,5.144,11.391,7.715,18.514,7.715c7.201,0,13.409-2.608,18.63-7.829    c1.867-1.79,3.332-3.657,4.398-5.602l-12.056-5.371c-0.421,2.02-1.439,3.667-3.057,4.942c-1.622,1.276-3.535,2.011-5.744,2.2    v4.915h-3.714v-4.915c-3.543-0.036-6.782-1.312-9.714-3.827l4.4-4.457c2.094,1.942,4.476,2.913,7.143,2.913    c1.104,0,2.048-0.246,2.83-0.743c0.78-0.494,1.172-1.312,1.172-2.457c0-0.801-0.287-1.448-0.858-1.943l-3.085-1.315l-3.771-1.715    l-5.086-2.229L12.7,19.872z M37.557,2.214c-7.276,0-13.428,2.571-18.457,7.714c-1.258,1.258-2.439,2.686-3.543,4.287L27.786,19.7    c0.533-1.676,1.542-3.019,3.029-4.028c1.484-1.009,3.218-1.571,5.2-1.686V9.071h3.715v4.915c2.934,0.153,5.6,1.143,8,2.971    l-4.172,4.286c-1.793-1.257-3.619-1.885-5.486-1.885c-0.991,0-1.876,0.191-2.656,0.571c-0.781,0.381-1.172,1.029-1.172,1.943    c0,0.267,0.095,0.533,0.285,0.8l4.057,1.83l2.8,1.257l5.144,2.285l16.397,7.314c0.535-2.248,0.801-4.533,0.801-6.857    c0-7.353-2.552-13.543-7.656-18.573C51.005,4.785,44.831,2.214,37.557,2.214z" />
+                    </g>
+                </g>
+            </svg>
+        </a>
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic"
+            target="_blank">Chic</a> <span id="qudong">驱动</span>
+        </span>
+        <br>
+        <!-- Add the SVG logo wrapped in a link -->
+        <a href="https://www.travellings.cn/go.html" target="_blank" style="display:inline-block;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="kaiwang" height="16" width="14" viewBox="0 0 448 512"
+                style="height:12px; width:12px; ;vertical-align: middle; position: relative; top: -0.5px;">
+                <!-- SVG Path -->
+                <path
+                    d="M96 0C43 0 0 43 0 96V352c0 48 35.2 87.7 81.1 94.9l-46 46C28.1 499.9 33.1 512 43 512H82.7c8.5 0 16.6-3.4 22.6-9.4L160 448H288l54.6 54.6c6 6 14.1 9.4 22.6 9.4H405c10 0 15-12.1 7.9-19.1l-46-46c46-7.1 81.1-46.9 81.1-94.9V96c0-53-43-96-96-96H96zM64 128c0-17.7 14.3-32 32-32h80c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM272 96h80c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H272c-17.7 0-32-14.3-32-32V128c0-17.7 14.3-32 32-32zM64 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm288-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+            </svg>
+        </a>
+        <a href="https://icp.gov.moe/?keyword=20230468" target="_blank"><span id="moe-text">萌ICP备20230468号</span></a>
+        <a href="https://travel.moe/go.html" title="异次元之旅-跃迁-我们一起去萌站成员的星球旅行吧！" style=" display:inline-block;"
+            target=" _blank">
+            <svg t="1702427100869" class="moe-icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="1841"
+                style="height:14px; width:14px; vertical-align: middle; position: relative; top: -1px;">
+                <path d="M598.1 392.7m-56.8 0a56.8 56.8 0 1 0 113.6 0 56.8 56.8 0 1 0-113.6 0Z" p-id="1842"></path>
+                <path d="M434.6 392.7m-33.8 0a33.8 33.8 0 1 0 67.6 0 33.8 33.8 0 1 0-67.6 0Z" p-id="1843"></path>
+                <path
+                    d="M236.6 828.1c-68.7 0-123.9-20.2-152.4-67.5-37.3-62-14.6-148.9 63.9-244.8 4.6-5.4 19.2-21.7 37-30 22.4-10.5 49-0.8 59.5 21.6 10.4 22.4 0.8 49-21.6 59.5-0.7 0.6-4.7 4.6-6 6.2-59.9 73.2-67.7 122-56 141.3 28.6 47.6 208 33.8 423.7-96.2 99.8-60.2 184-131.7 237-201.2 41.8-54.9 59.9-105.4 45.9-128.6-12.7-21.1-57.8-29.5-117.6-22-12.1 1.5-25 3.7-38.1 6.5-24.3 5.1-47.9-10.4-53-34.6-5.1-24.2 10.4-47.9 34.6-53 15.6-3.3 30.8-5.8 45.4-7.7 127.9-16.1 182.3 26.3 205.4 64.7 35.1 58.2 16.8 139.6-51.4 229-59.7 78.3-152.8 157.6-262.1 223.5-129.9 78.3-280.7 133.3-394.2 133.3z"
+                    p-id="1844"></path>
+                <path
+                    d="M529.8 874.7c-200.4 0-363.5-163.1-363.5-363.5s163.1-363.5 363.5-363.5 363.5 163.1 363.5 363.5-163 363.5-363.5 363.5z m0-637.5c-151.1 0-274 122.9-274 274s122.9 274 274 274 274-122.9 274-274-122.9-274-274-274z"
+                    p-id="1845"></path>
+            </svg></a>
+        <br>
+        <i class="ri-time-line"></i>
+        <span id="runtime_span"></span>
+        <script type="text/javascript">
+            function show_runtime() {
+                window.setTimeout("show_runtime()", 1000);
+                X = new Date("10/06/2023 12:34:50");
+                Y = new Date();
+                T = (Y.getTime() - X.getTime());
+                M = 24 * 60 * 60 * 1000;
+                a = T / M;
+                A = Math.floor(a);
+                b = (a - A) * 24;
+                B = Math.floor(b);
+                c = (b - B) * 60;
+                C = Math.floor((b - B) * 60);
+                D = Math.floor((c - C) * 60);
+                runtime_span.innerHTML = "已运行 " + A + "天" + B + "小时" + C + "分" + D + "秒"
+            }
+            show_runtime();
+        </script>
+        <span class="post-count">
+            132.9k
+        </span>
+        <span>
+            <!-- Existing Creative Commons images and links -->
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span
+                id="busuanzi_value_site_uv"></span>
+            <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank"
+                rel="license noopener noreferrer" style="display:inline-block;">
+    </div>
+
+    <style>
+        @media screen and (max-width: 767px) {
+            .footer {
+                margin-bottom: 1.5rem;
+                /* 将页脚上移1rem */
+            }
+        }
+
+        .dark-theme .kaiwang {
+            fill: #a9a9b2;
+        }
+
+        /* Default color (black) for day mode for moe-icon */
+        .moe-icon {
+            fill: black;
+        }
+
+        /* Color (#A9A9B2) for dark theme for moe-icon */
+        .dark-theme .moe-icon {
+            fill: #A9A9B2;
+        }
+
+        /* Apply fill color based on currentColor for all logos */
+        .cc-logo path,
+        .att-logo path,
+        .non-logo path {
+            fill: currentColor;
+        }
+
+        /* Default color (black) for day mode for all logos */
+        .cc-logo path,
+        .att-logo path,
+        .non-logo path {
+            color: black;
+        }
+
+        /* Color (#A9A9B2) for dark theme for all logos */
+        .dark-theme .cc-logo path,
+        .dark-theme .att-logo path,
+        .dark-theme .non-logo path {
+            color: #A9A9B2;
+        }
+
+        #footer .footer {
+            font-size: 12px !important;
+        }
+
+        /* 页脚的基本样式 */
+        .footer {
+            font-size: 12px;
+        }
+
+        /* 桌面端样式 */
+        @media screen and (min-width: 768px) {
+            .footer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .footer>div>span,
+            .footer>div>a,
+            .footer>div>i {
+                display: inline-block;
+            }
+
+            .footer>div>br {
+                display: none;
+                /* 隐藏换行符 */
+            }
+
+            .footer>div>script {
+                display: none;
+                /* 隐藏 script 标签 */
+            }
+        }
+
+        /* 移动端样式，无需特别处理 */
+
+        .non-logo,
+        #busuanzi_value_site_uv,
+        #qudong,
+        .kaiwang,
+        #moe-text,
+        .moe-icon,
+        #runtime_span,
+        .post-count {
+            margin-right: 5px;
+        }
+    </style>
+
+    <div id="totop" style="bottom:60px;cursor: pointer;">
+    <a title="返回顶部">
+        <svg t="1697771647324" class="icon back-top-svg" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2324" width="32px" height="32px">
+            <path d="M946.494 754.216c19.445-19.445 19.445-51.265 0-70.711L547.355 284.368c-19.445-19.445-51.265-19.445-70.711 0L77.506 683.506c-19.445 19.445-19.445 51.265 0 70.711" p-id="2325" fill="#8a8a8a"></path>
+        </svg>
+    </a>
+</div>
+
+
+
+
+        <script src="/js/totop.js"></script>
+
+        <!-- require APlayer -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+        <!-- require MetingJS -->
+        <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+        <div class="aplayer no-destroy" style="display: block; text-align: left" data-id="8793002560"
+            data-server="netease" data-type="playlist" data-mini="true" data-fixed="true" data-autoplay="false"
+            data-order="random" data-lrctype="-1"> </div>
+
+        <style>
+            body.dark-theme .aplayer-list {
+                border-color: #414345 !important;
+            }
+
+            body.dark-theme .aplayer-info {
+                border-color: #414345 !important;
+            }
+
+            body.dark-theme .aplayer-miniswitcher {
+                background: #414345;
+                border-color: #414345;
+            }
+
+            body.dark-theme .aplayer-body {
+                background: #292a2d !important;
+            }
+
+            body.dark-theme .aplayer {
+                box-shadow: none !important;
+            }
+
+            body.dark-theme .aplayer-list ol li:first-child {
+                border-top: none;
+            }
+        </style>
+</footer>
+    </div>
+    </script>
+
+    <!-- 搜索功能 -->
+    <!-- Chic/layout.ejs -->
+    <div id="u-search">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="container">
+                    <form id="u-search-modal-form" class="u-search-modal-form">
+                        <button type="submit" class="form-submit-btn">
+                            <img src="/" class="search-btn-img" />
+                        </button>
+                        <input placeholder="搜索内容..." class="form-input" id="modal-form-input">
+                    </form>
+                    <a class="modal-close">x</a>
+                </div>
+                <div class="search-loading">
+                    <div class="search-loading-bar"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+        <div class="modal-overlay"></div>
+    </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tocbot/dist/tocbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            tocbot.init({
+                tocSelector: '.js-toc',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4',
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            console.log("Saved theme: ", savedTheme); // 输出保存的主题
+
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            console.log("User prefers dark theme: ", userPrefersDark); // 输出用户的系统偏好
+
+            let useDarkMode;
+            if (savedTheme === 'dark' || savedTheme === 'light') { // 当有明确的保存主题时
+                useDarkMode = savedTheme === 'dark';
+            } else {
+                useDarkMode = userPrefersDark; // 默认使用系统偏好
+            }
+
+            console.log("Using dark theme: ", useDarkMode); // 输出是否使用暗主题
+
+            document.body.classList.toggle('dark-theme', useDarkMode); // 应用或移除 dark-theme 类
+
+            const themeToggleCheckbox = document.getElementById('switch_default');
+            if (themeToggleCheckbox) {
+                themeToggleCheckbox.checked = useDarkMode;
+            }
+
+            themeToggleCheckbox.addEventListener('change', function () {
+                const isChecked = themeToggleCheckbox.checked;
+                console.log("Checkbox is checked: ", isChecked); // 输出复选框的状态
+
+                document.body.classList.toggle('dark-theme', isChecked);
+                localStorage.setItem('theme', isChecked ? 'dark' : 'light');
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelector('.js-toc').addEventListener('scroll', function (e) {
+            var tocList = document.querySelector('.toc-list');
+            var maxHeight = tocList.scrollHeight - this.clientHeight + 20; // 计算最大可滚动高度
+            if (this.scrollTop >= maxHeight) {
+                this.scrollTop = maxHeight; // 如果滚动超过最大高度，则设置滚动位置为最大高度
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+
+    <meting-js server="netease" type="playlist" id="8793002560" fixed="true" mini="true" autoplay="false"
+        theme="#2980b9" loop="all" order="random" preload="auto" volume="0.7" lrctype="0" />
+</body>
+
+</html>

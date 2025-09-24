@@ -1,0 +1,40 @@
+.timeline {
+  margin: 0 auto;
+  padding: 20px;
+  position: relative; /* 使得伪元素定位相对于 .timeline 的位置 */
+}
+.timeline:before {
+  content: ''; /* 添加一个伪元素用于绘制时间线 */
+  position: absolute; /* 使得伪元素相对于 .timeline 定位 */
+  top: 0; /* 从顶部开始 */
+  bottom: 0; /* 撑满整个 .timeline */
+  left: 10px; /* 使得线条与 .timeline-item 的左边距一致 */
+  width: 2px; /* 线条宽度 */
+  background-color: #2a96bd; /* 线条颜色 */
+}
+.timeline-item {
+  position: relative; /* 使得 .timeline-content 相对于 .timeline-item 定位 */
+  border-left: 2px solid transparent; /* 透明的左边框用于绘制线条 */
+  padding-left: 20px; /* 增加左边距，使得标题不会和线条重合 */
+  margin-bottom: 40px; /* 放大两个不同项之间的间距 */
+}
+.timeline-item:before {
+  content: ''; /* 添加一个伪元素用于绘制蓝色点 */
+  position: absolute; /* 使得伪元素相对于 .timeline-item 定位 */
+  top: 10px; /* 距离 .timeline-item 顶部位置 */
+  left: -16px; /* 将蓝色点定位到线条的左边缘 */
+  width: 10px; /* 点的宽度 */
+  height: 10px; /* 点的高度 */
+  background-color: #2a96bd; /* 点的颜色 */
+  border-radius: 50%; /* 将点设置为圆形 */
+}
+.timeline-date {
+  font-weight: bold;
+  margin-bottom: 5px;
+  line-height: 1em;
+}
+.timeline-content {
+  margin-left: 10px;
+  font-size: 14px; /* 设置描述字体大小 */
+  line-height: 1.5em;
+}
