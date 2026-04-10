@@ -8,9 +8,9 @@ layout: about
 
 # 我
 
-女大学生，长期坚持的爱好基本上只有听音乐和折腾电子设备。喜欢摇滚乐（尤其是progressive rock）和爵士乐（尤其是bebop，最近新增free），很偶尔听古典。虽然没有什么电脑知识，但很爱折腾，喜欢下载各种新奇的小工具偷偷把玩。
+女大学生，长期坚持的爱好基本上只有听音乐和折腾电子设备。常听的风格是摇滚乐（尤其是前卫摇滚）和爵士乐（尤其是bebop和hard bop时期的作品），很偶尔听古典。虽然没有什么电脑知识，但很爱折腾，喜欢下载各种新奇的小工具偷偷把玩。
 
-目前是黄毛。
+目前是黄毛，但恋爱中！
 
 
 站名“Green Dolphin Dance”来源于爵士标准曲*On Green Dolphin Street*和*Dolphin Dance*。此外，Prince亦有一首名为*Dolphin*的作品。三首歌曲均在页面左下角的歌单中收录。
@@ -22,16 +22,16 @@ layout: about
 
 联系我：<a href="mailto:greendolphindance@outlook.com" class="pink">greendolphindance@outlook.com</a>。
 
-屏幕左下方是一个歌单。感谢<a href="https://music.163.com/#/artist?id=35945528" class="pink">竹子</a>和<a href="https://music.163.com/#/artist?id=34327004" class="pink">Mon</a>允许我添加他们的作品。
+屏幕左下方是一个歌单。感谢<a href="https://music.163.com/#/artist?id=35945528" class="pink">竹子</a>和<a href="https://music.163.com/#/artist?id=34327004" class="pink">Mon</a>允许我添加他们的作品!
 
 # 最近在
 
-- 反复受伤（嘴、肩、踝、脚趾）
-- 但是攀岩
-- 但是打拳
-- 试图开展系统前摇研究
-- 艰难写论文
+- 攀岩
+- 和对象一起攀岩
+- 听ELP
+- 复健钢琴
+- （疑似比之前稍微顺利一些地）写论文
 
-# 即将
+<!-- # 即将
 
-- 上海旅攀
+- 上海旅攀 -->

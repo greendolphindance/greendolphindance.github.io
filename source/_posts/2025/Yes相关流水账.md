@@ -80,16 +80,16 @@ tags:
 
 此时我以为他跟我说的是一回事，要跟我探讨一些乐理。但他其实意思simply是“Hey Jude”最后的“na na na”和“Time and a Word”最后的副歌唱太多遍了。在不知情的情况下我说，你要这么说的话就得说Beatles很多其他的（和声曲式简单的）歌也不怎么样。他说：
 
-> I’m struggling to think of any other Beatles or Yes songs with the same sort of lengthy repetition of phrases (except for the instrumental end to “Starship Trooper”.)
-> Can you help out with any other titles?
+*I’m struggling to think of any other Beatles or Yes songs with the same sort of lengthy repetition of phrases (except for the instrumental end to “Starship Trooper”.)*
+*Can you help out with any other titles?*
 
 妈的，装男！首先我只说了Beatles，没说Yes。其次就算我说了Yes，你怎么就可以把他们最符合repetitive的实例给预先排除了……？不过这时候我终于发现他只是想说结尾太长，而不是我以为的那个意思，我就非常礼貌地澄清此误解，还补充了一句说，如果造成了误解不好意思。
 
 然后我想起来Beatles的“All You Need Is Love”不也是结尾重复一句话吗？我就说，如果你实在想要一个例子的话那就“All You Need Is Love”吧。没想到老哥回：
 
-> That’s a great example.
-> And “Yellow Submarine” which doesn’t even wait for the end to start its repetitions.
-> Thanks.
+*That’s a great example.*
+*And “Yellow Submarine” which doesn’t even wait for the end to start its repetitions.*
+*Thanks.*
 
 此人明显是一种嘲讽语气，意思是“AYNIL”和“Yellow Submarine”也都不怎么样嘛，我举这个例子反而是佐证了他的观点。然后直接无视了我的礼貌澄清。
 
@@ -97,8 +97,8 @@ tags:
 
 老哥回：
 
-> Understood, though I think the key changes at the end of the ”All Good People” makes a difference.
-> (Not sure where I was being sarcastic, but I agree with .)
+*Understood, though I think the key changes at the end of the ”All Good People” makes a difference.*
+*(Not sure where I was being sarcastic, but I agree with .)*
 
 （最后还少打了一个宾语。）太招笑了，挑了其中一个勉强arguable的例子锐评一下，对另一个完全符合描述的例子视而不见。还说不知道他哪里sarcastic了，最后关头嘴硬一下，好像在说我小肚鸡肠把他的友好发言曲解为阴阳。
 
