@@ -1,0 +1,13 @@
+/* 留言板评论框（原内联于 layout/guestbook.ejs） */
+.comment-box {
+  width: 100%;
+  max-width: 780px; /* 适用于桌面和横屏 iPad */
+  margin: auto; /* 居中显示 */
+}
+/* 适用于屏幕宽度小于 767px 的所有设备，无论横屏还是竖屏 */
+@media (max-width: 767px) {
+  .comment-box {
+    width: 92.5%; /* 相对于设备宽度的 92.5% */
+    margin: auto; /* 居中显示 */
+  }
+}
